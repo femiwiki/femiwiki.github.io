@@ -1,6 +1,7 @@
 ---
 extensions:
   - Scribunto
+  - TemplateStyles
 skins:
   - Femiwiki
 config:
