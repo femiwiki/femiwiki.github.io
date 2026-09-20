@@ -1,0 +1,611 @@
+{
+  "generated": "2026-09-20",
+  "repos": [
+    {
+      "name": ".github",
+      "kinds": {
+        "json": {
+          "files": 1,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "md": {
+          "files": 1,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "py": {
+          "files": 1,
+          "tools": []
+        },
+        "yaml": {
+          "files": 3,
+          "tools": [
+            "prettier"
+          ]
+        }
+      }
+    },
+    {
+      "name": "DiscordRCFeed",
+      "kinds": {
+        "json": {
+          "files": 3,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "md": {
+          "files": 2,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "php": {
+          "files": 18,
+          "tools": [
+            "phpcs",
+            "parallel-lint",
+            "phan"
+          ]
+        },
+        "yaml": {
+          "files": 3,
+          "tools": [
+            "prettier"
+          ]
+        }
+      }
+    },
+    {
+      "name": "FemiwikiCrawlingBlocker",
+      "kinds": {
+        "json": {
+          "files": 6,
+          "tools": [
+            "prettier",
+            "banana"
+          ]
+        },
+        "md": {
+          "files": 2,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "php": {
+          "files": 2,
+          "tools": [
+            "phpcs",
+            "parallel-lint",
+            "phan"
+          ]
+        },
+        "yaml": {
+          "files": 6,
+          "tools": [
+            "prettier"
+          ]
+        }
+      }
+    },
+    {
+      "name": "FemiwikiSkin",
+      "kinds": {
+        "css": {
+          "files": 51,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "js": {
+          "files": 18,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "json": {
+          "files": 8,
+          "tools": [
+            "prettier",
+            "banana"
+          ]
+        },
+        "md": {
+          "files": 2,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "php": {
+          "files": 8,
+          "tools": [
+            "phpcs",
+            "parallel-lint",
+            "phan"
+          ]
+        },
+        "yaml": {
+          "files": 6,
+          "tools": [
+            "prettier"
+          ]
+        }
+      }
+    },
+    {
+      "name": "OOUIFemiwikiTheme",
+      "kinds": {
+        "css": {
+          "files": 38,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "js": {
+          "files": 1,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "json": {
+          "files": 19,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "md": {
+          "files": 1,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "php": {
+          "files": 1,
+          "tools": []
+        },
+        "sh": {
+          "files": 1,
+          "tools": []
+        },
+        "yaml": {
+          "files": 2,
+          "tools": [
+            "prettier"
+          ]
+        }
+      }
+    },
+    {
+      "name": "UnifiedExtensionForFemiwiki",
+      "kinds": {
+        "js": {
+          "files": 1,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "json": {
+          "files": 5,
+          "tools": [
+            "prettier",
+            "banana"
+          ]
+        },
+        "md": {
+          "files": 2,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "php": {
+          "files": 6,
+          "tools": [
+            "phpcs",
+            "parallel-lint",
+            "phan"
+          ]
+        },
+        "yaml": {
+          "files": 6,
+          "tools": [
+            "prettier"
+          ]
+        }
+      }
+    },
+    {
+      "name": "backupbot",
+      "kinds": {
+        "dockerfile": {
+          "files": 1,
+          "tools": []
+        },
+        "md": {
+          "files": 1,
+          "tools": []
+        },
+        "yaml": {
+          "files": 2,
+          "tools": []
+        }
+      }
+    },
+    {
+      "name": "caddy-mwcache",
+      "kinds": {
+        "go": {
+          "files": 6,
+          "tools": [
+            "gofmt"
+          ]
+        },
+        "json": {
+          "files": 2,
+          "tools": []
+        },
+        "md": {
+          "files": 2,
+          "tools": []
+        },
+        "php": {
+          "files": 5,
+          "tools": []
+        },
+        "yaml": {
+          "files": 7,
+          "tools": []
+        }
+      }
+    },
+    {
+      "name": "docker-mediawiki",
+      "kinds": {
+        "dockerfile": {
+          "files": 5,
+          "tools": []
+        },
+        "js": {
+          "files": 1,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "json": {
+          "files": 5,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "md": {
+          "files": 6,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "php": {
+          "files": 3,
+          "tools": [
+            "phpcs",
+            "parallel-lint"
+          ]
+        },
+        "yaml": {
+          "files": 15,
+          "tools": [
+            "prettier"
+          ]
+        }
+      }
+    },
+    {
+      "name": "docker-poolcounter",
+      "kinds": {
+        "md": {
+          "files": 1,
+          "tools": []
+        }
+      }
+    },
+    {
+      "name": "femiwiki",
+      "kinds": {
+        "json": {
+          "files": 2,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "md": {
+          "files": 8,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "yaml": {
+          "files": 4,
+          "tools": [
+            "prettier"
+          ]
+        }
+      }
+    },
+    {
+      "name": "femiwiki.github.io",
+      "kinds": {
+        "css": {
+          "files": 1,
+          "tools": [
+            "biome"
+          ]
+        },
+        "json": {
+          "files": 1,
+          "tools": [
+            "biome"
+          ]
+        },
+        "lua": {
+          "files": 2,
+          "tools": [
+            "stylua",
+            "luacheck"
+          ]
+        },
+        "md": {
+          "files": 1,
+          "tools": [
+            "rumdl"
+          ]
+        },
+        "sh": {
+          "files": 3,
+          "tools": [
+            "shellcheck"
+          ]
+        },
+        "toml": {
+          "files": 2,
+          "tools": []
+        },
+        "yaml": {
+          "files": 15,
+          "tools": [
+            "yamllint"
+          ]
+        }
+      }
+    },
+    {
+      "name": "infra",
+      "kinds": {
+        "md": {
+          "files": 1,
+          "tools": []
+        },
+        "php": {
+          "files": 1,
+          "tools": []
+        },
+        "tf": {
+          "files": 31,
+          "tools": []
+        },
+        "yaml": {
+          "files": 3,
+          "tools": []
+        }
+      }
+    },
+    {
+      "name": "lambda",
+      "kinds": {
+        "md": {
+          "files": 1,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "py": {
+          "files": 2,
+          "tools": [
+            "ruff"
+          ]
+        },
+        "toml": {
+          "files": 1,
+          "tools": []
+        },
+        "yaml": {
+          "files": 2,
+          "tools": [
+            "prettier"
+          ]
+        }
+      }
+    },
+    {
+      "name": "legunto",
+      "kinds": {
+        "json": {
+          "files": 3,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "md": {
+          "files": 2,
+          "tools": [
+            "prettier",
+            "rumdl"
+          ]
+        },
+        "py": {
+          "files": 7,
+          "tools": [
+            "ruff"
+          ]
+        },
+        "toml": {
+          "files": 2,
+          "tools": []
+        },
+        "yaml": {
+          "files": 8,
+          "tools": [
+            "prettier",
+            "yamllint"
+          ]
+        }
+      }
+    },
+    {
+      "name": "maintenance",
+      "kinds": {
+        "md": {
+          "files": 1,
+          "tools": []
+        }
+      }
+    },
+    {
+      "name": "quibble-action",
+      "kinds": {
+        "json": {
+          "files": 2,
+          "tools": [
+            "biome"
+          ]
+        },
+        "md": {
+          "files": 2,
+          "tools": [
+            "rumdl"
+          ]
+        },
+        "py": {
+          "files": 4,
+          "tools": [
+            "ruff"
+          ]
+        },
+        "toml": {
+          "files": 1,
+          "tools": []
+        },
+        "yaml": {
+          "files": 7,
+          "tools": [
+            "yamllint"
+          ]
+        }
+      }
+    },
+    {
+      "name": "rankingbot",
+      "kinds": {
+        "json": {
+          "files": 1,
+          "tools": []
+        },
+        "md": {
+          "files": 1,
+          "tools": []
+        },
+        "py": {
+          "files": 6,
+          "tools": [
+            "flake8"
+          ]
+        },
+        "toml": {
+          "files": 1,
+          "tools": []
+        },
+        "yaml": {
+          "files": 5,
+          "tools": []
+        }
+      }
+    },
+    {
+      "name": "remote-gadgets",
+      "kinds": {
+        "css": {
+          "files": 18,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "js": {
+          "files": 21,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "json": {
+          "files": 28,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "md": {
+          "files": 1,
+          "tools": [
+            "prettier"
+          ]
+        },
+        "py": {
+          "files": 2,
+          "tools": [
+            "flake8"
+          ]
+        },
+        "toml": {
+          "files": 1,
+          "tools": []
+        },
+        "yaml": {
+          "files": 5,
+          "tools": [
+            "prettier"
+          ]
+        }
+      }
+    },
+    {
+      "name": "terraform-provider-mediawiki",
+      "kinds": {
+        "md": {
+          "files": 1,
+          "tools": []
+        }
+      }
+    },
+    {
+      "name": "tweetbot",
+      "kinds": {
+        "md": {
+          "files": 1,
+          "tools": []
+        },
+        "py": {
+          "files": 4,
+          "tools": [
+            "flake8"
+          ]
+        },
+        "toml": {
+          "files": 1,
+          "tools": []
+        },
+        "yaml": {
+          "files": 5,
+          "tools": []
+        }
+      }
+    }
+  ]
+}
