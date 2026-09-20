@@ -46,6 +46,10 @@ jobs:
           MONTH: ${{ inputs.month }}
         run: scripts/collect.sh data ${MONTH:+"$MONTH"}
 
+      - env:
+          MONTH: ${{ inputs.month }}
+        run: scripts/availability.sh data ${MONTH:+"$MONTH"}
+
       - name: Push what changed
         run: |
           cd data

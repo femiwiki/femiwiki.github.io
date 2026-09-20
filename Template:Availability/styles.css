@@ -1,0 +1,65 @@
+/* The skin paints every wikitable cell transparent with a long selector; these are longer. */
+.av-grid {
+	font-size: 0.85em;
+}
+
+.av-grid > * > tr > td,
+.av-grid > * > tr > th {
+	padding: 0.2em 0.4em;
+	text-align: center;
+	white-space: nowrap;
+}
+
+.av-grid > * > tr > td.av-day {
+	text-align: left;
+}
+
+.av-hours {
+	display: inline-flex;
+	gap: 2px;
+	vertical-align: middle;
+}
+
+.av-hours span {
+	display: inline-block;
+	width: 0.9em;
+	height: 1.2em;
+	border-radius: 2px;
+}
+
+.av-grid > * > tr > td.av-a,
+.av-hours .av-a {
+	background-color: #2e8b57;
+}
+
+.av-grid > * > tr > td.av-b,
+.av-hours .av-b {
+	background-color: #8fd19e;
+}
+
+.av-grid > * > tr > td.av-c,
+.av-hours .av-c {
+	background-color: #ffe066;
+}
+
+.av-grid > * > tr > td.av-d,
+.av-hours .av-d {
+	background-color: #ff9f43;
+}
+
+.av-grid > * > tr > td.av-e,
+.av-hours .av-e {
+	background-color: #d63031;
+}
+
+.av-grid > * > tr > td.av-none,
+.av-hours .av-none {
+	background-color: #dcdde1;
+}
+
+.av-grid > * > tr > td.av-a,
+.av-grid > * > tr > td.av-a a,
+.av-grid > * > tr > td.av-e,
+.av-grid > * > tr > td.av-e a {
+	color: #fff;
+}
