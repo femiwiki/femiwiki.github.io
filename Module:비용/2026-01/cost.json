@@ -1,0 +1,246 @@
+{
+  "DimensionValueAttributes": [],
+  "GroupDefinitions": [
+    {
+      "Key": "SERVICE",
+      "Type": "DIMENSION"
+    }
+  ],
+  "ResultsByTime": [
+    {
+      "Estimated": false,
+      "Groups": [
+        {
+          "Keys": [
+            "AWS Cost Explorer"
+          ],
+          "Metrics": {
+            "NetUnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Data Transfer"
+          ],
+          "Metrics": {
+            "NetUnblendedCost": {
+              "Amount": "-73.193934354",
+              "Unit": "USD"
+            },
+            "UnblendedCost": {
+              "Amount": "-73.193934354",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Key Management Service"
+          ],
+          "Metrics": {
+            "NetUnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Secrets Manager"
+          ],
+          "Metrics": {
+            "NetUnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "EC2 - Other"
+          ],
+          "Metrics": {
+            "NetUnblendedCost": {
+              "Amount": "0.7155268924",
+              "Unit": "USD"
+            },
+            "UnblendedCost": {
+              "Amount": "0.7155268924",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Elastic Compute Cloud - Compute"
+          ],
+          "Metrics": {
+            "NetUnblendedCost": {
+              "Amount": "70.0220602129",
+              "Unit": "USD"
+            },
+            "UnblendedCost": {
+              "Amount": "70.0220602129",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Route 53"
+          ],
+          "Metrics": {
+            "NetUnblendedCost": {
+              "Amount": "-0.000000062",
+              "Unit": "USD"
+            },
+            "UnblendedCost": {
+              "Amount": "-0.000000062",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon S3 Glacier Deep Archive"
+          ],
+          "Metrics": {
+            "NetUnblendedCost": {
+              "Amount": "-2.0917560651",
+              "Unit": "USD"
+            },
+            "UnblendedCost": {
+              "Amount": "-2.0917560651",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Email Service"
+          ],
+          "Metrics": {
+            "NetUnblendedCost": {
+              "Amount": "0.0000190815",
+              "Unit": "USD"
+            },
+            "UnblendedCost": {
+              "Amount": "0.0000190815",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Notification Service"
+          ],
+          "Metrics": {
+            "NetUnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Queue Service"
+          ],
+          "Metrics": {
+            "NetUnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Storage Service"
+          ],
+          "Metrics": {
+            "NetUnblendedCost": {
+              "Amount": "4.548083952",
+              "Unit": "USD"
+            },
+            "UnblendedCost": {
+              "Amount": "4.548083952",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Virtual Private Cloud"
+          ],
+          "Metrics": {
+            "NetUnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AmazonCloudWatch"
+          ],
+          "Metrics": {
+            "NetUnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Tax"
+          ],
+          "Metrics": {
+            "NetUnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            }
+          }
+        }
+      ],
+      "TimePeriod": {
+        "End": "2026-02-01",
+        "Start": "2026-01-01"
+      },
+      "Total": {}
+    }
+  ]
+}
