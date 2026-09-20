@@ -1,8 +1,8 @@
 ---
 extensions:
+  - Details
   - Scribunto
   - TemplateStyles
-  - Details
 skins:
   - Femiwiki
 config:
@@ -24,9 +24,9 @@ config:
   WikvenHistoryUrl: https://github.com/femiwiki/femiwiki.github.io/commits/main/$1
   WikvenViewSourceUrl: https://github.com/femiwiki/femiwiki.github.io/blob/main/$1
   WikvenRepositories:
-    Femiwiki:
-      tarball: https://github.com/femiwiki/FemiwikiSkin/releases/download/v5.1.2/v5.1.2.tar.gz
-      sha256: 9d96a1fefb3ca404cca0a6381f1eb690a04a38266970946ced7644f7a77c3ad1
     Details:
       tarball: https://github.com/theapplewiki/mediawiki-extensions-Details/archive/refs/tags/1.2.1.tar.gz
       sha256: c1cd8bab8f02d10d5e179906711b4498ade75a9a1cc259f59d85d11638bacb7b
+    Femiwiki:
+      tarball: https://github.com/femiwiki/FemiwikiSkin/releases/download/v5.1.2/v5.1.2.tar.gz
+      sha256: 9d96a1fefb3ca404cca0a6381f1eb690a04a38266970946ced7644f7a77c3ad1
