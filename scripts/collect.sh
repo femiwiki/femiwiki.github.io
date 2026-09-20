@@ -3,6 +3,7 @@ set -euo pipefail
 out=$1
 closed=$(date -u -d "$(date -u +%Y-%m-01) -1 day" +%Y-%m)
 if [ $# -ge 2 ]; then
+  [[ "$2" =~ ^[0-9]{4}-(0[1-9]|1[0-2])$ ]] || { echo "month must be YYYY-MM, got '$2'" >&2; exit 2; }
   months=("$2")
 else
   months=("$(date -u -d "$closed-01 -1 day" +%Y-%m)" "$closed")
