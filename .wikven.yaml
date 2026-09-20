@@ -1,0 +1,15 @@
+---
+skins:
+  - Femiwiki
+config:
+  Sitename: 페미위키
+  LanguageCode: ko
+  DefaultSkin: femiwiki
+  WikvenFooterUrl: https://github.com/femiwiki/femiwiki.github.io
+  WikvenEditUrl: https://github.com/femiwiki/femiwiki.github.io/edit/main/$1
+  WikvenHistoryUrl: https://github.com/femiwiki/femiwiki.github.io/commits/main/$1
+  WikvenViewSourceUrl: https://github.com/femiwiki/femiwiki.github.io/blob/main/$1
+  WikvenRepositories:
+    Femiwiki:
+      tarball: https://github.com/femiwiki/FemiwikiSkin/releases/download/v5.1.2/v5.1.2.tar.gz
+      sha256: 9d96a1fefb3ca404cca0a6381f1eb690a04a38266970946ced7644f7a77c3ad1
