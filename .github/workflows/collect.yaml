@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
+      actions: write
       contents: write
       id-token: write
     steps:
@@ -51,3 +52,9 @@ jobs:
           git diff --cached --quiet && exit 0
           git commit --quiet -m "Collect $(date -u +%Y-%m-%d)"
           git push --quiet origin data
+
+      - name: Deploy, since a push made with the token does not trigger it
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: gh workflow run Deploy --repo "$REPO"

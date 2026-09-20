@@ -34,8 +34,12 @@ local function month(m)
 end
 
 p['현황'] = function()
+  local ok, list = pcall(load, 'months.json')
+  if not ok then
+    return '아직 수집된 달이 없습니다.'
+  end
   local months = {}
-  for _, m in ipairs(load('months.json')) do
+  for _, m in ipairs(list) do
     months[#months + 1] = m
   end
   local out = { '{| class="wikitable"', '! 월 !! 총사용 (USD) !! 순지출 (USD) !! 청구 (KRW) !! 환율' }
