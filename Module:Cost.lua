@@ -163,38 +163,26 @@ function p.status()
     out[#out + 1] = r
   end
 
-  local latest = months[#months].month
-  local found, snapshot = pcall(load, latest .. '/credits.json')
-  if found then
-    local credits = list(snapshot)
-    table.sort(credits, function(a, b)
-      return (a.startDate or '') < (b.startDate or '')
-    end)
-    out[#out + 1] = ''
-    out[#out + 1] = '== ' .. latest .. ' 마감 크레딧 =='
-    out[#out + 1] = '{| class="wikitable"'
-    out[#out + 1] = '! 이름 !! 초기 (USD) !! 마감 잔액 (USD) !! 시작 !! 종료 !! 소진'
-    for _, c in ipairs(credits) do
-      out[#out + 1] = string.format(
-        '|-\n| %s || %s || %s || %s || %s || %s',
-        c.description or '',
-        usd(c.initialAmount.currencyAmount),
-        usd(c.closingAmount),
-        (c.startDate or ''):sub(1, 10),
-        (c.endDate or ''):sub(1, 10),
-        c.exhaustDate and c.exhaustDate:sub(1, 10) or '-'
-      )
-    end
-    out[#out + 1] = '|}'
-  end
-
+  -- Every grant, with its balance when the latest month closed for the ones alive then,
+  -- and what expiry took from the ones that ran out of time.
   local known, grants = pcall(load, 'credits.json')
   if known then
-    out[#out + 1] = ''
-    out[#out + 1] = '== 크레딧 이력 =='
-    out[#out + 1] = '{| class="wikitable"'
-    out[#out + 1] = '! 이름 !! 금액 (USD) !! 시작 !! 종료 !! 소진 !! 만료로 잃은 금액 (USD)'
+    local latest = months[#months].month
+    local closing = {}
+    local found, snapshot = pcall(load, latest .. '/credits.json')
+    if found then
+      for _, c in ipairs(snapshot) do
+        closing[c.description] = c.closingAmount
+      end
+    end
     local today = os.date('!%Y-%m-%d')
+    out[#out + 1] = ''
+    out[#out + 1] = '== 크레딧 =='
+    out[#out + 1] = '{| class="wikitable"'
+    out[#out + 1] = string.format(
+      '! 이름 !! 금액 (USD) !! 시작 !! 종료 !! 소진 !! %s 마감 잔액 (USD) !! 만료로 잃은 금액 (USD)',
+      latest
+    )
     for _, c in ipairs(list(grants)) do
       local ended = (c.endDate or ''):sub(1, 10) < today
       local lost = ''
@@ -202,12 +190,13 @@ function p.status()
         lost = usd(c.remainingAmount.currencyAmount)
       end
       out[#out + 1] = string.format(
-        '|-\n| %s || %s || %s || %s || %s || %s',
+        '|-\n| %s || %s || %s || %s || %s || %s || %s',
         c.description or '',
         usd(c.initialAmount.currencyAmount),
         (c.startDate or ''):sub(1, 10),
         (c.endDate or ''):sub(1, 10),
         c.exhaustDate and c.exhaustDate:sub(1, 10) or '-',
+        closing[c.description] and usd(closing[c.description]) or '',
         lost
       )
     end
