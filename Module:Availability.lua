@@ -153,11 +153,18 @@ local function yearRow(byMonth, y, linkYear)
 end
 
 local function checkNames(checks)
-  local names = { site }
+  local names, others = {}, {}
   for name in pairs(checks) do
     if name ~= site then
-      names[#names + 1] = name
+      others[#others + 1] = name
     end
+  end
+  table.sort(others)
+  if checks[site] then
+    names[1] = site
+  end
+  for _, name in ipairs(others) do
+    names[#names + 1] = name
   end
   return names
 end
@@ -169,14 +176,20 @@ function p.status(frame)
     return '아직 수집된 달이 없습니다.'
   end
   local months = list(entries)
-  local names = checkNames(months[#months].checks)
+  local all = {}
+  for _, e in ipairs(months) do
+    for name in pairs(e.checks) do
+      all[name] = true
+    end
+  end
+  local names = checkNames(all)
 
   local out = { styles(frame) }
   for _, name in ipairs(names) do
     local byMonth, years, order = {}, {}, {}
     for _, e in ipairs(months) do
       local y = e.month:sub(1, 4)
-      if not years[y] then
+      if e.checks[name] and not years[y] then
         years[y] = true
         order[#order + 1] = y
       end
@@ -204,7 +217,13 @@ function p.year(frame)
     return '아직 수집된 달이 없습니다.'
   end
   local months = list(entries)
-  local names = checkNames(months[#months].checks)
+  local all = {}
+  for _, e in ipairs(months) do
+    for name in pairs(e.checks) do
+      all[name] = true
+    end
+  end
+  local names = checkNames(all)
   local data = {}
   for _, e in ipairs(months) do
     if e.month:sub(1, 4) == y then

@@ -1,0 +1,1 @@
+{{#invoke:Availability.lua|month|2022-09}}
