@@ -51,11 +51,15 @@ declare -A used
 for month in "${months[@]}"; do
   dir="$out/Module:비용/$month"
   mkdir -p "$dir"
-  aws ce get-cost-and-usage --output json \
+  # Cost Explorer keeps 37 months; older months get the invoice alone.
+  if ! aws ce get-cost-and-usage --output json \
     --time-period "Start=$month-01,End=$(date -u -d "$month-01 +1 month" +%Y-%m-%d)" \
     --granularity MONTHLY --metrics UnblendedCost NetUnblendedCost \
-    --group-by Type=DIMENSION,Key=SERVICE \
-    | jq --sort-keys . > "$dir/cost.json"
+    --group-by Type=DIMENSION,Key=SERVICE 2> "$tmp/ce.err" \
+    | jq --sort-keys . > "$dir/cost.json"; then
+    grep -q 'maximum data available' "$tmp/ce.err" || { cat "$tmp/ce.err" >&2; exit 1; }
+    rm -f "$dir/cost.json"
+  fi
   rm -f "$dir/invoice.json" "$tmp/$month-invoice.json"
   raw=$(fetch_invoice "$month")
   strip_invoice <<< "$raw" > "$dir/invoice.json"
@@ -66,6 +70,8 @@ for month in "${months[@]}"; do
     "$(dirname "$0")/redact-address.sh" "$tmp/$month.pdf" "$out/비용/$month.pdf"
   fi
 
+  # Only the latest month's credit snapshot is shown, so only that one is computed.
+  [ "$month" = "$closed" ] || continue
   after='{}'
   m=$(next_month "$month")
   while [[ "$m" < "$closed" || "$m" == "$closed" ]]; do
@@ -87,8 +93,20 @@ for month in "${months[@]}"; do
     <<< "$credits" > "$dir/credits.json"
 
 done
+# One file with every month's totals, so the status page loads one page and not two per month.
 for d in "$out"/Module:비용/[0-9][0-9][0-9][0-9]-[0-9][0-9]/; do
   m=$(basename "$d")
   printf '{{#invoke:Cost.lua|month|%s}}\n' "$m" > "$out/비용/$m.wikitext"
-  echo "$m"
-done | sort | jq -R . | jq -s . > "$out/Module:비용/months.json"
+  jq -n --arg month "$m" \
+    --argjson cost "$([ -e "$d/cost.json" ] && cat "$d/cost.json" || echo null)" \
+    --argjson invoice "$(cat "$d/invoice.json")" '
+    ($invoice.InvoiceSummaries[0].PaymentCurrencyAmount) as $pay
+    | {month: $month}
+      + (if $cost then {
+          gross: ([$cost.ResultsByTime[0].Groups[].Metrics.UnblendedCost.Amount | tonumber] | add // 0),
+          net: ([$cost.ResultsByTime[0].Groups[].Metrics.NetUnblendedCost.Amount | tonumber] | add // 0)
+        } else {} end)
+      + (if $pay then {billed: ($pay.TotalAmount | tonumber), currency: $pay.CurrencyCode}
+          + (if $pay.CurrencyExchangeDetails then {rate: $pay.CurrencyExchangeDetails.Rate} else {} end)
+        else {} end)'
+done | jq -s 'sort_by(.month)' > "$out/Module:비용/months.json"
