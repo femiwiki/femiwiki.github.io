@@ -85,6 +85,9 @@ for month in "${months[@]}"; do
      | del(.creditId, .accountId, .shareableAccounts, .applicableProductNames, .estimatedAmount, .remainingAmount)]' \
     <<< "$credits" > "$dir/credits.json"
 
-  printf '{{#invoke:비용/표.lua|월|%s}}\n' "$month" > "$out/비용/$month.wikitext"
 done
-for d in "$out"/Module:비용/[0-9][0-9][0-9][0-9]-[0-9][0-9]/; do basename "$d"; done | sort | jq -R . | jq -s . > "$out/Module:비용/months.json"
+for d in "$out"/Module:비용/[0-9][0-9][0-9][0-9]-[0-9][0-9]/; do
+  m=$(basename "$d")
+  printf '{{#invoke:Cost.lua|month|%s}}\n' "$m" > "$out/비용/$m.wikitext"
+  echo "$m"
+done | sort | jq -R . | jq -s . > "$out/Module:비용/months.json"
