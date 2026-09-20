@@ -1,4 +1,6 @@
 ---
+extensions:
+  - Scribunto
 skins:
   - Femiwiki
 config:
