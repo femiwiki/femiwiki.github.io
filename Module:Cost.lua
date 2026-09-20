@@ -46,7 +46,8 @@ function p.status()
   for i = #months, 1, -1 do
     local m = months[i]
     local gross, net, krw, rate = month(m)
-    out[#out + 1] = string.format('|-\n| [[비용/%s|%s]] || %s || %s || %s || %s', m, m, usd(gross), usd(net), krw, rate)
+    out[#out + 1] =
+      string.format('|-\n| [[비용/%s|%s]] || %s || %s || %s || %s', m, m, usd(gross), usd(net), krw, rate)
   end
   out[#out + 1] = '|}'
 
@@ -57,15 +58,23 @@ function p.status()
     for _, c in ipairs(snapshot) do
       credits[#credits + 1] = c
     end
-    table.sort(credits, function(a, b) return (a.startDate or '') < (b.startDate or '') end)
+    table.sort(credits, function(a, b)
+      return (a.startDate or '') < (b.startDate or '')
+    end)
     out[#out + 1] = ''
     out[#out + 1] = '== ' .. latest .. ' 마감 크레딧 =='
     out[#out + 1] = '{| class="wikitable"'
     out[#out + 1] = '! 이름 !! 초기 (USD) !! 마감 잔액 (USD) !! 시작 !! 종료 !! 소진'
     for _, c in ipairs(credits) do
-      out[#out + 1] = string.format('|-\n| %s || %s || %s || %s || %s || %s',
-        c.description or '', usd(c.initialAmount.currencyAmount), usd(c.closingAmount),
-        (c.startDate or ''):sub(1, 10), (c.endDate or ''):sub(1, 10), c.exhaustDate and c.exhaustDate:sub(1, 10) or '-')
+      out[#out + 1] = string.format(
+        '|-\n| %s || %s || %s || %s || %s || %s',
+        c.description or '',
+        usd(c.initialAmount.currencyAmount),
+        usd(c.closingAmount),
+        (c.startDate or ''):sub(1, 10),
+        (c.endDate or ''):sub(1, 10),
+        c.exhaustDate and c.exhaustDate:sub(1, 10) or '-'
+      )
     end
     out[#out + 1] = '|}'
   end
@@ -79,12 +88,29 @@ function p.month(frame)
   for _, g in ipairs(groups) do
     rows[#rows + 1] = g
   end
-  table.sort(rows, function(a, b) return tonumber(a.Metrics.UnblendedCost.Amount) > tonumber(b.Metrics.UnblendedCost.Amount) end)
+  table.sort(rows, function(a, b)
+    return tonumber(a.Metrics.UnblendedCost.Amount) > tonumber(b.Metrics.UnblendedCost.Amount)
+  end)
   local out = {
-    string.format('%s 서비스별 AWS 요금입니다. 총사용 %s USD, 순지출 %s USD, 청구 %s KRW (환율 %s).', m, usd(gross), usd(net), krw, rate),
-    '', '{| class="wikitable sortable"', '! 서비스 !! 총사용 (USD) !! 순지출 (USD)' }
+    string.format(
+      '%s 서비스별 AWS 요금입니다. 총사용 %s USD, 순지출 %s USD, 청구 %s KRW (환율 %s).',
+      m,
+      usd(gross),
+      usd(net),
+      krw,
+      rate
+    ),
+    '',
+    '{| class="wikitable sortable"',
+    '! 서비스 !! 총사용 (USD) !! 순지출 (USD)',
+  }
   for _, g in ipairs(rows) do
-    out[#out + 1] = string.format('|-\n| %s || %s || %s', g.Keys[1], usd(g.Metrics.UnblendedCost.Amount), usd(g.Metrics.NetUnblendedCost.Amount))
+    out[#out + 1] = string.format(
+      '|-\n| %s || %s || %s',
+      g.Keys[1],
+      usd(g.Metrics.UnblendedCost.Amount),
+      usd(g.Metrics.NetUnblendedCost.Amount)
+    )
   end
   out[#out + 1] = '|}'
   if mw.title.new('File:' .. m .. '.pdf').exists then
