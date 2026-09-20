@@ -51,6 +51,10 @@ jobs:
           GA_SERVICE_ACCOUNT: ${{ secrets.GA_SERVICE_ACCOUNT }}
         run: scripts/availability.sh data ${MONTH:+"$MONTH"}
 
+      - env:
+          MONTH: ${{ inputs.month }}
+        run: scripts/hosts.sh data ${MONTH:+"$MONTH"}
+
       - name: Push what changed
         run: |
           cd data
