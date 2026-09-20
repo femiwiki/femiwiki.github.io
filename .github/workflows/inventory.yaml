@@ -1,36 +1,23 @@
 ---
-name: Collect
+name: Inventory
 on:
   schedule:
-    - cron: "0 1 2 * *"
+    - cron: "0 2 * * 1"
   workflow_dispatch:
-    inputs:
-      month:
-        description: One month to fetch as YYYY-MM, instead of the last two
-        required: false
 permissions: {}
 concurrency:
   group: data
 jobs:
-  collect:
+  inventory:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
       actions: write
       contents: write
-      id-token: write
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
         with:
           persist-credentials: false
-
-      - name: Install the PDF tools the redaction needs
-        run: sudo apt-get install -y --no-install-recommends poppler-utils ghostscript imagemagick
-
-      - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd  # v6.3.0
-        with:
-          role-to-assume: arn:aws:iam::302617221463:role/femiwiki-github-io
-          aws-region: ap-northeast-1
 
       - name: Check out the data branch, or start it
         env:
@@ -43,8 +30,8 @@ jobs:
           git pull --quiet origin data || true
 
       - env:
-          MONTH: ${{ inputs.month }}
-        run: scripts/collect.sh data ${MONTH:+"$MONTH"}
+          GH_TOKEN: ${{ github.token }}
+        run: scripts/inventory.sh data
 
       - name: Push what changed
         run: |
@@ -53,7 +40,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git diff --cached --quiet && exit 0
-          git commit --quiet -m "Collect $(date -u +%Y-%m-%d)"
+          git commit --quiet -m "Inventory $(date -u +%Y-%m-%d)"
           git push --quiet origin data
 
       - name: Deploy, since a push made with the token does not trigger it
