@@ -1,0 +1,23 @@
+.lint-table {
+	width: 100%;
+}
+
+.lint-chips {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25em;
+}
+
+.lint-chip {
+	display: inline-block;
+	padding: 0 0.6em;
+	border-radius: 1em;
+	background: #eaecf0;
+	font-size: 0.9em;
+	white-space: nowrap;
+}
+
+.lint-chip-bad {
+	background: #fee7e6;
+	color: #b32424;
+}
