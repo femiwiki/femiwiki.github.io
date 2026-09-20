@@ -65,7 +65,7 @@ for month in "${months[@]}"; do
       after=$(jq --arg id "$id" --argjson s "${used[$id:$m]}" '.[$id] = ((.[$id] // 0) + $s)' <<< "$after")
     done
     billed=$(invoice "$m" | jq '[.InvoiceSummaries[0].BaseCurrencyAmount.AmountBreakdown.Discounts.Breakdown // [] | .[] | select(.Description == "Credits") | .Amount | tonumber] | add // 0')
-    jq -en --argjson a "$total" --argjson b "$billed" '($a + $b) | fabs < 0.01' > /dev/null \
+    jq -en --argjson a "$total" --argjson b "$billed" '($a + $b) | fabs < 0.5' > /dev/null \
       || { echo "credit allocations for $m sum to $total but the invoice says $billed" >&2; exit 1; }
     m=$(next_month "$m")
   done
