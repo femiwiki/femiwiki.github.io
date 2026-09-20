@@ -10,7 +10,11 @@ else
 fi
 account=$(aws sts get-caller-identity --query Account --output text)
 mkdir -p "$out/Module:비용" "$out/비용"
-credits=$(aws billing get-credits --output json --region us-east-1 --account-id "$account" --start-date 2020-01-01)
+credits=$(aws billing get-credits --output json --region us-east-1 --account-id "$account" --start-date 2016-01-01)
+# Every grant the account ever had, for the history table; the monthly snapshots below
+# carry the closing balances.
+jq --sort-keys '[.credits[] | del(.creditId, .accountId, .shareableAccounts, .applicableProductNames, .estimatedAmount)] | sort_by(.startDate)' \
+  <<< "$credits" > "$out/Module:비용/credits.json"
 
 next_month() { date -u -d "$1-01 +1 month" +%Y-%m; }
 active() { jq -r --arg m "$1" '.credits[] | select(.startDate[:7] <= $m and .endDate[:7] >= $m) | .creditId' <<< "$credits"; }
