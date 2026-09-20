@@ -48,6 +48,7 @@ jobs:
 
       - env:
           MONTH: ${{ inputs.month }}
+          GA_SERVICE_ACCOUNT: ${{ secrets.GA_SERVICE_ACCOUNT }}
         run: scripts/availability.sh data ${MONTH:+"$MONTH"}
 
       - name: Push what changed
