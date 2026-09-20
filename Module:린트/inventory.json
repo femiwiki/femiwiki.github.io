@@ -7,13 +7,19 @@
         "json": {
           "files": 1,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         },
         "md": {
           "files": 1,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         },
         "py": {
@@ -23,7 +29,10 @@
         "yaml": {
           "files": 3,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         }
       }
@@ -34,27 +43,45 @@
         "json": {
           "files": 3,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         },
         "md": {
           "files": 2,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         },
         "php": {
           "files": 18,
           "tools": [
-            "phpcs",
-            "parallel-lint",
-            "phan"
+            {
+              "name": "phpcs",
+              "required": false
+            },
+            {
+              "name": "parallel-lint",
+              "required": false
+            },
+            {
+              "name": "phan",
+              "required": false
+            }
           ]
         },
         "yaml": {
           "files": 3,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         }
       }
@@ -65,28 +92,49 @@
         "json": {
           "files": 6,
           "tools": [
-            "prettier",
-            "banana"
+            {
+              "name": "prettier",
+              "required": true
+            },
+            {
+              "name": "banana",
+              "required": true
+            }
           ]
         },
         "md": {
           "files": 2,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": true
+            }
           ]
         },
         "php": {
           "files": 2,
           "tools": [
-            "phpcs",
-            "parallel-lint",
-            "phan"
+            {
+              "name": "phpcs",
+              "required": true
+            },
+            {
+              "name": "parallel-lint",
+              "required": true
+            },
+            {
+              "name": "phan",
+              "required": true
+            }
           ]
         },
         "yaml": {
           "files": 6,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": true
+            }
           ]
         }
       }
@@ -97,40 +145,67 @@
         "css": {
           "files": 51,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": true
+            }
           ]
         },
         "js": {
           "files": 18,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": true
+            }
           ]
         },
         "json": {
           "files": 8,
           "tools": [
-            "prettier",
-            "banana"
+            {
+              "name": "prettier",
+              "required": true
+            },
+            {
+              "name": "banana",
+              "required": true
+            }
           ]
         },
         "md": {
           "files": 2,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": true
+            }
           ]
         },
         "php": {
           "files": 8,
           "tools": [
-            "phpcs",
-            "parallel-lint",
-            "phan"
+            {
+              "name": "phpcs",
+              "required": true
+            },
+            {
+              "name": "parallel-lint",
+              "required": true
+            },
+            {
+              "name": "phan",
+              "required": true
+            }
           ]
         },
         "yaml": {
           "files": 6,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": true
+            }
           ]
         }
       }
@@ -141,25 +216,37 @@
         "css": {
           "files": 38,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         },
         "js": {
           "files": 1,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         },
         "json": {
           "files": 19,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         },
         "md": {
           "files": 1,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         },
         "php": {
@@ -173,7 +260,10 @@
         "yaml": {
           "files": 2,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         }
       }
@@ -184,34 +274,58 @@
         "js": {
           "files": 1,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": true
+            }
           ]
         },
         "json": {
           "files": 5,
           "tools": [
-            "prettier",
-            "banana"
+            {
+              "name": "prettier",
+              "required": true
+            },
+            {
+              "name": "banana",
+              "required": true
+            }
           ]
         },
         "md": {
           "files": 2,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": true
+            }
           ]
         },
         "php": {
           "files": 6,
           "tools": [
-            "phpcs",
-            "parallel-lint",
-            "phan"
+            {
+              "name": "phpcs",
+              "required": true
+            },
+            {
+              "name": "parallel-lint",
+              "required": true
+            },
+            {
+              "name": "phan",
+              "required": true
+            }
           ]
         },
         "yaml": {
           "files": 6,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": true
+            }
           ]
         }
       }
@@ -239,7 +353,10 @@
         "go": {
           "files": 6,
           "tools": [
-            "gofmt"
+            {
+              "name": "golangci-lint",
+              "required": false
+            }
           ]
         },
         "json": {
@@ -255,7 +372,7 @@
           "tools": []
         },
         "yaml": {
-          "files": 7,
+          "files": 10,
           "tools": []
         }
       }
@@ -270,32 +387,50 @@
         "js": {
           "files": 1,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": true
+            }
           ]
         },
         "json": {
           "files": 5,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": true
+            }
           ]
         },
         "md": {
           "files": 6,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": true
+            }
           ]
         },
         "php": {
-          "files": 3,
+          "files": 5,
           "tools": [
-            "phpcs",
-            "parallel-lint"
+            {
+              "name": "phpcs",
+              "required": true
+            },
+            {
+              "name": "parallel-lint",
+              "required": true
+            }
           ]
         },
         "yaml": {
-          "files": 15,
+          "files": 16,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": true
+            }
           ]
         }
       }
@@ -315,19 +450,28 @@
         "json": {
           "files": 2,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         },
         "md": {
           "files": 8,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         },
         "yaml": {
           "files": 4,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         }
       }
@@ -336,34 +480,61 @@
       "name": "femiwiki.github.io",
       "kinds": {
         "css": {
+          "files": 4,
+          "tools": [
+            {
+              "name": "biome",
+              "required": true
+            }
+          ]
+        },
+        "js": {
           "files": 1,
           "tools": [
-            "biome"
+            {
+              "name": "biome",
+              "required": true
+            }
           ]
         },
         "json": {
           "files": 1,
           "tools": [
-            "biome"
+            {
+              "name": "biome",
+              "required": true
+            }
           ]
         },
         "lua": {
-          "files": 2,
+          "files": 3,
           "tools": [
-            "stylua",
-            "luacheck"
+            {
+              "name": "stylua",
+              "required": true
+            },
+            {
+              "name": "luacheck",
+              "required": true
+            }
           ]
         },
         "md": {
           "files": 1,
           "tools": [
-            "rumdl"
+            {
+              "name": "rumdl",
+              "required": true
+            }
           ]
         },
         "sh": {
-          "files": 3,
+          "files": 5,
           "tools": [
-            "shellcheck"
+            {
+              "name": "shellcheck",
+              "required": true
+            }
           ]
         },
         "toml": {
@@ -371,9 +542,12 @@
           "tools": []
         },
         "yaml": {
-          "files": 15,
+          "files": 9,
           "tools": [
-            "yamllint"
+            {
+              "name": "yamllint",
+              "required": true
+            }
           ]
         }
       }
@@ -390,11 +564,11 @@
           "tools": []
         },
         "tf": {
-          "files": 31,
+          "files": 36,
           "tools": []
         },
         "yaml": {
-          "files": 3,
+          "files": 8,
           "tools": []
         }
       }
@@ -405,13 +579,19 @@
         "md": {
           "files": 1,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         },
         "py": {
           "files": 2,
           "tools": [
-            "ruff"
+            {
+              "name": "ruff",
+              "required": false
+            }
           ]
         },
         "toml": {
@@ -421,7 +601,10 @@
         "yaml": {
           "files": 2,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         }
       }
@@ -432,20 +615,32 @@
         "json": {
           "files": 3,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         },
         "md": {
           "files": 2,
           "tools": [
-            "prettier",
-            "rumdl"
+            {
+              "name": "prettier",
+              "required": false
+            },
+            {
+              "name": "rumdl",
+              "required": false
+            }
           ]
         },
         "py": {
           "files": 7,
           "tools": [
-            "ruff"
+            {
+              "name": "ruff",
+              "required": false
+            }
           ]
         },
         "toml": {
@@ -455,8 +650,14 @@
         "yaml": {
           "files": 8,
           "tools": [
-            "prettier",
-            "yamllint"
+            {
+              "name": "prettier",
+              "required": false
+            },
+            {
+              "name": "yamllint",
+              "required": false
+            }
           ]
         }
       }
@@ -476,19 +677,28 @@
         "json": {
           "files": 2,
           "tools": [
-            "biome"
+            {
+              "name": "biome",
+              "required": true
+            }
           ]
         },
         "md": {
           "files": 2,
           "tools": [
-            "rumdl"
+            {
+              "name": "rumdl",
+              "required": true
+            }
           ]
         },
         "py": {
           "files": 4,
           "tools": [
-            "ruff"
+            {
+              "name": "ruff",
+              "required": true
+            }
           ]
         },
         "toml": {
@@ -498,7 +708,10 @@
         "yaml": {
           "files": 7,
           "tools": [
-            "yamllint"
+            {
+              "name": "yamllint",
+              "required": true
+            }
           ]
         }
       }
@@ -517,7 +730,10 @@
         "py": {
           "files": 6,
           "tools": [
-            "flake8"
+            {
+              "name": "flake8",
+              "required": false
+            }
           ]
         },
         "toml": {
@@ -536,31 +752,46 @@
         "css": {
           "files": 18,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         },
         "js": {
           "files": 21,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         },
         "json": {
           "files": 28,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         },
         "md": {
           "files": 1,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         },
         "py": {
           "files": 2,
           "tools": [
-            "flake8"
+            {
+              "name": "flake8",
+              "required": false
+            }
           ]
         },
         "toml": {
@@ -570,7 +801,10 @@
         "yaml": {
           "files": 5,
           "tools": [
-            "prettier"
+            {
+              "name": "prettier",
+              "required": false
+            }
           ]
         }
       }
@@ -594,7 +828,10 @@
         "py": {
           "files": 4,
           "tools": [
-            "flake8"
+            {
+              "name": "flake8",
+              "required": false
+            }
           ]
         },
         "toml": {
