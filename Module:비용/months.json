@@ -6,7 +6,9 @@
     "tax": 0.06999999999999995,
     "total": 0.74,
     "billed": 0.74,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1101.11",
+    "rateEstimated": true
   },
   {
     "month": "2016-10",
@@ -15,7 +17,9 @@
     "tax": 1.629999999999999,
     "total": 17.84,
     "billed": 17.84,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1144.29",
+    "rateEstimated": true
   },
   {
     "month": "2016-11",
@@ -24,7 +28,9 @@
     "tax": 1.6500000000000021,
     "total": 18.12,
     "billed": 18.12,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1172.11",
+    "rateEstimated": true
   },
   {
     "month": "2016-12",
@@ -33,7 +39,9 @@
     "tax": 1.8100000000000023,
     "total": 19.89,
     "billed": 19.89,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1206.96",
+    "rateEstimated": true
   },
   {
     "month": "2017-01",
@@ -42,7 +50,9 @@
     "tax": 2.1000000000000014,
     "total": 23.07,
     "billed": 23.07,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1147.24",
+    "rateEstimated": true
   },
   {
     "month": "2017-02",
@@ -51,7 +61,9 @@
     "tax": 2.6999999999999993,
     "total": 29.74,
     "billed": 29.74,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1153.48",
+    "rateEstimated": true
   },
   {
     "month": "2017-03",
@@ -60,7 +72,9 @@
     "tax": 3.1800000000000033,
     "total": 34.99,
     "billed": 34.99,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1124.9",
+    "rateEstimated": true
   },
   {
     "month": "2017-04",
@@ -69,7 +83,9 @@
     "tax": 3.0599999999999987,
     "total": 33.66,
     "billed": 33.66,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1131.53",
+    "rateEstimated": true
   },
   {
     "month": "2017-05",
@@ -78,7 +94,9 @@
     "tax": 3.25,
     "total": 35.75,
     "billed": 35.75,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1123.25",
+    "rateEstimated": true
   },
   {
     "month": "2017-06",
@@ -87,7 +105,9 @@
     "tax": 3.0899999999999963,
     "total": 34.01,
     "billed": 34.01,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1151.77",
+    "rateEstimated": true
   },
   {
     "month": "2017-07",
@@ -96,7 +116,9 @@
     "tax": 3.9299999999999997,
     "total": 43.24,
     "billed": 43.24,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1124.13",
+    "rateEstimated": true
   },
   {
     "month": "2017-08",
@@ -105,7 +127,9 @@
     "tax": 3.480000000000004,
     "total": 38.31,
     "billed": 38.31,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1120.27",
+    "rateEstimated": true
   },
   {
     "month": "2017-09",
@@ -114,7 +138,9 @@
     "tax": 3.100000000000005,
     "total": 34.17,
     "billed": 34.17,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1144.34",
+    "rateEstimated": true
   },
   {
     "month": "2017-10",
@@ -123,7 +149,9 @@
     "tax": 4.830000000000005,
     "total": 53.22,
     "billed": 53.22,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1114.13",
+    "rateEstimated": true
   },
   {
     "month": "2017-11",
@@ -132,7 +160,9 @@
     "tax": 4.960000000000008,
     "total": 54.61,
     "billed": 54.61,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1085.48",
+    "rateEstimated": true
   },
   {
     "month": "2017-12",
@@ -141,7 +171,9 @@
     "tax": 5.0800000000000125,
     "total": 56.03,
     "billed": 56.03,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1065.78",
+    "rateEstimated": true
   },
   {
     "month": "2018-01",
@@ -150,7 +182,9 @@
     "tax": 5.100000000000001,
     "total": 56.22,
     "billed": 56.22,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1084.83",
+    "rateEstimated": true
   },
   {
     "month": "2018-02",
@@ -159,7 +193,9 @@
     "tax": 5.200000000000003,
     "total": 57.24,
     "billed": 57.24,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1084.18",
+    "rateEstimated": true
   },
   {
     "month": "2018-03",
@@ -168,7 +204,9 @@
     "tax": 5.609999999999999,
     "total": 61.89,
     "billed": 61.89,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1054.49",
+    "rateEstimated": true
   },
   {
     "month": "2018-04",
@@ -177,7 +215,9 @@
     "tax": 5.430000000000007,
     "total": 59.83,
     "billed": 59.83,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1074.85",
+    "rateEstimated": true
   },
   {
     "month": "2018-05",
@@ -186,7 +226,9 @@
     "tax": 6.8999999999999915,
     "total": 75.99,
     "billed": 75.99,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1074.79",
+    "rateEstimated": true
   },
   {
     "month": "2018-06",
@@ -195,7 +237,9 @@
     "tax": 6.969999999999999,
     "total": 76.83,
     "billed": 76.83,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1112.79",
+    "rateEstimated": true
   },
   {
     "month": "2018-07",
@@ -204,7 +248,9 @@
     "tax": 8.649999999999977,
     "total": 95.32,
     "billed": 82.12,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1124.54",
+    "rateEstimated": true
   },
   {
     "month": "2018-08",
@@ -213,7 +259,9 @@
     "tax": 6.950000000000003,
     "total": 76.58,
     "billed": 76.58,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1112.1",
+    "rateEstimated": true
   },
   {
     "month": "2018-09",
@@ -222,7 +270,9 @@
     "tax": 8.360000000000014,
     "total": 91.93,
     "billed": 91.93,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1119.93",
+    "rateEstimated": true
   },
   {
     "month": "2018-10",
@@ -231,7 +281,9 @@
     "tax": 10.75,
     "total": 118.26,
     "billed": 118.26,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1117.85",
+    "rateEstimated": true
   },
   {
     "month": "2018-11",
@@ -240,7 +292,9 @@
     "tax": 24.400000000000006,
     "total": 268.62,
     "billed": 268.62,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1112.28",
+    "rateEstimated": true
   },
   {
     "month": "2018-12",
@@ -249,7 +303,9 @@
     "tax": 25.180000000000007,
     "total": 277.11,
     "billed": 277.11,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1127.22",
+    "rateEstimated": true
   },
   {
     "month": "2019-01",
@@ -258,7 +314,9 @@
     "tax": 7.159999999999997,
     "total": 78.87,
     "billed": 78.87,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1117.02",
+    "rateEstimated": true
   },
   {
     "month": "2019-02",
@@ -267,7 +325,9 @@
     "tax": 8.559999999999974,
     "total": 94.35,
     "billed": 94.35,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1126.35",
+    "rateEstimated": true
   },
   {
     "month": "2019-03",
@@ -276,7 +336,9 @@
     "tax": 12.439999999999998,
     "total": 136.83,
     "billed": 136.83,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1134.35",
+    "rateEstimated": true
   },
   {
     "month": "2019-04",
@@ -285,7 +347,9 @@
     "tax": 11.960000000000008,
     "total": 131.61,
     "billed": 131.61,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1169.95",
+    "rateEstimated": true
   },
   {
     "month": "2019-05",
@@ -294,7 +358,9 @@
     "tax": 9.559999999999988,
     "total": 105.16,
     "billed": 105.16,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1183.24",
+    "rateEstimated": true
   },
   {
     "month": "2019-06",
@@ -303,7 +369,9 @@
     "tax": 9.039999999999978,
     "total": 99.5,
     "billed": 99.50,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1168.95",
+    "rateEstimated": true
   },
   {
     "month": "2019-07",
@@ -312,7 +380,9 @@
     "tax": 9.549999999999997,
     "total": 105.01,
     "billed": 13.20,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1169.79",
+    "rateEstimated": true
   },
   {
     "month": "2019-08",
@@ -321,7 +391,9 @@
     "tax": 7.989999999999995,
     "total": 87.67,
     "billed": 87.67,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1205.26",
+    "rateEstimated": true
   },
   {
     "month": "2019-09",
@@ -330,7 +402,9 @@
     "tax": 7.3700000000000045,
     "total": 80.95,
     "billed": 80.95,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1195.3",
+    "rateEstimated": true
   },
   {
     "month": "2019-10",
@@ -339,7 +413,9 @@
     "tax": 8.469999999999985,
     "total": 93.13,
     "billed": 93.13,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1167.15",
+    "rateEstimated": true
   },
   {
     "month": "2019-11",
@@ -348,7 +424,9 @@
     "tax": 10.610000000000014,
     "total": 116.72,
     "billed": 77.09,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1178.4",
+    "rateEstimated": true
   },
   {
     "month": "2019-12",
@@ -357,7 +435,9 @@
     "tax": 2.729999999999997,
     "total": 30.13,
     "billed": 30.13,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1166.52",
+    "rateEstimated": true
   },
   {
     "month": "2020-01",
@@ -366,7 +446,9 @@
     "tax": 2.5799999999999983,
     "total": 28.47,
     "billed": 28.47,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1192.05",
+    "rateEstimated": true
   },
   {
     "month": "2020-02",
@@ -375,7 +457,9 @@
     "tax": 3.4299999999999997,
     "total": 37.71,
     "billed": 37.71,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1194.2",
+    "rateEstimated": true
   },
   {
     "month": "2020-03",
@@ -384,7 +468,9 @@
     "tax": 4.789999999999992,
     "total": 52.6,
     "billed": 52.60,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1235.81",
+    "rateEstimated": true
   },
   {
     "month": "2020-04",
@@ -393,7 +479,9 @@
     "tax": 4.520000000000003,
     "total": 49.49,
     "billed": 49.49,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1207.33",
+    "rateEstimated": true
   },
   {
     "month": "2020-05",
@@ -402,7 +490,9 @@
     "tax": 4.719999999999999,
     "total": 51.77,
     "billed": 51.77,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1218.59",
+    "rateEstimated": true
   },
   {
     "month": "2020-06",
@@ -411,7 +501,9 @@
     "tax": 4.220000000000006,
     "total": 46.31,
     "billed": 46.31,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1199.7",
+    "rateEstimated": true
   },
   {
     "month": "2020-07",
@@ -420,7 +512,9 @@
     "tax": 5.189999999999991,
     "total": 56.98,
     "billed": 13.20,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1199.7",
+    "rateEstimated": true
   },
   {
     "month": "2020-08",
@@ -429,7 +523,9 @@
     "tax": 3.8999999999999986,
     "total": 42.86,
     "billed": 42.86,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1190.76",
+    "rateEstimated": true
   },
   {
     "month": "2020-09",
@@ -438,7 +534,9 @@
     "tax": 3.8000000000000043,
     "total": 41.74,
     "billed": 41.74,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1163.41",
+    "rateEstimated": true
   },
   {
     "month": "2020-10",
@@ -447,7 +545,9 @@
     "tax": 3.9599999999999866,
     "total": 43.55,
     "billed": 43.55,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1131.21",
+    "rateEstimated": true
   },
   {
     "month": "2020-11",
@@ -456,7 +556,9 @@
     "tax": 4.469999999999992,
     "total": 49.05,
     "billed": 49.05,
-    "currency": "USD"
+    "currency": "USD",
+    "rate": "1091.19",
+    "rateEstimated": true
   },
   {
     "month": "2020-12",
