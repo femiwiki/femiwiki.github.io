@@ -44,7 +44,7 @@ jobs:
 
       - env:
           MONTH: ${{ inputs.month }}
-        run: scripts/collect.sh data ${MONTH}
+        run: scripts/collect.sh data ${MONTH:+"$MONTH"}
 
       - name: Push what changed
         run: |
