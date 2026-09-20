@@ -1,13 +1,404 @@
 [
   {
+    "month": "2021-11",
+    "checks": {
+      "GA4 세션": {
+        "hours": 720,
+        "uptime": 0.998864
+      }
+    }
+  },
+  {
+    "month": "2021-12",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 0.998744
+      }
+    }
+  },
+  {
+    "month": "2022-01",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 0.999719
+      }
+    }
+  },
+  {
+    "month": "2022-02",
+    "checks": {
+      "GA4 세션": {
+        "hours": 672,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2022-03",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 0.993933
+      }
+    }
+  },
+  {
+    "month": "2022-04",
+    "checks": {
+      "GA4 세션": {
+        "hours": 720,
+        "uptime": 0.994064
+      }
+    }
+  },
+  {
+    "month": "2022-05",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 0.998758
+      }
+    }
+  },
+  {
+    "month": "2022-06",
+    "checks": {
+      "GA4 세션": {
+        "hours": 720,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2022-07",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 0.999804
+      }
+    }
+  },
+  {
+    "month": "2022-08",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2022-09",
+    "checks": {
+      "GA4 세션": {
+        "hours": 720,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2022-10",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 0.99696
+      }
+    }
+  },
+  {
+    "month": "2022-11",
+    "checks": {
+      "GA4 세션": {
+        "hours": 720,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2022-12",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2023-01",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2023-02",
+    "checks": {
+      "GA4 세션": {
+        "hours": 672,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2023-03",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2023-04",
+    "checks": {
+      "GA4 세션": {
+        "hours": 720,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2023-05",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2023-06",
+    "checks": {
+      "GA4 세션": {
+        "hours": 720,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2023-07",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 0.987465
+      }
+    }
+  },
+  {
+    "month": "2023-08",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2023-09",
+    "checks": {
+      "GA4 세션": {
+        "hours": 720,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2023-10",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2023-11",
+    "checks": {
+      "GA4 세션": {
+        "hours": 720,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2023-12",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2024-01",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2024-02",
+    "checks": {
+      "GA4 세션": {
+        "hours": 696,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2024-03",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 0.998133
+      }
+    }
+  },
+  {
+    "month": "2024-04",
+    "checks": {
+      "GA4 세션": {
+        "hours": 720,
+        "uptime": 0.98853
+      }
+    }
+  },
+  {
+    "month": "2024-05",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 0.994071
+      }
+    }
+  },
+  {
+    "month": "2024-06",
+    "checks": {
+      "GA4 세션": {
+        "hours": 720,
+        "uptime": 0.988038
+      }
+    }
+  },
+  {
+    "month": "2024-07",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 0.991418
+      }
+    }
+  },
+  {
+    "month": "2024-08",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 0.997994
+      }
+    }
+  },
+  {
+    "month": "2024-09",
+    "checks": {
+      "GA4 세션": {
+        "hours": 720,
+        "uptime": 0.999063
+      }
+    }
+  },
+  {
+    "month": "2024-10",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 0.992451
+      }
+    }
+  },
+  {
+    "month": "2024-11",
+    "checks": {
+      "GA4 세션": {
+        "hours": 720,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2024-12",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2025-01",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2025-02",
+    "checks": {
+      "GA4 세션": {
+        "hours": 672,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2025-03",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 1
+      }
+    }
+  },
+  {
+    "month": "2025-04",
+    "checks": {
+      "GA4 세션": {
+        "hours": 720,
+        "uptime": 0.997275
+      }
+    }
+  },
+  {
+    "month": "2025-05",
+    "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 0.993341
+      }
+    }
+  },
+  {
     "month": "2025-06",
     "checks": {
+      "GA4 세션": {
+        "hours": 720,
+        "uptime": 1
+      },
       "특수:빈문서": {
-        "hours": 194,
+        "hours": 192,
         "uptime": 1
       },
       "페미위키:대문": {
-        "hours": 194,
+        "hours": 192,
         "uptime": 1
       }
     }
@@ -15,6 +406,10 @@
   {
     "month": "2025-07",
     "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 1
+      },
       "특수:빈문서": {
         "hours": 744,
         "uptime": 0.999507
@@ -28,6 +423,10 @@
   {
     "month": "2025-08",
     "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 1
+      },
       "특수:빈문서": {
         "hours": 744,
         "uptime": 0.990672
@@ -41,6 +440,10 @@
   {
     "month": "2025-09",
     "checks": {
+      "GA4 세션": {
+        "hours": 720,
+        "uptime": 0.999621
+      },
       "특수:빈문서": {
         "hours": 720,
         "uptime": 0.936519
@@ -54,6 +457,10 @@
   {
     "month": "2025-10",
     "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 0.993747
+      },
       "특수:빈문서": {
         "hours": 744,
         "uptime": 0.989352
@@ -67,6 +474,10 @@
   {
     "month": "2025-11",
     "checks": {
+      "GA4 세션": {
+        "hours": 720,
+        "uptime": 1
+      },
       "특수:빈문서": {
         "hours": 720,
         "uptime": 0.835125
@@ -80,6 +491,10 @@
   {
     "month": "2025-12",
     "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 0.874543
+      },
       "특수:빈문서": {
         "hours": 744,
         "uptime": 0.829146
@@ -93,6 +508,10 @@
   {
     "month": "2026-01",
     "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 1
+      },
       "특수:빈문서": {
         "hours": 744,
         "uptime": 0.999896
@@ -106,6 +525,10 @@
   {
     "month": "2026-02",
     "checks": {
+      "GA4 세션": {
+        "hours": 672,
+        "uptime": 1
+      },
       "특수:빈문서": {
         "hours": 672,
         "uptime": 0.986839
@@ -119,6 +542,10 @@
   {
     "month": "2026-03",
     "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 0.999597
+      },
       "특수:빈문서": {
         "hours": 744,
         "uptime": 0.991484
@@ -132,6 +559,10 @@
   {
     "month": "2026-04",
     "checks": {
+      "GA4 세션": {
+        "hours": 720,
+        "uptime": 0.99727
+      },
       "특수:빈문서": {
         "hours": 720,
         "uptime": 0.98931
@@ -145,6 +576,10 @@
   {
     "month": "2026-05",
     "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 1
+      },
       "특수:빈문서": {
         "hours": 744,
         "uptime": 0.999903
@@ -158,6 +593,10 @@
   {
     "month": "2026-06",
     "checks": {
+      "GA4 세션": {
+        "hours": 720,
+        "uptime": 1
+      },
       "특수:빈문서": {
         "hours": 720,
         "uptime": 0.992068
@@ -171,6 +610,10 @@
   {
     "month": "2026-07",
     "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 0.997972
+      },
       "특수:빈문서": {
         "hours": 744,
         "uptime": 0.962724
@@ -184,6 +627,10 @@
   {
     "month": "2026-08",
     "checks": {
+      "GA4 세션": {
+        "hours": 744,
+        "uptime": 0.984621
+      },
       "특수:빈문서": {
         "hours": 744,
         "uptime": 0.753919
