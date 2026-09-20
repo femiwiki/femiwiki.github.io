@@ -14,6 +14,13 @@
 	text-align: left;
 }
 
+/* The whole cell is the link, not just the number in it. */
+.av-grid > * > tr > td > a {
+	display: block;
+	margin: -0.2em -0.4em;
+	padding: 0.2em 0.4em;
+}
+
 .av-hours {
 	display: inline-flex;
 	gap: 2px;

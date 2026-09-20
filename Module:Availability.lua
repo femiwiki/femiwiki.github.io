@@ -56,6 +56,11 @@ local function daysIn(year, month)
   return tonumber(os.date('%d', os.time({ year = year, month = month + 1, day = 0 })))
 end
 
+-- 2026-09 -> 가용성/2026년 9월, the page people write the month's story on.
+local function pageOf(m)
+  return string.format('가용성/%s년 %d월', m:sub(1, 4), tonumber(m:sub(6, 7)))
+end
+
 local function styles(frame)
   return frame:extensionTag('templatestyles', '', { src = 'Availability/styles.css' })
 end
@@ -98,8 +103,7 @@ function p.status(frame)
         local e = byMonth[key]
         if e then
           values[#values + 1] = e.uptime
-          cells[#cells + 1] =
-            string.format('| class="%s" | [[가용성/%s|%s]]', grade(e.uptime), key, percent(e.uptime))
+          cells[#cells + 1] = string.format('| class="%s" | [[%s|%s]]', grade(e.uptime), pageOf(key), percent(e.uptime))
         else
           cells[#cells + 1] = '| class="av-none" |'
         end
@@ -145,20 +149,57 @@ function p.month(frame)
         boxes[#boxes + 1] = string.format('<span class="%s" title="%02d시 %s%%"></span>', grade(v), h, percent(v))
       end
       local day = mean(slice)
-      local date = string.format('%s-%02d', m, d)
-      local label = date
-      if mw.title.new('사고/' .. date).exists then
-        label = string.format('[[사고/%s|%s]] ⚠', date, date)
-      end
       out[#out + 1] = string.format(
-        '|-\n| class="av-day" | %s\n| class="%s" | %s\n| <span class="av-hours">%s</span>',
-        label,
+        '|-\n| class="av-day" | %s-%02d\n| class="%s" | %s\n| <span class="av-hours">%s</span>',
+        m,
+        d,
         grade(day),
         percent(day),
         table.concat(boxes)
       )
     end
     out[#out + 1] = '|}'
+
+    -- Stretches of hours in which probes failed, for the story below to refer to.
+    local runs, run = {}, nil
+    for i, v in ipairs(hours) do
+      if v ~= nil and v < 0.99999 then
+        if run and run.last == i - 1 then
+          run.last, run.sum, run.n = i, run.sum + v, run.n + 1
+          run.worst = math.min(run.worst, v)
+        else
+          run = { first = i, last = i, sum = v, n = 1, worst = v }
+          runs[#runs + 1] = run
+        end
+      end
+    end
+    local notable = {}
+    for _, r in ipairs(runs) do
+      if r.worst < 0.99 or r.n >= 2 then
+        notable[#notable + 1] = r
+      end
+    end
+    if #notable > 0 then
+      out[#out + 1] = ''
+      out[#out + 1] =
+        '실패한 요청이 있었던 시간대입니다. 값은 그 동안 성공한 요청의 비율이고, 괄호는 가장 나빴던 한 시간입니다.'
+      for _, r in ipairs(notable) do
+        local d1, h1 = math.floor((r.first - 1) / 24) + 1, (r.first - 1) % 24
+        local d2, h2 = math.floor((r.last - 1) / 24) + 1, (r.last - 1) % 24
+        out[#out + 1] = string.format(
+          '* %s-%02d %02d시부터 %s-%02d %02d시까지, %d시간, %s%% (%s%%)',
+          m,
+          d1,
+          h1,
+          m,
+          d2,
+          h2 + 1,
+          r.n,
+          percent(r.sum / r.n),
+          percent(r.worst)
+        )
+      end
+    end
   end
   return '\n' .. table.concat(out, '\n')
 end
