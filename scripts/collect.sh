@@ -116,10 +116,20 @@ for d in "$out"/Module:비용/[0-9][0-9][0-9][0-9]-[0-9][0-9]/; do
   else
     figures='{}'
   fi
-  jq -n --arg month "$m" --argjson figures "$figures" --argjson invoice "$(cat "$d/invoice.json")" '
+  # A month billed in dollars gets the ECB rate of its invoice date, so the tables can
+  # show every month in won. Fetched once and kept beside the invoice.
+  if [ ! -e "$d/rate.json" ] && [ "$(jq -r '.InvoiceSummaries[0].PaymentCurrencyAmount.CurrencyCode // empty' "$d/invoice.json")" = USD ]; then
+    issued=$(jq -r '.InvoiceSummaries[0].IssuedDate[:10]' "$d/invoice.json")
+    curl -fsSL "https://api.frankfurter.dev/v1/$issued?base=USD&symbols=KRW" \
+      | jq --sort-keys '{date, rate: .rates.KRW, source: "ECB reference rate via frankfurter.dev"}' > "$d/rate.json"
+  fi
+  jq -n --arg month "$m" --argjson figures "$figures" --argjson invoice "$(cat "$d/invoice.json")" \
+    --argjson estimate "$([ -e "$d/rate.json" ] && cat "$d/rate.json" || echo null)" '
     ($invoice.InvoiceSummaries[0].PaymentCurrencyAmount) as $pay
     | {month: $month} + $figures
       + (if $pay then {billed: ($pay.TotalAmount | tonumber), currency: $pay.CurrencyCode}
-          + (if $pay.CurrencyExchangeDetails then {rate: $pay.CurrencyExchangeDetails.Rate} else {} end)
+          + (if $pay.CurrencyExchangeDetails then {rate: $pay.CurrencyExchangeDetails.Rate}
+             elif $estimate then {rate: ($estimate.rate | tostring), rateEstimated: true}
+             else {} end)
         else {} end)'
 done | jq -s 'sort_by(.month)' > "$out/Module:비용/months.json"
