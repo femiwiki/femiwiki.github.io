@@ -21,3 +21,8 @@
 	background: #fee7e6;
 	color: #b32424;
 }
+
+.lint-chip-warn {
+	background: #fef6e7;
+	color: #ac6600;
+}
