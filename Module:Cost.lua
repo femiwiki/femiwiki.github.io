@@ -187,6 +187,32 @@ function p.status()
     end
     out[#out + 1] = '|}'
   end
+
+  local known, grants = pcall(load, 'credits.json')
+  if known then
+    out[#out + 1] = ''
+    out[#out + 1] = '== 크레딧 이력 =='
+    out[#out + 1] = '{| class="wikitable"'
+    out[#out + 1] = '! 이름 !! 금액 (USD) !! 시작 !! 종료 !! 소진 !! 만료로 잃은 금액 (USD)'
+    local today = os.date('!%Y-%m-%d')
+    for _, c in ipairs(list(grants)) do
+      local ended = (c.endDate or ''):sub(1, 10) < today
+      local lost = ''
+      if ended and not c.exhaustDate then
+        lost = usd(c.remainingAmount.currencyAmount)
+      end
+      out[#out + 1] = string.format(
+        '|-\n| %s || %s || %s || %s || %s || %s',
+        c.description or '',
+        usd(c.initialAmount.currencyAmount),
+        (c.startDate or ''):sub(1, 10),
+        (c.endDate or ''):sub(1, 10),
+        c.exhaustDate and c.exhaustDate:sub(1, 10) or '-',
+        lost
+      )
+    end
+    out[#out + 1] = '|}'
+  end
   return '\n' .. table.concat(out, '\n')
 end
 
