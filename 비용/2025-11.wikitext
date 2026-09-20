@@ -1,1 +1,1 @@
-{{#invoke:비용/표.lua|월|2025-11}}
+{{#invoke:Cost.lua|month|2025-11}}
