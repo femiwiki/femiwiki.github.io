@@ -4,6 +4,10 @@
     {
       "Key": "SERVICE",
       "Type": "DIMENSION"
+    },
+    {
+      "Key": "RECORD_TYPE",
+      "Type": "DIMENSION"
     }
   ],
   "ResultsByTime": [
@@ -12,13 +16,10 @@
       "Groups": [
         {
           "Keys": [
-            "AWS Cost Explorer"
+            "AWS Cost Explorer",
+            "Usage"
           ],
           "Metrics": {
-            "NetUnblendedCost": {
-              "Amount": "0.199347484",
-              "Unit": "USD"
-            },
             "UnblendedCost": {
               "Amount": "0.199347484",
               "Unit": "USD"
@@ -27,13 +28,10 @@
         },
         {
           "Keys": [
-            "AWS Glue"
+            "AWS Glue",
+            "Usage"
           ],
           "Metrics": {
-            "NetUnblendedCost": {
-              "Amount": "0",
-              "Unit": "USD"
-            },
             "UnblendedCost": {
               "Amount": "0",
               "Unit": "USD"
@@ -42,13 +40,10 @@
         },
         {
           "Keys": [
-            "AWS Key Management Service"
+            "AWS Key Management Service",
+            "Usage"
           ],
           "Metrics": {
-            "NetUnblendedCost": {
-              "Amount": "0",
-              "Unit": "USD"
-            },
             "UnblendedCost": {
               "Amount": "0",
               "Unit": "USD"
@@ -57,13 +52,10 @@
         },
         {
           "Keys": [
-            "AWS Lambda"
+            "AWS Lambda",
+            "Usage"
           ],
           "Metrics": {
-            "NetUnblendedCost": {
-              "Amount": "0.0020050898",
-              "Unit": "USD"
-            },
             "UnblendedCost": {
               "Amount": "0.0020050898",
               "Unit": "USD"
@@ -72,13 +64,10 @@
         },
         {
           "Keys": [
-            "AWS Secrets Manager"
+            "AWS Secrets Manager",
+            "Usage"
           ],
           "Metrics": {
-            "NetUnblendedCost": {
-              "Amount": "0.000135",
-              "Unit": "USD"
-            },
             "UnblendedCost": {
               "Amount": "0.000135",
               "Unit": "USD"
@@ -87,13 +76,10 @@
         },
         {
           "Keys": [
-            "EC2 - Other"
+            "EC2 - Other",
+            "Usage"
           ],
           "Metrics": {
-            "NetUnblendedCost": {
-              "Amount": "49.730031679",
-              "Unit": "USD"
-            },
             "UnblendedCost": {
               "Amount": "49.730031679",
               "Unit": "USD"
@@ -102,13 +88,10 @@
         },
         {
           "Keys": [
-            "Amazon Elastic Compute Cloud - Compute"
+            "Amazon Elastic Compute Cloud - Compute",
+            "Usage"
           ],
           "Metrics": {
-            "NetUnblendedCost": {
-              "Amount": "47.2250858341",
-              "Unit": "USD"
-            },
             "UnblendedCost": {
               "Amount": "47.2250858341",
               "Unit": "USD"
@@ -117,13 +100,10 @@
         },
         {
           "Keys": [
-            "Amazon Route 53"
+            "Amazon Route 53",
+            "Usage"
           ],
           "Metrics": {
-            "NetUnblendedCost": {
-              "Amount": "12.927091198",
-              "Unit": "USD"
-            },
             "UnblendedCost": {
               "Amount": "12.927091198",
               "Unit": "USD"
@@ -132,13 +112,10 @@
         },
         {
           "Keys": [
-            "Amazon Simple Email Service"
+            "Amazon Simple Email Service",
+            "Usage"
           ],
           "Metrics": {
-            "NetUnblendedCost": {
-              "Amount": "0.0045258707",
-              "Unit": "USD"
-            },
             "UnblendedCost": {
               "Amount": "0.0045258707",
               "Unit": "USD"
@@ -147,13 +124,10 @@
         },
         {
           "Keys": [
-            "Amazon Simple Notification Service"
+            "Amazon Simple Notification Service",
+            "Usage"
           ],
           "Metrics": {
-            "NetUnblendedCost": {
-              "Amount": "0.0002460608",
-              "Unit": "USD"
-            },
             "UnblendedCost": {
               "Amount": "0.0002460608",
               "Unit": "USD"
@@ -162,13 +136,10 @@
         },
         {
           "Keys": [
-            "Amazon Simple Queue Service"
+            "Amazon Simple Queue Service",
+            "Usage"
           ],
           "Metrics": {
-            "NetUnblendedCost": {
-              "Amount": "0",
-              "Unit": "USD"
-            },
             "UnblendedCost": {
               "Amount": "0",
               "Unit": "USD"
@@ -177,13 +148,10 @@
         },
         {
           "Keys": [
-            "Amazon Simple Storage Service"
+            "Amazon Simple Storage Service",
+            "Usage"
           ],
           "Metrics": {
-            "NetUnblendedCost": {
-              "Amount": "5.9915885579",
-              "Unit": "USD"
-            },
             "UnblendedCost": {
               "Amount": "5.9915885579",
               "Unit": "USD"
@@ -192,13 +160,10 @@
         },
         {
           "Keys": [
-            "Amazon Virtual Private Cloud"
+            "Amazon Virtual Private Cloud",
+            "Usage"
           ],
           "Metrics": {
-            "NetUnblendedCost": {
-              "Amount": "11.16",
-              "Unit": "USD"
-            },
             "UnblendedCost": {
               "Amount": "11.16",
               "Unit": "USD"
@@ -207,13 +172,10 @@
         },
         {
           "Keys": [
-            "AmazonCloudWatch"
+            "AmazonCloudWatch",
+            "Usage"
           ],
           "Metrics": {
-            "NetUnblendedCost": {
-              "Amount": "0.0245",
-              "Unit": "USD"
-            },
             "UnblendedCost": {
               "Amount": "0.0245",
               "Unit": "USD"
@@ -222,13 +184,10 @@
         },
         {
           "Keys": [
+            "Tax",
             "Tax"
           ],
           "Metrics": {
-            "NetUnblendedCost": {
-              "Amount": "12.73",
-              "Unit": "USD"
-            },
             "UnblendedCost": {
               "Amount": "12.73",
               "Unit": "USD"

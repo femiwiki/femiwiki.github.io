@@ -1,0 +1,515 @@
+{
+  "credits": 0,
+  "services": [
+    {
+      "amount": 26.93,
+      "code": "AmazonEC2",
+      "name": "Elastic Compute Cloud",
+      "regions": [
+        {
+          "amount": 26.93,
+          "groups": [
+            {
+              "amount": 21.02,
+              "items": [
+                {
+                  "amount": 0,
+                  "description": "$0.00 per Linux t2.micro instance-hour (or partial hour) under monthly free tier",
+                  "type": "Usage",
+                  "unit": "Hrs",
+                  "usage": 687,
+                  "usageType": "APN2-BoxUsage:t2.micro"
+                },
+                {
+                  "amount": 21.02,
+                  "description": "$0.032 per On Demand Linux t2.small Instance Hour",
+                  "type": "Usage",
+                  "unit": "Hrs",
+                  "usage": 657,
+                  "usageType": "APN2-BoxUsage:t2.small"
+                }
+              ],
+              "name": "Amazon Elastic Compute Cloud running Linux/UNIX"
+            },
+            {
+              "amount": 5.91,
+              "items": [
+                {
+                  "amount": 0,
+                  "description": "$0.00 for the first 2 million I/O requests under monthly free tier",
+                  "type": "Usage",
+                  "unit": "IOs",
+                  "usage": 1163655,
+                  "usageType": "APN2-EBS:VolumeIOUsage"
+                },
+                {
+                  "amount": 0,
+                  "description": "$0.00 per GB-month of General Purpose (SSD) provisioned storage under monthly free tier",
+                  "type": "Usage",
+                  "unit": "GB-Mo",
+                  "usage": 30,
+                  "usageType": "APN2-EBS:VolumeUsage.gp2"
+                },
+                {
+                  "amount": 0,
+                  "description": "$0.00 per GB-Month of snapshot data stored under monthly free tier",
+                  "type": "Usage",
+                  "unit": "GB-Mo",
+                  "usage": 1,
+                  "usageType": "APN2-EBS:SnapshotUsage"
+                },
+                {
+                  "amount": 0.75,
+                  "description": "$0.05 per GB-Month of snapshot data stored - Asia Pacific (Seoul)",
+                  "type": "Usage",
+                  "unit": "GB-Mo",
+                  "usage": 14.966797,
+                  "usageType": "APN2-EBS:SnapshotUsage"
+                },
+                {
+                  "amount": 1.28,
+                  "description": "$0.08 per GB-month of Magnetic provisioned storage - Asia Pacific (Seoul)",
+                  "type": "Usage",
+                  "unit": "GB-Mo",
+                  "usage": 15.99999744,
+                  "usageType": "APN2-EBS:VolumeUsage"
+                },
+                {
+                  "amount": 3.88,
+                  "description": "$0.114 per GB-month of General Purpose SSD (gp2) provisioned storage - Asia Pacific (Seoul)",
+                  "type": "Usage",
+                  "unit": "GB-Mo",
+                  "usage": 34.0000032,
+                  "usageType": "APN2-EBS:VolumeUsage.gp2"
+                }
+              ],
+              "name": "EBS"
+            }
+          ],
+          "name": "Asia Pacific (Seoul)"
+        }
+      ]
+    },
+    {
+      "amount": 0.11,
+      "code": "AWSDataTransfer",
+      "name": "Data Transfer",
+      "regions": [
+        {
+          "amount": 0.11,
+          "groups": [
+            {
+              "amount": 0,
+              "items": [
+                {
+                  "amount": 0,
+                  "description": "$0.00 per GB - Asia Pacific (Seoul) data transfer from Asia Pacific (Tokyo)",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 0.00009271,
+                  "usageType": "APN2-APN1-AWS-In-Bytes"
+                }
+              ],
+              "name": "AWS Data Transfer APN2-APN1-AWS-In-Bytes"
+            },
+            {
+              "amount": 0.01,
+              "items": [
+                {
+                  "amount": 0.01,
+                  "description": "$0.080 per GB - Asia Pacific (Seoul) data transfer to Asia Pacific (Tokyo)",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 0.00072515,
+                  "usageType": "APN2-APN1-AWS-Out-Bytes"
+                }
+              ],
+              "name": "AWS Data Transfer APN2-APN1-AWS-Out-Bytes"
+            },
+            {
+              "amount": 0,
+              "items": [
+                {
+                  "amount": 0,
+                  "description": "$0.00 per GB - Asia Pacific (Seoul) data transfer from Asia Pacific (Singapore)",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 0.00009867,
+                  "usageType": "APN2-APS1-AWS-In-Bytes"
+                }
+              ],
+              "name": "AWS Data Transfer APN2-APS1-AWS-In-Bytes"
+            },
+            {
+              "amount": 0.01,
+              "items": [
+                {
+                  "amount": 0.01,
+                  "description": "$0.080 per GB - Asia Pacific (Seoul) data transfer to Asia Pacific (Singapore)",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 0.00057415,
+                  "usageType": "APN2-APS1-AWS-Out-Bytes"
+                }
+              ],
+              "name": "AWS Data Transfer APN2-APS1-AWS-Out-Bytes"
+            },
+            {
+              "amount": 0,
+              "items": [
+                {
+                  "amount": 0,
+                  "description": "$0.00 per GB - Asia Pacific (Seoul) data transfer from Asia Pacific (Sydney)",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 8.9E-7,
+                  "usageType": "APN2-APS2-AWS-In-Bytes"
+                }
+              ],
+              "name": "AWS Data Transfer APN2-APS2-AWS-In-Bytes"
+            },
+            {
+              "amount": 0,
+              "items": [
+                {
+                  "amount": 0,
+                  "description": "$0.080 per GB - Asia Pacific (Seoul) data transfer to Asia Pacific (Sydney)",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 0.00000328,
+                  "usageType": "APN2-APS2-AWS-Out-Bytes"
+                }
+              ],
+              "name": "AWS Data Transfer APN2-APS2-AWS-Out-Bytes"
+            },
+            {
+              "amount": 0,
+              "items": [
+                {
+                  "amount": 0,
+                  "description": "$0.00 per GB - Asia Pacific (Seoul) data transfer from EU (Ireland)",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 0.00035455,
+                  "usageType": "APN2-EU-AWS-In-Bytes"
+                }
+              ],
+              "name": "AWS Data Transfer APN2-EU-AWS-In-Bytes"
+            },
+            {
+              "amount": 0.01,
+              "items": [
+                {
+                  "amount": 0.01,
+                  "description": "$0.080 per GB - Asia Pacific (Seoul) data transfer to EU (Ireland)",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 0.00410946,
+                  "usageType": "APN2-EU-AWS-Out-Bytes"
+                }
+              ],
+              "name": "AWS Data Transfer APN2-EU-AWS-Out-Bytes"
+            },
+            {
+              "amount": 0,
+              "items": [
+                {
+                  "amount": 0,
+                  "description": "$0.00 per GB - Asia Pacific (Seoul) data transfer from EU (Germany)",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 0.0000014,
+                  "usageType": "APN2-EUC1-AWS-In-Bytes"
+                }
+              ],
+              "name": "AWS Data Transfer APN2-EUC1-AWS-In-Bytes"
+            },
+            {
+              "amount": 0,
+              "items": [
+                {
+                  "amount": 0,
+                  "description": "$0.080 per GB - Asia Pacific (Seoul) data transfer to EU (Germany)",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 0.00000397,
+                  "usageType": "APN2-EUC1-AWS-Out-Bytes"
+                }
+              ],
+              "name": "AWS Data Transfer APN2-EUC1-AWS-Out-Bytes"
+            },
+            {
+              "amount": 0,
+              "items": [
+                {
+                  "amount": 0,
+                  "description": "$0.00 per GB - Asia Pacific (Seoul) data transfer from South America (Sao Paulo)",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 0.00001435,
+                  "usageType": "APN2-SAE1-AWS-In-Bytes"
+                }
+              ],
+              "name": "AWS Data Transfer APN2-SAE1-AWS-In-Bytes"
+            },
+            {
+              "amount": 0.01,
+              "items": [
+                {
+                  "amount": 0.01,
+                  "description": "$0.080 per GB - Asia Pacific (Seoul) data transfer to South America (Sao Paulo)",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 0.00022628,
+                  "usageType": "APN2-SAE1-AWS-Out-Bytes"
+                }
+              ],
+              "name": "AWS Data Transfer APN2-SAE1-AWS-Out-Bytes"
+            },
+            {
+              "amount": 0,
+              "items": [
+                {
+                  "amount": 0,
+                  "description": "$0.00 per GB - Asia Pacific (Seoul) data transfer from US East (Northern Virginia)",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 0.00901985,
+                  "usageType": "APN2-USE1-AWS-In-Bytes"
+                }
+              ],
+              "name": "AWS Data Transfer APN2-USE1-AWS-In-Bytes"
+            },
+            {
+              "amount": 0.01,
+              "items": [
+                {
+                  "amount": 0.01,
+                  "description": "$0.080 per GB - Asia Pacific (Seoul) data transfer to US East (Northern Virginia)",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 0.07881926,
+                  "usageType": "APN2-USE1-AWS-Out-Bytes"
+                }
+              ],
+              "name": "AWS Data Transfer APN2-USE1-AWS-Out-Bytes"
+            },
+            {
+              "amount": 0,
+              "items": [
+                {
+                  "amount": 0,
+                  "description": "$0.00 per GB - Asia Pacific (Seoul) data transfer from US West (Northern California)",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 0.00017938,
+                  "usageType": "APN2-USW1-AWS-In-Bytes"
+                }
+              ],
+              "name": "AWS Data Transfer APN2-USW1-AWS-In-Bytes"
+            },
+            {
+              "amount": 0.01,
+              "items": [
+                {
+                  "amount": 0.01,
+                  "description": "$0.080 per GB - Asia Pacific (Seoul) data transfer to US West (Northern California)",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 0.000696,
+                  "usageType": "APN2-USW1-AWS-Out-Bytes"
+                }
+              ],
+              "name": "AWS Data Transfer APN2-USW1-AWS-Out-Bytes"
+            },
+            {
+              "amount": 0,
+              "items": [
+                {
+                  "amount": 0,
+                  "description": "$0.00 per GB - Asia Pacific (Seoul) data transfer from US West (Oregon)",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 0.00130569,
+                  "usageType": "APN2-USW2-AWS-In-Bytes"
+                }
+              ],
+              "name": "AWS Data Transfer APN2-USW2-AWS-In-Bytes"
+            },
+            {
+              "amount": 0.01,
+              "items": [
+                {
+                  "amount": 0.01,
+                  "description": "$0.080 per GB - Asia Pacific (Seoul) data transfer to US West (Oregon)",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 0.00582697,
+                  "usageType": "APN2-USW2-AWS-Out-Bytes"
+                }
+              ],
+              "name": "AWS Data Transfer APN2-USW2-AWS-Out-Bytes"
+            },
+            {
+              "amount": 0.04,
+              "items": [
+                {
+                  "amount": 0,
+                  "description": "$0.000 per GB - data transfer in per month",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 2.5416918,
+                  "usageType": "APN2-DataTransfer-In-Bytes"
+                },
+                {
+                  "amount": 0,
+                  "description": "$0.000 per GB - data transfer out under the monthly global free tier",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 15,
+                  "usageType": "APN2-DataTransfer-Out-Bytes"
+                },
+                {
+                  "amount": 0,
+                  "description": "$0.000 per GB - regional data transfer under the monthly global free tier",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 1,
+                  "usageType": "APN2-DataTransfer-Regional-Bytes"
+                },
+                {
+                  "amount": 0.01,
+                  "description": "$0.01 per GB - regional data transfer - in/out/between EC2 AZs or using elastic IPs or ELB",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 0.30932019,
+                  "usageType": "APN2-DataTransfer-Regional-Bytes"
+                },
+                {
+                  "amount": 0.03,
+                  "description": "$0.126 per GB - first 10 TB / month data transfer out beyond the global free tier",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 0.26507573,
+                  "usageType": "APN2-DataTransfer-Out-Bytes"
+                }
+              ],
+              "name": "Bandwidth"
+            }
+          ],
+          "name": "Asia Pacific (Seoul)"
+        }
+      ]
+    },
+    {
+      "amount": 0,
+      "code": "AmazonApiGateway",
+      "name": "API Gateway",
+      "regions": [
+        {
+          "amount": 0,
+          "groups": [
+            {
+              "amount": 0,
+              "items": [
+                {
+                  "amount": 0,
+                  "description": "API Gateway Request Free Tier - Asia Pacific (Seoul)",
+                  "type": "Usage",
+                  "unit": "APN2-ApiGatewayRequest",
+                  "usage": 602,
+                  "usageType": "APN2-ApiGatewayRequest"
+                }
+              ],
+              "name": "Amazon API Gateway ApiGatewayRequest"
+            }
+          ],
+          "name": "Asia Pacific (Seoul)"
+        }
+      ]
+    },
+    {
+      "amount": 0,
+      "code": "AmazonCloudWatch",
+      "name": "CloudWatch",
+      "regions": [
+        {
+          "amount": 0,
+          "groups": [
+            {
+              "amount": 0,
+              "items": [
+                {
+                  "amount": 0,
+                  "description": "First 5GB-mo per month of logs storage is free.",
+                  "type": "Usage",
+                  "unit": "GB-Mo",
+                  "usage": 0.0001421,
+                  "usageType": "APN2-TimedStorage-ByteHrs"
+                }
+              ],
+              "name": "AmazonCloudWatch APN2-TimedStorage-ByteHrs"
+            },
+            {
+              "amount": 0,
+              "items": [
+                {
+                  "amount": 0,
+                  "description": "First 5GB per month of log data ingested is free.",
+                  "type": "Usage",
+                  "unit": "GB",
+                  "usage": 0.00019345,
+                  "usageType": "APN2-DataProcessing-Bytes"
+                }
+              ],
+              "name": "AmazonCloudWatch PutLogEvents"
+            }
+          ],
+          "name": "Asia Pacific (Seoul)"
+        }
+      ]
+    },
+    {
+      "amount": 0,
+      "code": "AWSLambda",
+      "name": "Lambda",
+      "regions": [
+        {
+          "amount": 0,
+          "groups": [
+            {
+              "amount": 0,
+              "items": [
+                {
+                  "amount": 0,
+                  "description": "AWS Lambda - Compute Free Tier - 400,000 GB-Seconds - Asia Pacific (Seoul)",
+                  "type": "Usage",
+                  "unit": "Lambda-GB-Second",
+                  "usage": 42.85,
+                  "usageType": "APN2-Lambda-GB-Second"
+                }
+              ],
+              "name": "AWS Lambda APN2-Lambda-GB-Second"
+            },
+            {
+              "amount": 0,
+              "items": [
+                {
+                  "amount": 0,
+                  "description": "AWS Lambda - Requests Free Tier - 1,000,000 Requests - Asia Pacific (Seoul)",
+                  "type": "Usage",
+                  "unit": "Requests",
+                  "usage": 602,
+                  "usageType": "APN2-Request"
+                }
+              ],
+              "name": "AWS Lambda APN2-Request"
+            }
+          ],
+          "name": "Asia Pacific (Seoul)"
+        }
+      ]
+    }
+  ],
+  "total": 29.74
+}
