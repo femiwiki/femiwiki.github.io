@@ -26,8 +26,11 @@ jobs:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Overlay the data branch
-        run: git fetch --quiet origin data && git checkout --quiet origin/data -- . || echo "no data branch yet"
+      - name: Overlay the data branch, main's own files winning
+        run: |
+          git fetch --quiet origin data || { echo "no data branch yet"; exit 0; }
+          git checkout --quiet origin/data -- .
+          git checkout --quiet HEAD -- .
 
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d  # v6.0.0
 

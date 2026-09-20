@@ -60,7 +60,12 @@ for month in "${months[@]}"; do
         })
       | from_entries
       | {month: $month, hours: $hours, checks: .}' > "$out/Module:가용성/$month.json"
-  printf '{{#invoke:Availability.lua|month|%s}}\n' "$month" > "$out/가용성/$month.wikitext"
+  # The month's page is where people write what happened, so it is made once and
+  # never overwritten, wherever it lives.
+  page="가용성/${month%-*}년 $((10#${month#*-}))월.wikitext"
+  [ -e "$page" ] || [ -e "$out/$page" ] || printf '{{#invoke:Availability.lua|month|%s}}\n' "$month" > "$out/$page"
+  page="가용성/${month%-*}년.wikitext"
+  [ -e "$page" ] || [ -e "$out/$page" ] || printf '{{#invoke:Availability.lua|year|%s}}\n' "${month%-*}" > "$out/$page"
   echo "$month"
 done
 
