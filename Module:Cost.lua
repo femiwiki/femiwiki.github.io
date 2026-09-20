@@ -87,11 +87,9 @@ function p.month(frame)
     out[#out + 1] = string.format('|-\n| %s || %s || %s', g.Keys[1], usd(g.Metrics.UnblendedCost.Amount), usd(g.Metrics.NetUnblendedCost.Amount))
   end
   out[#out + 1] = '|}'
-  out[#out + 1] = ''
   if mw.title.new('File:' .. m .. '.pdf').exists then
-    out[#out + 1] = string.format('[[Media:%s.pdf|청구서 (PDF)]] · [[비용/현황|현황으로]]', m)
-  else
-    out[#out + 1] = '[[비용/현황|현황으로]]'
+    out[#out + 1] = ''
+    out[#out + 1] = string.format('[[Media:%s.pdf|청구서 (PDF)]]', m)
   end
   return '\n' .. table.concat(out, '\n')
 end
