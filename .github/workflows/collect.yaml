@@ -24,8 +24,8 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Install the PDF tools the redaction needs
-        run: sudo apt-get install -y --no-install-recommends poppler-utils ghostscript imagemagick
+      - name: Install the PDF tools the redaction needs, and Miller for the export's CSV
+        run: sudo apt-get install -y --no-install-recommends poppler-utils ghostscript imagemagick miller
 
       - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd  # v6.3.0
         with:

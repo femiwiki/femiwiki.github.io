@@ -51,9 +51,17 @@ declare -A used
 for month in "${months[@]}"; do
   dir="$out/Module:비용/$month"
   mkdir -p "$dir"
-  # Cost Explorer keeps 37 months; an older month has its bill.json, captured from the
-  # console by hand (issue #30), and the invoice. Grouping by record type is what tells
-  # usage from credits and tax: UnblendedCost alone has both folded in.
+  # The month's line items come from the Data Exports file in S3 once it is there
+  # (femiwiki#557); the months before it were captured from the console by hand (#30)
+  # and are kept as they are. Cost Explorer, 37 months deep, is the fallback, grouped
+  # by record type since UnblendedCost alone has credits and tax folded in.
+  if [ ! -e "$dir/bill.json" ] || [ "$(jq -r '.source // empty' "$dir/bill.json")" = export ]; then
+    if "$(dirname "$0")/bill-from-export.sh" "$out" "$month" > "$tmp/$month-bill.json"; then
+      mv "$tmp/$month-bill.json" "$dir/bill.json"
+    elif [ $? -ne 3 ]; then
+      exit 1
+    fi
+  fi
   if ! aws ce get-cost-and-usage --output json \
     --time-period "Start=$month-01,End=$(date -u -d "$month-01 +1 month" +%Y-%m-%d)" \
     --granularity MONTHLY --metrics UnblendedCost \
