@@ -1,0 +1,100 @@
+[
+  {
+    "accountHasCreditSharingEnabled": false,
+    "applicationType": "AfterDiscounts",
+    "creditConsoleVisibility": "DISPLAY_ALL",
+    "creditSharingType": "DEFAULT",
+    "creditStatus": "ENABLED",
+    "creditType": "Promotion",
+    "description": "USFM_FY2018_Q4_2_Re:Invent_2018_Workshops",
+    "endDate": "2019-12-31T23:59:59+00:00",
+    "exhaustDate": "2018-12-03T06:30:44+00:00",
+    "initialAmount": {
+      "currencyAmount": "25.000000",
+      "currencyCode": "USD"
+    },
+    "remainingAmount": {
+      "currencyAmount": "0.000000",
+      "currencyCode": "USD"
+    },
+    "startDate": "2018-11-01T00:00:00+00:00"
+  },
+  {
+    "accountHasCreditSharingEnabled": false,
+    "applicationType": "AfterDiscounts",
+    "creditConsoleVisibility": "DISPLAY_ALL",
+    "creditSharingType": "DEFAULT",
+    "creditStatus": "ENABLED",
+    "creditType": "Promotion",
+    "description": "TechSoup 500k",
+    "endDate": "2024-05-31T23:59:59+00:00",
+    "initialAmount": {
+      "currencyAmount": "1000.000000",
+      "currencyCode": "USD"
+    },
+    "remainingAmount": {
+      "currencyAmount": "478.640000",
+      "currencyCode": "USD"
+    },
+    "startDate": "2023-04-01T00:00:00+00:00"
+  },
+  {
+    "accountHasCreditSharingEnabled": false,
+    "applicationType": "AfterDiscounts",
+    "creditConsoleVisibility": "DISPLAY_ALL",
+    "creditSharingType": "DEFAULT",
+    "creditStatus": "ENABLED",
+    "creditType": "Promotion",
+    "description": "TechSoup 500K - July 2024 - 2",
+    "endDate": "2025-09-30T23:59:59+00:00",
+    "exhaustDate": "2025-09-02T04:58:08+00:00",
+    "initialAmount": {
+      "currencyAmount": "1000.000000",
+      "currencyCode": "USD"
+    },
+    "remainingAmount": {
+      "currencyAmount": "0.000000",
+      "currencyCode": "USD"
+    },
+    "startDate": "2024-07-01T00:00:00+00:00"
+  },
+  {
+    "accountHasCreditSharingEnabled": false,
+    "applicationType": "BeforeCrossServiceDiscounts",
+    "creditConsoleVisibility": "DISPLAY_ALL",
+    "creditSharingType": "DEFAULT",
+    "creditStatus": "ENABLED",
+    "creditType": "Promotion",
+    "description": "AWS TechSoup August 2025",
+    "endDate": "2026-10-31T23:59:59+00:00",
+    "exhaustDate": "2026-05-01T23:21:44+00:00",
+    "initialAmount": {
+      "currencyAmount": "1000.000000",
+      "currencyCode": "USD"
+    },
+    "remainingAmount": {
+      "currencyAmount": "0.000000",
+      "currencyCode": "USD"
+    },
+    "startDate": "2025-09-01T00:00:00+00:00"
+  },
+  {
+    "accountHasCreditSharingEnabled": false,
+    "applicationType": "AfterDiscounts",
+    "creditConsoleVisibility": "DISPLAY_ALL",
+    "creditSharingType": "DEFAULT",
+    "creditStatus": "ENABLED",
+    "creditType": "Promotion",
+    "description": "AWS TechSoup August 2026",
+    "endDate": "2027-11-30T23:59:59+00:00",
+    "initialAmount": {
+      "currencyAmount": "1000.000000",
+      "currencyCode": "USD"
+    },
+    "remainingAmount": {
+      "currencyAmount": "1000.000000",
+      "currencyCode": "USD"
+    },
+    "startDate": "2026-09-01T00:00:00+00:00"
+  }
+]
