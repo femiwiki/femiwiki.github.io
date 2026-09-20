@@ -30,6 +30,24 @@ local function amountTag(x)
   return string.format('<span class="cost-amount">%s USD</span>', usd(x))
 end
 
+-- Won for the month: as billed, or the dollar amount at the ECB rate of the invoice date.
+local function won(e)
+  if e.currency == 'KRW' then
+    return e.billed, false
+  elseif e.currency == 'USD' and e.rate then
+    return e.billed * tonumber(e.rate), true
+  end
+  return nil
+end
+
+local function wonCell(amount, estimated)
+  if not amount then
+    return '| -'
+  end
+  local text = commas(string.format('%d', amount))
+  return string.format('| data-sort-value="%d" | %s%s', amount, estimated and '≈ ' or '', text)
+end
+
 local function billedText(e)
   if not e.currency then
     return '-'
@@ -90,12 +108,16 @@ function p.status()
   local months = list(entries)
 
   local years, order = {}, {}
-  local rows = { '{| class="wikitable"', '! 월 !! 사용 !! 크레딧 !! 세금 !! 합계 (USD) !! 청구 !! 환율' }
+  local rows = {
+    '{| class="wikitable sortable"',
+    '! 월 !! 사용 !! 크레딧 !! 세금 !! 합계 (USD) !! 청구 !! 환율 !! 원화 (KRW)',
+  }
   for i = #months, 1, -1 do
     local e = months[i]
     local usage, total = e.usage or e.gross, e.total or e.net
+    local krw, estimated = won(e)
     rows[#rows + 1] = string.format(
-      '|-\n| [[비용/%s|%s]] || %s || %s || %s || %s || %s || %s',
+      '|-\n| [[비용/%s|%s]] || %s || %s || %s || %s || %s || %s\n%s',
       e.month,
       e.month,
       usage and usd(usage) or '-',
@@ -103,34 +125,35 @@ function p.status()
       e.tax and usd(e.tax) or '-',
       total and usd(total) or '-',
       billedText(e),
-      e.rate and e.rate:sub(1, 7) or '-'
+      e.rate and ((e.rateEstimated and '≈ ' or '') .. e.rate:sub(1, 7)) or '-',
+      wonCell(krw, estimated)
     )
     local y = e.month:sub(1, 4)
     if not years[y] then
-      years[y] = { usage = 0, credits = 0, USD = 0, KRW = 0 }
+      years[y] = { usage = 0, credits = 0, krw = 0, estimated = false }
       order[#order + 1] = y
     end
     years[y].usage = years[y].usage + (usage or 0)
     years[y].credits = years[y].credits + (e.credits or 0)
-    if e.currency then
-      years[y][e.currency] = (years[y][e.currency] or 0) + e.billed
+    if krw then
+      years[y].krw = years[y].krw + krw
+      years[y].estimated = years[y].estimated or estimated
     end
   end
   rows[#rows + 1] = '|}'
 
   local out = {
     '== 연도별 ==',
-    '{| class="wikitable"',
-    '! 연도 !! 사용 (USD) !! 크레딧 (USD) !! 청구 (USD) !! 청구 (KRW)',
+    '{| class="wikitable sortable"',
+    '! 연도 !! 사용 (USD) !! 크레딧 (USD) !! 청구 (KRW)',
   }
   for _, y in ipairs(order) do
     out[#out + 1] = string.format(
-      '|-\n| %s || %s || %s || %s || %s',
+      '|-\n| %s || %s || %s\n%s',
       y,
       usd(years[y].usage),
       usd(-years[y].credits),
-      years[y].USD > 0 and usd(years[y].USD) or '',
-      years[y].KRW > 0 and commas(string.format('%d', years[y].KRW)) or ''
+      wonCell(years[y].krw, years[y].estimated)
     )
   end
   out[#out + 1] = '|}'
