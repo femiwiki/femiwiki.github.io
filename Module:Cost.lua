@@ -33,7 +33,7 @@ local function month(m)
   return gross, net, krw, rate, groups
 end
 
-p['현황'] = function()
+function p.status()
   local ok, list = pcall(load, 'months.json')
   if not ok then
     return '아직 수집된 달이 없습니다.'
@@ -72,7 +72,7 @@ p['현황'] = function()
   return '\n' .. table.concat(out, '\n')
 end
 
-p['월'] = function(frame)
+function p.month(frame)
   local m = frame.args[1]
   local gross, net, krw, rate, groups = month(m)
   local rows = {}
