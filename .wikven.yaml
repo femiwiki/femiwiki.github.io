@@ -7,6 +7,8 @@ config:
   Sitename: 페미위키
   FileExtensions: [png, gif, jpg, jpeg, webp, svg, pdf]
   LanguageCode: ko
+  NamespacesWithSubpages:
+    0: true
   DefaultSkin: femiwiki
   WikvenLogos:
     icon: symbol-transparent-white.svg
