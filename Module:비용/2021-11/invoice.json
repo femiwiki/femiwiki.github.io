@@ -1,0 +1,43 @@
+{
+  "InvoiceSummaries": [
+    {
+      "BaseCurrencyAmount": {
+        "AmountBreakdown": {
+          "Taxes": {
+            "Breakdown": [
+              {
+                "Amount": "3.67"
+              }
+            ]
+          }
+        },
+        "CurrencyCode": "USD",
+        "TotalAmount": "40.28"
+      },
+      "BillType": "ANNIVERSARY",
+      "BillingPeriod": {
+        "Month": 11,
+        "Year": 2021
+      },
+      "DueDate": "2021-12-03T04:10:26.648000+09:00",
+      "Entity": {
+        "BillingEntity": "AWS",
+        "InvoicingEntity": "Amazon Web Services Korea LLC"
+      },
+      "InvoiceFrequency": "RECURRING",
+      "InvoiceType": "INVOICE",
+      "IssuedDate": "2021-12-03T04:10:26.648000+09:00",
+      "PaymentCurrencyAmount": {
+        "CurrencyCode": "KRW",
+        "CurrencyExchangeDetails": {
+          "Rate": "1195.18717236",
+          "SourceCurrencyCode": "USD",
+          "TargetCurrencyCode": "KRW"
+        },
+        "TotalAmount": "48142"
+      },
+      "ReceiverRole": "BUYER",
+      "TaxAuthorityStatus": "ISSUED"
+    }
+  ]
+}

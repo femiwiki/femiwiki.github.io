@@ -1,0 +1,32 @@
+{
+  "InvoiceSummaries": [
+    {
+      "BaseCurrencyAmount": {
+        "CurrencyCode": "USD",
+        "TotalAmount": "34.17"
+      },
+      "BillType": "ANNIVERSARY",
+      "BillingPeriod": {
+        "Month": 9,
+        "Year": 2017
+      },
+      "DueDate": "2017-10-03T13:21:34+09:00",
+      "Entity": {
+        "BillingEntity": "AWS"
+      },
+      "InvoiceFrequency": "RECURRING",
+      "InvoiceType": "INVOICE",
+      "IssuedDate": "2017-10-03T13:21:34+09:00",
+      "PaymentCurrencyAmount": {
+        "CurrencyCode": "USD",
+        "TotalAmount": "34.17"
+      },
+      "ReceiverRole": "BUYER",
+      "TaxAuthorityStatus": "ISSUED",
+      "TaxCurrencyAmount": {
+        "CurrencyCode": "USD",
+        "TotalAmount": "34.17"
+      }
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "InvoiceSummaries": [
+    {
+      "BaseCurrencyAmount": {
+        "AmountBreakdown": {
+          "Taxes": {
+            "Breakdown": [
+              {
+                "Amount": "12.44"
+              }
+            ]
+          }
+        },
+        "CurrencyCode": "USD",
+        "TotalAmount": "136.83",
+        "TotalAmountBeforeTax": "124.39"
+      },
+      "BillType": "ANNIVERSARY",
+      "BillingPeriod": {
+        "Month": 3,
+        "Year": 2019
+      },
+      "DueDate": "2019-04-03T11:52:36.855000+09:00",
+      "Entity": {
+        "BillingEntity": "AWS",
+        "InvoicingEntity": "Amazon Web Services, Inc."
+      },
+      "InvoiceFrequency": "RECURRING",
+      "InvoiceType": "INVOICE",
+      "IssuedDate": "2019-04-03T11:52:36.855000+09:00",
+      "PaymentCurrencyAmount": {
+        "AmountBreakdown": {
+          "Taxes": {
+            "Breakdown": [
+              {
+                "Amount": "12.44"
+              }
+            ]
+          }
+        },
+        "CurrencyCode": "USD",
+        "TotalAmount": "136.83",
+        "TotalAmountBeforeTax": "124.39"
+      },
+      "ReceiverRole": "BUYER",
+      "TaxAuthorityStatus": "ISSUED"
+    }
+  ]
+}

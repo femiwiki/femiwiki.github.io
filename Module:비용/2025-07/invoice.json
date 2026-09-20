@@ -1,0 +1,122 @@
+{
+  "InvoiceSummaries": [
+    {
+      "BaseCurrencyAmount": {
+        "AmountBreakdown": {
+          "Discounts": {
+            "Breakdown": [
+              {
+                "Amount": "90.15",
+                "Description": "Credits"
+              }
+            ],
+            "TotalAmount": "90.15"
+          },
+          "Fees": {
+            "TotalAmount": "0.00"
+          },
+          "SubTotalAmount": "107.52",
+          "Taxes": {
+            "Breakdown": [
+              {
+                "Amount": "1.74",
+                "Description": "VAT",
+                "Rate": "0.1"
+              }
+            ],
+            "TotalAmount": "1.74"
+          }
+        },
+        "CurrencyCode": "USD",
+        "TotalAmount": "19.11",
+        "TotalAmountBeforeTax": "17.37"
+      },
+      "BillSourceAccountsTotalCount": 1,
+      "BillType": "ANNIVERSARY",
+      "BillingPeriod": {
+        "Month": 7,
+        "Year": 2025
+      },
+      "DueDate": "2025-08-02T00:28:34.329000+09:00",
+      "Entity": {
+        "BillingEntity": "AWS",
+        "InvoicingEntity": "Amazon Web Services Korea LLC"
+      },
+      "InvoiceFrequency": "RECURRING",
+      "InvoiceType": "INVOICE",
+      "IssuedDate": "2025-08-02T07:08:52.691000+09:00",
+      "PaymentCurrencyAmount": {
+        "AmountBreakdown": {
+          "Discounts": {
+            "Breakdown": [
+              {
+                "Amount": "125536",
+                "Description": "Credits"
+              }
+            ],
+            "TotalAmount": "125536"
+          },
+          "Fees": {
+            "TotalAmount": "0"
+          },
+          "SubTotalAmount": "149724",
+          "Taxes": {
+            "Breakdown": [
+              {
+                "Amount": "2423",
+                "Description": "VAT",
+                "Rate": "0.1"
+              }
+            ],
+            "TotalAmount": "2423"
+          }
+        },
+        "CurrencyCode": "KRW",
+        "CurrencyExchangeDetails": {
+          "Rate": "1392.52562766917",
+          "SourceCurrencyCode": "USD",
+          "TargetCurrencyCode": "KRW"
+        },
+        "TotalAmount": "26611",
+        "TotalAmountBeforeTax": "24188"
+      },
+      "ReceiverRole": "BUYER",
+      "TaxAuthorityStatus": "ISSUED",
+      "TaxCurrencyAmount": {
+        "AmountBreakdown": {
+          "Discounts": {
+            "Breakdown": [
+              {
+                "Amount": "125536",
+                "Description": "Credits"
+              }
+            ],
+            "TotalAmount": "125536"
+          },
+          "Fees": {
+            "TotalAmount": "0"
+          },
+          "SubTotalAmount": "149724",
+          "Taxes": {
+            "Breakdown": [
+              {
+                "Amount": "2423",
+                "Description": "VAT",
+                "Rate": "0.1"
+              }
+            ],
+            "TotalAmount": "2423"
+          }
+        },
+        "CurrencyCode": "KRW",
+        "CurrencyExchangeDetails": {
+          "Rate": "1392.52562766917",
+          "SourceCurrencyCode": "USD",
+          "TargetCurrencyCode": "KRW"
+        },
+        "TotalAmount": "26611",
+        "TotalAmountBeforeTax": "24188"
+      }
+    }
+  ]
+}

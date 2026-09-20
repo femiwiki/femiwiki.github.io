@@ -37,14 +37,14 @@
         "Month": 8,
         "Year": 2025
       },
-      "DueDate": "2025-09-01T16:56:13.060000+00:00",
+      "DueDate": "2025-09-02T01:56:13.060000+09:00",
       "Entity": {
         "BillingEntity": "AWS",
         "InvoicingEntity": "Amazon Web Services Korea LLC"
       },
       "InvoiceFrequency": "RECURRING",
       "InvoiceType": "INVOICE",
-      "IssuedDate": "2025-09-02T07:10:00.522000+00:00",
+      "IssuedDate": "2025-09-02T16:10:00.522000+09:00",
       "PaymentCurrencyAmount": {
         "AmountBreakdown": {
           "Discounts": {

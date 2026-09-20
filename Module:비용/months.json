@@ -1,15 +1,745 @@
 [
-  "2025-08",
-  "2025-09",
-  "2025-10",
-  "2025-11",
-  "2025-12",
-  "2026-01",
-  "2026-02",
-  "2026-03",
-  "2026-04",
-  "2026-05",
-  "2026-06",
-  "2026-07",
-  "2026-08"
+  {
+    "month": "2016-09",
+    "billed": 0.74,
+    "currency": "USD"
+  },
+  {
+    "month": "2016-10",
+    "billed": 17.84,
+    "currency": "USD"
+  },
+  {
+    "month": "2016-11",
+    "billed": 18.12,
+    "currency": "USD"
+  },
+  {
+    "month": "2016-12",
+    "billed": 19.89,
+    "currency": "USD"
+  },
+  {
+    "month": "2017-01",
+    "billed": 23.07,
+    "currency": "USD"
+  },
+  {
+    "month": "2017-02",
+    "billed": 29.74,
+    "currency": "USD"
+  },
+  {
+    "month": "2017-03",
+    "billed": 34.99,
+    "currency": "USD"
+  },
+  {
+    "month": "2017-04",
+    "billed": 33.66,
+    "currency": "USD"
+  },
+  {
+    "month": "2017-05",
+    "billed": 35.75,
+    "currency": "USD"
+  },
+  {
+    "month": "2017-06",
+    "billed": 34.01,
+    "currency": "USD"
+  },
+  {
+    "month": "2017-07",
+    "billed": 43.24,
+    "currency": "USD"
+  },
+  {
+    "month": "2017-08",
+    "billed": 38.31,
+    "currency": "USD"
+  },
+  {
+    "month": "2017-09",
+    "billed": 34.17,
+    "currency": "USD"
+  },
+  {
+    "month": "2017-10",
+    "billed": 53.22,
+    "currency": "USD"
+  },
+  {
+    "month": "2017-11",
+    "billed": 54.61,
+    "currency": "USD"
+  },
+  {
+    "month": "2017-12",
+    "billed": 56.03,
+    "currency": "USD"
+  },
+  {
+    "month": "2018-01",
+    "billed": 56.22,
+    "currency": "USD"
+  },
+  {
+    "month": "2018-02",
+    "billed": 57.24,
+    "currency": "USD"
+  },
+  {
+    "month": "2018-03",
+    "billed": 61.89,
+    "currency": "USD"
+  },
+  {
+    "month": "2018-04",
+    "billed": 59.83,
+    "currency": "USD"
+  },
+  {
+    "month": "2018-05",
+    "billed": 75.99,
+    "currency": "USD"
+  },
+  {
+    "month": "2018-06",
+    "billed": 76.83,
+    "currency": "USD"
+  },
+  {
+    "month": "2018-07",
+    "billed": 82.12,
+    "currency": "USD"
+  },
+  {
+    "month": "2018-08",
+    "billed": 76.58,
+    "currency": "USD"
+  },
+  {
+    "month": "2018-09",
+    "billed": 91.93,
+    "currency": "USD"
+  },
+  {
+    "month": "2018-10",
+    "billed": 118.26,
+    "currency": "USD"
+  },
+  {
+    "month": "2018-11",
+    "billed": 268.62,
+    "currency": "USD"
+  },
+  {
+    "month": "2018-12",
+    "billed": 277.11,
+    "currency": "USD"
+  },
+  {
+    "month": "2019-01",
+    "billed": 78.87,
+    "currency": "USD"
+  },
+  {
+    "month": "2019-02",
+    "billed": 94.35,
+    "currency": "USD"
+  },
+  {
+    "month": "2019-03",
+    "billed": 136.83,
+    "currency": "USD"
+  },
+  {
+    "month": "2019-04",
+    "billed": 131.61,
+    "currency": "USD"
+  },
+  {
+    "month": "2019-05",
+    "billed": 105.16,
+    "currency": "USD"
+  },
+  {
+    "month": "2019-06",
+    "billed": 99.50,
+    "currency": "USD"
+  },
+  {
+    "month": "2019-07",
+    "billed": 13.20,
+    "currency": "USD"
+  },
+  {
+    "month": "2019-08",
+    "billed": 87.67,
+    "currency": "USD"
+  },
+  {
+    "month": "2019-09",
+    "billed": 80.95,
+    "currency": "USD"
+  },
+  {
+    "month": "2019-10",
+    "billed": 93.13,
+    "currency": "USD"
+  },
+  {
+    "month": "2019-11",
+    "billed": 77.09,
+    "currency": "USD"
+  },
+  {
+    "month": "2019-12",
+    "billed": 30.13,
+    "currency": "USD"
+  },
+  {
+    "month": "2020-01",
+    "billed": 28.47,
+    "currency": "USD"
+  },
+  {
+    "month": "2020-02",
+    "billed": 37.71,
+    "currency": "USD"
+  },
+  {
+    "month": "2020-03",
+    "billed": 52.60,
+    "currency": "USD"
+  },
+  {
+    "month": "2020-04",
+    "billed": 49.49,
+    "currency": "USD"
+  },
+  {
+    "month": "2020-05",
+    "billed": 51.77,
+    "currency": "USD"
+  },
+  {
+    "month": "2020-06",
+    "billed": 46.31,
+    "currency": "USD"
+  },
+  {
+    "month": "2020-07",
+    "billed": 13.20,
+    "currency": "USD"
+  },
+  {
+    "month": "2020-08",
+    "billed": 42.86,
+    "currency": "USD"
+  },
+  {
+    "month": "2020-09",
+    "billed": 41.74,
+    "currency": "USD"
+  },
+  {
+    "month": "2020-10",
+    "billed": 43.55,
+    "currency": "USD"
+  },
+  {
+    "month": "2020-11",
+    "billed": 49.05,
+    "currency": "USD"
+  },
+  {
+    "month": "2020-12",
+    "billed": 64234,
+    "currency": "KRW",
+    "rate": "1096.51660000"
+  },
+  {
+    "month": "2021-01",
+    "billed": 69912,
+    "currency": "KRW",
+    "rate": "1128.34170000"
+  },
+  {
+    "month": "2021-02",
+    "billed": 65613,
+    "currency": "KRW",
+    "rate": "1122.55692500"
+  },
+  {
+    "month": "2021-03",
+    "billed": 81967,
+    "currency": "KRW",
+    "rate": "1141.92444361"
+  },
+  {
+    "month": "2021-04",
+    "billed": 71494,
+    "currency": "KRW",
+    "rate": "1129.44351809"
+  },
+  {
+    "month": "2021-05",
+    "billed": 68472,
+    "currency": "KRW",
+    "rate": "1134.76289519"
+  },
+  {
+    "month": "2021-06",
+    "billed": 62561,
+    "currency": "KRW",
+    "rate": "1133.15021809"
+  },
+  {
+    "month": "2021-07",
+    "billed": 65549,
+    "currency": "KRW",
+    "rate": "1156.48167764"
+  },
+  {
+    "month": "2021-08",
+    "billed": 147908,
+    "currency": "KRW",
+    "rate": "1180.71020000"
+  },
+  {
+    "month": "2021-09",
+    "billed": 44514,
+    "currency": "KRW",
+    "rate": "1184.19424045"
+  },
+  {
+    "month": "2021-10",
+    "billed": 45337,
+    "currency": "KRW",
+    "rate": "1194.33269519"
+  },
+  {
+    "month": "2021-11",
+    "billed": 48142,
+    "currency": "KRW",
+    "rate": "1195.18717236"
+  },
+  {
+    "month": "2021-12",
+    "billed": 32862,
+    "currency": "KRW",
+    "rate": "1195.85273509"
+  },
+  {
+    "month": "2022-01",
+    "billed": 36794,
+    "currency": "KRW",
+    "rate": "1207.95278557"
+  },
+  {
+    "month": "2022-02",
+    "billed": 33534,
+    "currency": "KRW",
+    "rate": "1210.61428000"
+  },
+  {
+    "month": "2022-03",
+    "billed": 40262,
+    "currency": "KRW",
+    "rate": "1233.13710426"
+  },
+  {
+    "month": "2022-04",
+    "billed": 36959,
+    "currency": "KRW",
+    "rate": "1247.33941924"
+  },
+  {
+    "month": "2022-05",
+    "billed": 35344,
+    "currency": "KRW",
+    "rate": "1280.57303191"
+  },
+  {
+    "month": "2022-06",
+    "billed": 39244,
+    "currency": "KRW",
+    "rate": "1290.90808618"
+  },
+  {
+    "month": "2022-07",
+    "billed": 17294,
+    "currency": "KRW",
+    "rate": "1310.12150000"
+  },
+  {
+    "month": "2022-08",
+    "billed": 39605,
+    "currency": "KRW",
+    "rate": "1333.06167343"
+  },
+  {
+    "month": "2022-09",
+    "billed": 35610,
+    "currency": "KRW",
+    "rate": "1409.72402764"
+  },
+  {
+    "month": "2022-10",
+    "billed": 37800,
+    "currency": "KRW",
+    "rate": "1441.08531443"
+  },
+  {
+    "month": "2022-11",
+    "billed": 32702,
+    "currency": "KRW",
+    "rate": "1371.73930427"
+  },
+  {
+    "month": "2022-12",
+    "billed": 42691,
+    "currency": "KRW",
+    "rate": "1305.94101809"
+  },
+  {
+    "month": "2023-01",
+    "billed": 44404,
+    "currency": "KRW",
+    "rate": "1256.48728618"
+  },
+  {
+    "month": "2023-02",
+    "billed": 45661,
+    "currency": "KRW",
+    "rate": "1289.48669500"
+  },
+  {
+    "month": "2023-03",
+    "billed": 37166,
+    "currency": "KRW",
+    "rate": "1318.86897870"
+  },
+  {
+    "month": "2023-04",
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1335.4119"
+  },
+  {
+    "month": "2023-05",
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1340.9669"
+  },
+  {
+    "month": "2023-06",
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1309.6064"
+  },
+  {
+    "month": "2023-07",
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1296.0320"
+  },
+  {
+    "month": "2023-08",
+    "gross": 0.00010867670000003216,
+    "net": 0.00010867670000003216,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1335.2907"
+  },
+  {
+    "month": "2023-09",
+    "gross": 0.00007430050000056809,
+    "net": 0.00007430050000056809,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1347.9592261924"
+  },
+  {
+    "month": "2023-10",
+    "gross": 0.0001104124000002038,
+    "net": 0.0001104124000002038,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1363.3714545427"
+  },
+  {
+    "month": "2023-11",
+    "gross": 0.00007427069999921265,
+    "net": 0.00007427069999921265,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1318.9289295427"
+  },
+  {
+    "month": "2023-12",
+    "gross": 0.00011041030000003005,
+    "net": 0.00011041030000003005,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1315.0040083367"
+  },
+  {
+    "month": "2024-01",
+    "gross": 0.00011038090000003997,
+    "net": 0.00011038090000003997,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1338.4144543509"
+  },
+  {
+    "month": "2024-02",
+    "gross": -0.00005213729999953287,
+    "net": -0.00005213729999953287,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1345.4088559519"
+  },
+  {
+    "month": "2024-03",
+    "gross": 7.562999990717856E-7,
+    "net": 7.562999990717856E-7,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1345.2610833367"
+  },
+  {
+    "month": "2024-04",
+    "gross": 1.3659999975601522E-7,
+    "net": 1.3659999975601522E-7,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1382.9150693191"
+  },
+  {
+    "month": "2024-05",
+    "gross": 8.521999990129814E-7,
+    "net": 8.521999990129814E-7,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1377.9468423935"
+  },
+  {
+    "month": "2024-06",
+    "gross": 51.12497986270001,
+    "net": 51.12497986270001,
+    "billed": 71295,
+    "currency": "KRW",
+    "rate": "1394.3926175000"
+  },
+  {
+    "month": "2024-07",
+    "gross": 15.4000006867,
+    "net": 15.4000006867,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1396.4061293509"
+  },
+  {
+    "month": "2024-08",
+    "gross": 6.109000008081011E-7,
+    "net": 6.109000008081011E-7,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1364.4482522764"
+  },
+  {
+    "month": "2024-09",
+    "gross": 2.621000008140584E-7,
+    "net": 2.621000008140584E-7,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1344.0458369038"
+  },
+  {
+    "month": "2024-10",
+    "gross": 4.945999991790018E-7,
+    "net": 4.945999991790018E-7,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1374.9326510852"
+  },
+  {
+    "month": "2024-11",
+    "gross": 2.6299999511536498E-8,
+    "net": 2.6299999511536498E-8,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1409.0073535671"
+  },
+  {
+    "month": "2024-12",
+    "gross": 7.158999983936098E-7,
+    "net": 7.158999983936098E-7,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1455.6599750000"
+  },
+  {
+    "month": "2025-01",
+    "gross": 7.08400003990306E-7,
+    "net": 7.08400003990306E-7,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1468.0568467343"
+  },
+  {
+    "month": "2025-02",
+    "gross": -1.9810000040365594E-7,
+    "net": -1.9810000040365594E-7,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1459.5939250000"
+  },
+  {
+    "month": "2025-03",
+    "gross": 6.038000037733582E-7,
+    "net": 6.038000037733582E-7,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1471.9594511924"
+  },
+  {
+    "month": "2025-04",
+    "gross": 8.87999962451147E-8,
+    "net": 8.87999962451147E-8,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1454.24725402764"
+  },
+  {
+    "month": "2025-05",
+    "gross": 3.97799997831072E-7,
+    "net": 3.97799997831072E-7,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1405.0611556809"
+  },
+  {
+    "month": "2025-06",
+    "gross": -7.240000021724313E-8,
+    "net": -7.240000021724313E-8,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1378.4437916633"
+  },
+  {
+    "month": "2025-07",
+    "gross": 19.106954832200003,
+    "net": 19.106954832200003,
+    "billed": 26611,
+    "currency": "KRW",
+    "rate": "1392.52562766917"
+  },
+  {
+    "month": "2025-08",
+    "gross": 145.7420003569,
+    "net": 145.7420003569,
+    "billed": 204462,
+    "currency": "KRW",
+    "rate": "1402.9225845190"
+  },
+  {
+    "month": "2025-09",
+    "gross": -4.860000002437914E-8,
+    "net": -4.860000002437914E-8,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1406.9926429573"
+  },
+  {
+    "month": "2025-10",
+    "gross": 3.7499998795098577E-7,
+    "net": 3.7499998795098577E-7,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1438.6977464329"
+  },
+  {
+    "month": "2025-11",
+    "gross": -8.749999658164143E-8,
+    "net": -8.749999658164143E-8,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1473.8397645867"
+  },
+  {
+    "month": "2025-12",
+    "gross": 8.560000352986208E-8,
+    "net": 8.560000352986208E-8,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1480.3900053557"
+  },
+  {
+    "month": "2026-01",
+    "gross": -3.4229999901214114E-7,
+    "net": -3.4229999901214114E-7,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1469.2529681809"
+  },
+  {
+    "month": "2026-02",
+    "gross": 5.760000254539932E-8,
+    "net": 5.760000254539932E-8,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1462.1706875000"
+  },
+  {
+    "month": "2026-03",
+    "gross": -3.498999867623809E-7,
+    "net": -3.498999867623809E-7,
+    "billed": 0,
+    "currency": "KRW",
+    "rate": "1504.7652568191"
+  },
+  {
+    "month": "2026-04",
+    "gross": 58.8687026763,
+    "net": 58.8687026763,
+    "billed": 88232,
+    "currency": "KRW",
+    "rate": "1498.7518086382"
+  },
+  {
+    "month": "2026-05",
+    "gross": 187.7960822192,
+    "net": 187.7960822192,
+    "billed": 282615,
+    "currency": "KRW",
+    "rate": "1504.8722250000"
+  },
+  {
+    "month": "2026-06",
+    "gross": 153.21652060899999,
+    "net": 153.21652060899999,
+    "billed": 236910,
+    "currency": "KRW",
+    "rate": "1546.2080359045"
+  },
+  {
+    "month": "2026-07",
+    "gross": 165.04135784949997,
+    "net": 165.04135784949997,
+    "billed": 248001,
+    "currency": "KRW",
+    "rate": "1502.6745747870"
+  },
+  {
+    "month": "2026-08",
+    "gross": 139.99455677429998,
+    "net": 139.99455677429998,
+    "billed": 198363,
+    "currency": "KRW",
+    "rate": "1416.9813516633"
+  }
 ]
