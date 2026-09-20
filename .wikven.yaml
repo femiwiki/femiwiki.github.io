@@ -5,6 +5,13 @@ config:
   Sitename: 페미위키
   LanguageCode: ko
   DefaultSkin: femiwiki
+  WikvenLogos:
+    icon: symbol-transparent-white.svg
+    svg: symbol-transparent-white.svg
+    wordmark:
+      src: logo-transparent-white.svg
+      width: 142.93
+      height: 44.61
   WikvenFooterUrl: https://github.com/femiwiki/femiwiki.github.io
   WikvenEditUrl: https://github.com/femiwiki/femiwiki.github.io/edit/main/$1
   WikvenHistoryUrl: https://github.com/femiwiki/femiwiki.github.io/commits/main/$1
