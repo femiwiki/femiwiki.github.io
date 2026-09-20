@@ -96,7 +96,12 @@ function p.status()
   out[#out + 1] = '|}'
   out[#out + 1] = ''
   out[#out + 1] = '== 월별 =='
-  out[#out + 1] = '총사용과 순지출은 Cost Explorer가 보관하는 최근 37개월에만 있습니다.'
+  for _, e in ipairs(months) do
+    if e.gross then
+      out[#out + 1] = '서비스별 내역은 ' .. e.month .. '부터 있습니다.'
+      break
+    end
+  end
   for _, r in ipairs(rows) do
     out[#out + 1] = r
   end
@@ -164,11 +169,7 @@ function p.month(frame)
     end
     out[#out + 1] = '|}'
   else
-    out[#out + 1] = string.format(
-      '%s AWS 청구 %s. 서비스별 내역은 Cost Explorer가 보관하는 최근 37개월에만 있습니다.',
-      m,
-      billed
-    )
+    out[#out + 1] = string.format('%s AWS 청구 %s.', m, billed)
   end
   if mw.title.new('File:' .. m .. '.pdf').exists then
     out[#out + 1] = ''
