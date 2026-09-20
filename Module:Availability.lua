@@ -65,6 +65,103 @@ local function styles(frame)
   return frame:extensionTag('templatestyles', '', { src = 'Availability/styles.css' })
 end
 
+-- Stretches of hours in which probes failed and it was more than a blip: a run of
+-- consecutive hours below 100%, kept when it lasted two hours or dipped below 99%.
+local function stretches(hours)
+  local runs, run = {}, nil
+  for i, v in ipairs(hours) do
+    if v ~= nil and v < 0.99999 then
+      if run and run.last == i - 1 then
+        run.last, run.sum, run.n = i, run.sum + v, run.n + 1
+        run.worst = math.min(run.worst, v)
+      else
+        run = { first = i, last = i, sum = v, n = 1, worst = v }
+        runs[#runs + 1] = run
+      end
+    end
+  end
+  local notable = {}
+  for _, r in ipairs(runs) do
+    if r.worst < 0.99 or r.n >= 2 then
+      notable[#notable + 1] = r
+    end
+  end
+  return notable
+end
+
+local function describe(r, m)
+  local d1, h1 = math.floor((r.first - 1) / 24) + 1, (r.first - 1) % 24
+  local d2, h2 = math.floor((r.last - 1) / 24) + 1, (r.last - 1) % 24
+  return string.format(
+    '* %s-%02d %02d시부터 %s-%02d %02d시까지, %d시간, %s%% (%s%%)',
+    m,
+    d1,
+    h1,
+    m,
+    d2,
+    h2 + 1,
+    r.n,
+    percent(r.sum / r.n),
+    percent(r.worst)
+  )
+end
+
+-- The list of stretches, folded away when it is long enough to be noise.
+local function stretchList(frame, items)
+  if #items == 0 then
+    return {}
+  end
+  local note =
+    '실패한 요청이 있었던 시간대입니다. 값은 그 동안 성공한 요청의 비율이고, 괄호는 가장 나빴던 한 시간입니다.'
+  if #items > 4 then
+    local summary = frame:extensionTag('summary', string.format('실패한 시간대 %d곳', #items))
+    return { '', frame:extensionTag('details', summary .. '\n' .. note .. '\n' .. table.concat(items, '\n')) }
+  end
+  local out = { '', note }
+  for _, item in ipairs(items) do
+    out[#out + 1] = item
+  end
+  return out
+end
+
+local function append(out, more)
+  for _, line in ipairs(more) do
+    out[#out + 1] = line
+  end
+end
+
+-- One check's months of a year as a row of cells, with the year's mean at the end.
+local function yearRow(byMonth, y, linkYear)
+  local cells, values = {}, {}
+  for m = 1, 12 do
+    local key = string.format('%s-%02d', y, m)
+    local e = byMonth[key]
+    if e then
+      values[#values + 1] = e.uptime
+      cells[#cells + 1] = string.format('| class="%s" | [[%s|%s]]', grade(e.uptime), pageOf(key), percent(e.uptime))
+    else
+      cells[#cells + 1] = '| class="av-none" |'
+    end
+  end
+  local year = mean(values)
+  local text = percent(year)
+  if linkYear then
+    text = string.format('[[가용성/%s년|%s]]', y, text)
+  end
+  cells[#cells + 1] = string.format('| class="%s" | %s', grade(year), text)
+  return table.concat(cells, '\n')
+end
+
+local function checkNames(checks)
+  local names = { site }
+  for name in pairs(checks) do
+    if name ~= site then
+      names[#names + 1] = name
+    end
+  end
+  return names
+end
+
 -- Years by months, one table per check, from the monthly summaries.
 function p.status(frame)
   local ok, entries = pcall(load, 'months.json')
@@ -72,12 +169,7 @@ function p.status(frame)
     return '아직 수집된 달이 없습니다.'
   end
   local months = list(entries)
-  local names = { site }
-  for name in pairs(months[#months].checks) do
-    if name ~= site then
-      names[#names + 1] = name
-    end
-  end
+  local names = checkNames(months[#months].checks)
 
   local out = { styles(frame) }
   for _, name in ipairs(names) do
@@ -97,22 +189,52 @@ function p.status(frame)
     out[#out + 1] = '{| class="wikitable av-grid"'
     out[#out + 1] = '! 연도 !! 1 !! 2 !! 3 !! 4 !! 5 !! 6 !! 7 !! 8 !! 9 !! 10 !! 11 !! 12 !! 연간'
     for _, y in ipairs(order) do
-      local cells, values = { '| ' .. y }, {}
-      for m = 1, 12 do
-        local key = string.format('%s-%02d', y, m)
-        local e = byMonth[key]
-        if e then
-          values[#values + 1] = e.uptime
-          cells[#cells + 1] = string.format('| class="%s" | [[%s|%s]]', grade(e.uptime), pageOf(key), percent(e.uptime))
-        else
-          cells[#cells + 1] = '| class="av-none" |'
-        end
-      end
-      local year = mean(values)
-      cells[#cells + 1] = string.format('| class="%s" | %s', grade(year), percent(year))
-      out[#out + 1] = '|-\n' .. table.concat(cells, '\n')
+      out[#out + 1] = '|-\n| ' .. y .. '\n' .. yearRow(byMonth, y, true)
     end
     out[#out + 1] = '|}'
+  end
+  return '\n' .. table.concat(out, '\n')
+end
+
+-- One year: the months as a row, then every stretch of failures in the year.
+function p.year(frame)
+  local y = frame.args[1]
+  local ok, entries = pcall(load, 'months.json')
+  if not ok then
+    return '아직 수집된 달이 없습니다.'
+  end
+  local months = list(entries)
+  local names = checkNames(months[#months].checks)
+  local data = {}
+  for _, e in ipairs(months) do
+    if e.month:sub(1, 4) == y then
+      local found, d = pcall(load, e.month .. '.json')
+      if found then
+        data[#data + 1] = d
+      end
+    end
+  end
+
+  local out = { styles(frame) }
+  for _, name in ipairs(names) do
+    local byMonth = {}
+    for _, e in ipairs(months) do
+      byMonth[e.month] = e.checks[name]
+    end
+    out[#out + 1] = '== ' .. name .. ' =='
+    out[#out + 1] = '{| class="wikitable av-grid"'
+    out[#out + 1] = '! 1 !! 2 !! 3 !! 4 !! 5 !! 6 !! 7 !! 8 !! 9 !! 10 !! 11 !! 12 !! 연간'
+    out[#out + 1] = '|-\n' .. yearRow(byMonth, y, false)
+    out[#out + 1] = '|}'
+    local items = {}
+    for _, d in ipairs(data) do
+      if d.checks[name] then
+        for _, r in ipairs(stretches(list(d.checks[name]))) do
+          items[#items + 1] = describe(r, d.month)
+        end
+      end
+    end
+    append(out, stretchList(frame, items))
   end
   return '\n' .. table.concat(out, '\n')
 end
@@ -126,12 +248,7 @@ function p.month(frame)
   end
   local year, month = tonumber(m:sub(1, 4)), tonumber(m:sub(6, 7))
   local days = daysIn(year, month)
-  local names = { site }
-  for name in pairs(data.checks) do
-    if name ~= site then
-      names[#names + 1] = name
-    end
-  end
+  local names = checkNames(data.checks)
 
   local out = { styles(frame) }
   for _, name in ipairs(names) do
@@ -160,46 +277,11 @@ function p.month(frame)
     end
     out[#out + 1] = '|}'
 
-    -- Stretches of hours in which probes failed, for the story below to refer to.
-    local runs, run = {}, nil
-    for i, v in ipairs(hours) do
-      if v ~= nil and v < 0.99999 then
-        if run and run.last == i - 1 then
-          run.last, run.sum, run.n = i, run.sum + v, run.n + 1
-          run.worst = math.min(run.worst, v)
-        else
-          run = { first = i, last = i, sum = v, n = 1, worst = v }
-          runs[#runs + 1] = run
-        end
-      end
+    local items = {}
+    for _, r in ipairs(stretches(hours)) do
+      items[#items + 1] = describe(r, m)
     end
-    local notable = {}
-    for _, r in ipairs(runs) do
-      if r.worst < 0.99 or r.n >= 2 then
-        notable[#notable + 1] = r
-      end
-    end
-    if #notable > 0 then
-      out[#out + 1] = ''
-      out[#out + 1] =
-        '실패한 요청이 있었던 시간대입니다. 값은 그 동안 성공한 요청의 비율이고, 괄호는 가장 나빴던 한 시간입니다.'
-      for _, r in ipairs(notable) do
-        local d1, h1 = math.floor((r.first - 1) / 24) + 1, (r.first - 1) % 24
-        local d2, h2 = math.floor((r.last - 1) / 24) + 1, (r.last - 1) % 24
-        out[#out + 1] = string.format(
-          '* %s-%02d %02d시부터 %s-%02d %02d시까지, %d시간, %s%% (%s%%)',
-          m,
-          d1,
-          h1,
-          m,
-          d2,
-          h2 + 1,
-          r.n,
-          percent(r.sum / r.n),
-          percent(r.worst)
-        )
-      end
-    end
+    append(out, stretchList(frame, items))
   end
   return '\n' .. table.concat(out, '\n')
 end

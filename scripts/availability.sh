@@ -64,6 +64,8 @@ for month in "${months[@]}"; do
   # never overwritten, wherever it lives.
   page="가용성/${month%-*}년 $((10#${month#*-}))월.wikitext"
   [ -e "$page" ] || [ -e "$out/$page" ] || printf '{{#invoke:Availability.lua|month|%s}}\n' "$month" > "$out/$page"
+  page="가용성/${month%-*}년.wikitext"
+  [ -e "$page" ] || [ -e "$out/$page" ] || printf '{{#invoke:Availability.lua|year|%s}}\n' "${month%-*}" > "$out/$page"
   echo "$month"
 done
 
