@@ -52,8 +52,8 @@ function p.status()
   out[#out + 1] = '|}'
 
   local latest = months[#months]
-  local ok, snapshot = pcall(load, latest .. '/credits.json')
-  if ok then
+  local found, snapshot = pcall(load, latest .. '/credits.json')
+  if found then
     local credits = {}
     for _, c in ipairs(snapshot) do
       credits[#credits + 1] = c
