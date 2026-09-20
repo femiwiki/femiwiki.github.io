@@ -53,7 +53,7 @@ for month in "${months[@]}"; do
       def hour: (. | sub("\\+00:00$"; "Z") | fromdateiso8601 - ($start | fromdateiso8601)) / 3600 | floor;
       # Percentages and credits keep two decimals; bytes and counts are whole.
       def tidy($metric): if $metric | test("^CPU(Utilization|CreditBalance)$") then . * 100 | round / 100 else round end;
-      (($end | fromdateiso8601) - ($start | fromdateiso8601)) / 3600 as $hours
+      ((($end | fromdateiso8601) - ($start | fromdateiso8601)) / 3600) as $hours
       | [.MetricDataResults[] | (.Label | split("|")) as [$host, $dev, $metric]
           | ([.Timestamps, .Values] | transpose | map({key: (.[0] | hour | tostring), value: .[1]}) | from_entries) as $by
           | {host: $host, dev: $dev, metric: $metric, values: [range($hours) | tostring | if $by[.] != null then ($by[.] | tidy($metric)) else null end]}]

@@ -83,7 +83,7 @@ for month in "${months[@]}"; do
     --start-time "$start" --end-time "$end" --metric-data-queries "$(queries "$month")" \
     | jq --sort-keys --arg month "$month" --arg start "$start" --arg end "$end" '
       def hour: (. | sub("\\+00:00$"; "Z") | fromdateiso8601 - ($start | fromdateiso8601)) / 3600 | floor;
-      (($end | fromdateiso8601) - ($start | fromdateiso8601)) / 3600 as $hours
+      ((($end | fromdateiso8601) - ($start | fromdateiso8601)) / 3600) as $hours
       | [.MetricDataResults[] | .Label as $label | [.Timestamps, .Values] | transpose[] | {label: $label, hour: (.[0] | hour), value: .[1]}]
       | group_by(.label | split("|")[0])
       | map({
