@@ -88,7 +88,11 @@ p['월'] = function(frame)
   end
   out[#out + 1] = '|}'
   out[#out + 1] = ''
-  out[#out + 1] = '[[비용/현황|현황으로]]'
+  if mw.title.new('File:' .. m .. '.pdf').exists then
+    out[#out + 1] = string.format('[[Media:%s.pdf|청구서 (PDF)]] · [[비용/현황|현황으로]]', m)
+  else
+    out[#out + 1] = '[[비용/현황|현황으로]]'
+  end
   return '\n' .. table.concat(out, '\n')
 end
 

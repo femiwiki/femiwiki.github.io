@@ -16,14 +16,18 @@ active() { jq -r --arg m "$1" '.credits[] | select(.startDate[:7] <= $m and .end
 
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
+fetch_invoice() {
+  aws invoicing list-invoice-summaries --output json --region us-east-1 \
+    --selector "ResourceType=ACCOUNT_ID,Value=$account" \
+    --filter "{\"BillingPeriod\":{\"Year\":${1%-*},\"Month\":$((10#${1#*-}))}}"
+}
+strip_invoice() {
+  jq --sort-keys 'del(.InvoiceSummaries[].InvoiceId, .InvoiceSummaries[].AccountId, .InvoiceSummaries[].BillSourceAccounts)'
+}
 invoice() {
   local f="$out/Module:비용/$1/invoice.json"
   [ -e "$f" ] || f="$tmp/$1-invoice.json"
-  [ -e "$f" ] || aws invoicing list-invoice-summaries --output json --region us-east-1 \
-    --selector "ResourceType=ACCOUNT_ID,Value=$account" \
-    --filter "{\"BillingPeriod\":{\"Year\":${1%-*},\"Month\":$((10#${1#*-}))}}" \
-    | jq --sort-keys 'del(.InvoiceSummaries[].InvoiceId, .InvoiceSummaries[].AccountId, .InvoiceSummaries[].BillSourceAccounts)' \
-    > "$f"
+  [ -e "$f" ] || fetch_invoice "$1" | strip_invoice > "$f"
   cat "$f"
 }
 
@@ -52,8 +56,14 @@ for month in "${months[@]}"; do
     --group-by Type=DIMENSION,Key=SERVICE \
     | jq --sort-keys . > "$dir/cost.json"
   rm -f "$dir/invoice.json" "$tmp/$month-invoice.json"
-  invoice "$month" > /dev/null
-  mv "$tmp/$month-invoice.json" "$dir/invoice.json"
+  raw=$(fetch_invoice "$month")
+  strip_invoice <<< "$raw" > "$dir/invoice.json"
+  id=$(jq -r '.InvoiceSummaries[0].InvoiceId // empty' <<< "$raw")
+  if [ -n "$id" ]; then
+    curl -fsSL -o "$tmp/$month.pdf" \
+      "$(aws invoicing get-invoice-pdf --output json --region us-east-1 --invoice-id "$id" | jq -r '.InvoicePDF.DocumentUrl')"
+    "$(dirname "$0")/redact-address.sh" "$tmp/$month.pdf" "$out/비용/$month.pdf"
+  fi
 
   after='{}'
   m=$(next_month "$month")
