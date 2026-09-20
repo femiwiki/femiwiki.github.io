@@ -219,46 +219,86 @@ function p.month(frame)
       billed,
       source
     )
-    out[#out + 1] = ''
-    out[#out + 1] = '{| class="wikitable sortable"'
-    out[#out + 1] = '! 서비스 !! 사용 (USD) !! 크레딧 (USD) !! 순액 (USD)'
-    for _, r in ipairs(rows) do
-      out[#out + 1] =
-        string.format('|-\n| %s || %s || %s || %s', r.name, usd(r.usage), usd(r.usage - r.net), usd(r.net))
+    if not bill then
+      out[#out + 1] = ''
+      out[#out + 1] = '{| class="wikitable sortable"'
+      out[#out + 1] = '! 서비스 !! 사용 (USD) !! 크레딧 (USD) !! 순액 (USD)'
+      for _, r in ipairs(rows) do
+        out[#out + 1] =
+          string.format('|-\n| %s || %s || %s || %s', r.name, usd(r.usage), usd(r.usage - r.net), usd(r.net))
+      end
+      out[#out + 1] = '|}'
     end
-    out[#out + 1] = '|}'
   else
     out[#out + 1] = string.format('%s AWS 청구 %s.', m, billed)
   end
 
   if bill then
     out[#out + 1] = ''
-    out[#out + 1] = '=== 항목별 ==='
     out[#out + 1] = frame:extensionTag('templatestyles', '', { src = 'Cost/styles.css' })
     local function node(name, amount, inner)
       local summary = frame:extensionTag('summary', name .. amountTag(amount))
       return frame:extensionTag('details', summary .. '\n' .. inner)
     end
-    local tree = {}
-    for _, s in ipairs(bill.services) do
-      local regions = {}
-      for _, r in ipairs(s.regions) do
-        local groups = {}
-        for _, g in ipairs(r.groups) do
-          local lines = { '{| class="wikitable"', '! 항목 !! 사용량 !! 금액 (USD)' }
-          for _, i in ipairs(g.items) do
-            local usage = ''
-            if i.usage and i.usage ~= 0 then
-              usage = commas(string.format('%.3f', i.usage)):gsub('%.?0+$', '') .. ' ' .. (i.unit or '')
-            end
-            lines[#lines + 1] = string.format('|-\n| %s\n| %s\n| %s', i.description, usage, usd(i.amount))
-          end
-          lines[#lines + 1] = '|}'
-          groups[#groups + 1] = node(g.name or '기타', g.amount, table.concat(lines, '\n'))
+    -- Usage of a service, region or group: what its items cost before credits.
+    local function usageOf(t)
+      local sum = 0
+      for _, i in ipairs(t.items or {}) do
+        if i.type ~= 'Credit' then
+          sum = sum + i.amount
         end
-        regions[#regions + 1] = node(r.name, r.amount, table.concat(groups, '\n'))
       end
-      tree[#tree + 1] = node(s.name, s.amount, table.concat(regions, '\n'))
+      for _, child in ipairs(t.groups or t.regions or {}) do
+        sum = sum + usageOf(child)
+      end
+      return sum
+    end
+    -- Anything that cost nothing and was credited nothing is left out.
+    local function empty(t)
+      return math.abs(t.amount) < 0.005 and math.abs(usageOf(t)) < 0.005
+    end
+    local byName = {}
+    for _, s in ipairs(bill.services) do
+      byName[s.name] = s
+    end
+    local tree = {}
+    for _, row in ipairs(rows) do
+      local s = byName[row.name]
+      if not empty(s) then
+        local regions = {}
+        for _, r in ipairs(s.regions) do
+          if not empty(r) then
+            local groups = {}
+            for _, g in ipairs(r.groups) do
+              if not empty(g) then
+                local lines = { '{| class="wikitable"', '! 항목 !! 사용량 !! 금액 (USD)' }
+                for _, i in ipairs(g.items) do
+                  if math.abs(i.amount) >= 0.005 then
+                    local usage = ''
+                    if i.usage and i.usage ~= 0 then
+                      usage = commas(string.format('%.3f', i.usage)):gsub('%.?0+$', '') .. ' ' .. (i.unit or '')
+                    end
+                    lines[#lines + 1] = string.format('|-\n| %s\n| %s\n| %s', i.description, usage, usd(i.amount))
+                  end
+                end
+                lines[#lines + 1] = '|}'
+                groups[#groups + 1] = node(g.name or '기타', g.amount, table.concat(lines, '\n'))
+              end
+            end
+            regions[#regions + 1] = node(r.name, r.amount, table.concat(groups, '\n'))
+          end
+        end
+        local label = s.name
+        if math.abs(row.usage - s.amount) >= 0.005 then
+          label = string.format(
+            '%s <small>사용 %s − 크레딧 %s =</small>',
+            s.name,
+            usd(row.usage),
+            usd(row.usage - s.amount)
+          )
+        end
+        tree[#tree + 1] = node(label, s.amount, table.concat(regions, '\n'))
+      end
     end
     out[#out + 1] = '<div class="cost-tree">\n' .. table.concat(tree, '\n') .. '\n</div>'
   end
