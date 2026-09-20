@@ -51,11 +51,13 @@ declare -A used
 for month in "${months[@]}"; do
   dir="$out/Module:비용/$month"
   mkdir -p "$dir"
-  # Cost Explorer keeps 37 months; older months get the invoice alone.
+  # Cost Explorer keeps 37 months; an older month has its bill.json, captured from the
+  # console by hand (issue #30), and the invoice. Grouping by record type is what tells
+  # usage from credits and tax: UnblendedCost alone has both folded in.
   if ! aws ce get-cost-and-usage --output json \
     --time-period "Start=$month-01,End=$(date -u -d "$month-01 +1 month" +%Y-%m-%d)" \
-    --granularity MONTHLY --metrics UnblendedCost NetUnblendedCost \
-    --group-by Type=DIMENSION,Key=SERVICE 2> "$tmp/ce.err" \
+    --granularity MONTHLY --metrics UnblendedCost \
+    --group-by Type=DIMENSION,Key=SERVICE Type=DIMENSION,Key=RECORD_TYPE 2> "$tmp/ce.err" \
     | jq --sort-keys . > "$dir/cost.json"; then
     grep -q 'maximum data available' "$tmp/ce.err" || { cat "$tmp/ce.err" >&2; exit 1; }
     rm -f "$dir/cost.json"
@@ -93,19 +95,30 @@ for month in "${months[@]}"; do
     <<< "$credits" > "$dir/credits.json"
 
 done
-# One file with every month's totals, so the status page loads one page and not two per month.
+# One file with every month's totals, so the status page loads one page and not two per
+# month. Usage is before credits and tax; the bill from the console is preferred, since
+# it is the same shape for every month back to 2016.
 for d in "$out"/Module:비용/[0-9][0-9][0-9][0-9]-[0-9][0-9]/; do
   m=$(basename "$d")
   printf '{{#invoke:Cost.lua|month|%s}}\n' "$m" > "$out/비용/$m.wikitext"
-  jq -n --arg month "$m" \
-    --argjson cost "$([ -e "$d/cost.json" ] && cat "$d/cost.json" || echo null)" \
-    --argjson invoice "$(cat "$d/invoice.json")" '
+  if [ -e "$d/bill.json" ]; then
+    figures=$(jq '
+      ([.services[].regions[].groups[].items[] | select(.type != "Credit") | .amount] | add // 0) as $usage
+      | ([.services[].amount] | add // 0) as $net
+      | {usage: $usage, credits: ($net - $usage), tax: (.total - $net), total}' "$d/bill.json")
+  elif [ -e "$d/cost.json" ]; then
+    figures=$(jq '
+      [.ResultsByTime[0].Groups[] | {type: .Keys[1], amount: (.Metrics.UnblendedCost.Amount | tonumber)}]
+      | (map(select(.type == "Credit" or .type == "Refund") | .amount) | add // 0) as $credits
+      | (map(select(.type == "Tax") | .amount) | add // 0) as $tax
+      | (map(select(.type != "Credit" and .type != "Refund" and .type != "Tax") | .amount) | add // 0) as $usage
+      | {usage: $usage, credits: $credits, tax: $tax, total: ($usage + $credits + $tax)}' "$d/cost.json")
+  else
+    figures='{}'
+  fi
+  jq -n --arg month "$m" --argjson figures "$figures" --argjson invoice "$(cat "$d/invoice.json")" '
     ($invoice.InvoiceSummaries[0].PaymentCurrencyAmount) as $pay
-    | {month: $month}
-      + (if $cost then {
-          gross: ([$cost.ResultsByTime[0].Groups[].Metrics.UnblendedCost.Amount | tonumber] | add // 0),
-          net: ([$cost.ResultsByTime[0].Groups[].Metrics.NetUnblendedCost.Amount | tonumber] | add // 0)
-        } else {} end)
+    | {month: $month} + $figures
       + (if $pay then {billed: ($pay.TotalAmount | tonumber), currency: $pay.CurrencyCode}
           + (if $pay.CurrencyExchangeDetails then {rate: $pay.CurrencyExchangeDetails.Rate} else {} end)
         else {} end)'
