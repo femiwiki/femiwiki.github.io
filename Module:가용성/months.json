@@ -389,16 +389,12 @@
   {
     "month": "2025-06",
     "checks": {
-      "GA4 세션": {
-        "hours": 720,
-        "uptime": 1
-      },
       "특수:빈문서": {
-        "hours": 192,
+        "hours": 168,
         "uptime": 1
       },
       "페미위키:대문": {
-        "hours": 192,
+        "hours": 168,
         "uptime": 1
       }
     }
