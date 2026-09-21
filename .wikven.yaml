@@ -1,5 +1,6 @@
 ---
 extensions:
+  - Cite
   - Details
   - Scribunto
   - TemplateStyles
