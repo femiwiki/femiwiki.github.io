@@ -1,7 +1,7 @@
 {{#invoke:Availability.lua|month|2026-09}}
 
-== 9월 21일의 장애 ==
-9월 21일 12시 15분부터 23시 3분까지 10시간 48분 동안 페미위키가 제대로 답하지 못했습니다. 처음에는 캐시를 거치지 않는 요청만 503이었고, 그래서 읽기는 되는데 로그인과 편집이 되지 않았습니다. 13시 5분부터는 캐시에서 나가던 대문까지 503이 되어 아무것도 열리지 않았습니다.
+== 9월 21일 사고 ==
+9월 21일 12시 15분부터 23시 3분까지 10시간 48분 동안 페미위키 접속이 원할하지 못했습니다. 처음에는 캐시를 거치지 않는 요청만 503이었고, 따라서 읽기는 되는데 로그인과 편집이 되지 않았습니다. 13시 5분부터는 캐시에서 나가던 대문까지 503이 되어 아무것도 열리지 않았습니다.
 
 {| class="wikitable"
 ! 시각 !! 일어난 일
@@ -24,18 +24,18 @@
 === 원인 ===
 12시 15분부터 앱 서버의 워커가 문서 하나를 32초에서 37초씩 처리하다 30초 제한에 걸려 죽기 시작했습니다.<ref>https://github.com/femiwiki/infra/blob/7b378505b8f233829e057f4512394675a7ac8fc0/docker/container.tf#L87</ref> 컨테이너 상태 검사는 30초마다 돌고 세 번 연달아 실패하면 고장으로 칩니다.<ref>https://github.com/femiwiki/infra/blob/7b378505b8f233829e057f4512394675a7ac8fc0/docker/container.tf#L119-L124</ref> 90초 사이에 넷이 죽자, 12시 16분 38초에 컨테이너를 지켜보는 autoheal이 재시작을 걸었습니다.
 
-컨테이너는 종료 신호를 받으면 요청을 그만 받겠다는 표시로 파일을 하나 만들고, 5초를 기다린 뒤에 PHP를 내립니다.<ref>https://github.com/femiwiki/docker-mediawiki/blob/fe1cc4a6f3adf755d0a91103a19e7383d4e10e83/dockers/femiwiki/run#L71</ref> 그런데 autoheal에는 얼마나 기다릴지 정해 두지 않아 이미지 기본값인 10초만 줍니다.<ref>https://github.com/femiwiki/infra/blob/7b378505b8f233829e057f4512394675a7ac8fc0/docker/container.tf#L169-L174</ref> 그 안에 끝나지 않자 도커가 컨테이너를 강제로 죽였습니다. 곧 같은 컨테이너가 다시 떴고 PHP도 제대로 기동했지만, 기동 과정에 그 파일을 지우는 절차가 없었기 때문에 아까 만든 표시 파일이 지워지지 않고 그대로 남았습니다.
+당시 컨테이너는 종료 신호를 받으면 요청을 그만 받겠다는 표시로 파일을 하나 만들고, 5초를 기다린 뒤에 PHP를 내리게 되어 있었습니다.<ref>https://github.com/femiwiki/docker-mediawiki/blob/fe1cc4a6f3adf755d0a91103a19e7383d4e10e83/dockers/femiwiki/run#L71</ref> 그런데 autoheal에는 얼마나 기다릴지 정해 두지 않아 이미지 기본값인 10초만 줍니다.<ref>https://github.com/femiwiki/infra/blob/7b378505b8f233829e057f4512394675a7ac8fc0/docker/container.tf#L169-L174</ref> 그 안에 끝나지 않자 도커가 컨테이너를 강제로 죽였습니다. 곧 같은 컨테이너가 다시 떴고 PHP도 제대로 기동했지만, 기동 과정에 그 파일을 지우는 절차가 없었기 때문에 아까 만든 표시 파일이 지워지지 않고 그대로 남았습니다.
 
 서버에 상태를 묻는 주소는 이 파일이 있으면 503을 냅니다.<ref>https://github.com/femiwiki/docker-mediawiki/blob/fe1cc4a6f3adf755d0a91103a19e7383d4e10e83/dockers/femiwiki/resources/healthz.php#L4-L6</ref> Caddy는 1초마다 이 주소를 물어 세 번 잇달아 실패하면 그 서버를 뺍니다.<ref>https://github.com/femiwiki/docker-mediawiki/blob/fe1cc4a6f3adf755d0a91103a19e7383d4e10e83/dockers/femiwiki/Caddyfile#L52-L58</ref> 파일이 남아 있는 한 대답은 계속 503이었으니 뺀 서버는 돌아오지 못했고, 보낼 곳이 없으니 모든 요청이 503이 됐습니다.
 
-23시에 그 파일을 지우자 바로 복구됐습니다. 재시작이나 배포는 하지 않았습니다.
+23시에 표시 파일을 지우자 바로 복구됐습니다. 재시작이나 배포는 하지 않았습니다.
 
 === 알림 ===
-디스코드로 온 알림은 12시 21분과 13시 10분 두 번뿐이었습니다. 두 상태 검사가 각각 한 번씩 보낸 것입니다. Route 53 상태 검사가 CloudWatch 경보를 거쳐 보내는데, CloudWatch 경보는 상태가 바뀌는 순간에만 알립니다. 사이트가 계속 죽어 있는 동안에는 바뀔 상태가 없어 더 오지 않았고, 되풀이해 보내도록 켤 수 있는 설정도 없습니다. 그래서 알아차리는 데 열 시간이 걸렸습니다.
+디스코드로 온 알림은 12시 21분과 13시 10분 두 번뿐이었습니다. 두 상태 검사가 각각 한 번씩 보낸 것입니다. Route 53 상태 검사가 CloudWatch 경보를 거쳐 보내는데, CloudWatch 경보는 상태가 바뀌는 순간에만 알립니다. 사이트가 계속 죽어 있는 동안에는 바뀔 상태가 없어 더 오지 않았고, 되풀이해 보내도록 켤 수 있는 설정도 없습니다.
 
 === 고친 것 ===
-* 이제는 PHP를 띄우기 전에 이 표시 파일을 지웁니다.<ref>https://github.com/femiwiki/docker-mediawiki/blob/8b5d53b92ddc51fae0716b0df2e1ab37eaa8624e/dockers/femiwiki/run#L67-L71</ref> [https://github.com/femiwiki/docker-mediawiki/pull/1095 https://github.com/femiwiki/docker-mediawiki/pull/1095]에서 고쳤습니다.
-* 알림은 Grafana에 하나를 더 두었습니다. 5분 동안 성공한 응답이 100건에 못 미치면 알리고, 심각한 경보는 30분마다 담당 역할을 부르며 다시 옵니다. 한산한 시간에도 5분에 900건쯤 나가고 장애 중에는 2건이었으니, 이 수가 떨어지면 5xx가 쏟아지든 서버가 죽든 로그가 끊기든 똑같이 걸립니다. [https://github.com/femiwiki/infra/pull/562 https://github.com/femiwiki/infra/pull/562]에서 적용했습니다.
+* 이제는 PHP를 띄우기 전에 표시 파일을 지웁니다.<ref>https://github.com/femiwiki/docker-mediawiki/blob/8b5d53b92ddc51fae0716b0df2e1ab37eaa8624e/dockers/femiwiki/run#L67-L71</ref> [https://github.com/femiwiki/docker-mediawiki/pull/1095 https://github.com/femiwiki/docker-mediawiki/pull/1095]에서 고쳤습니다.
+* 알림은 Grafana에 하나를 더 두었습니다. 5분 동안 성공한 응답이 100건에 못 미치면 알리고, 심각한 경보는 30분마다 담당 역할을 부르며 다시 옵니다. 한산한 시간에도 5분에 900건쯤 나가고 사고 시간에는 2건이었으니, 이 수가 떨어지면 5xx가 쏟아지든 서버가 죽든 로그가 끊기든 똑같이 걸립니다. [https://github.com/femiwiki/infra/pull/562 https://github.com/femiwiki/infra/pull/562]에서 적용했습니다.
 
 == 출처 ==
 <references />
