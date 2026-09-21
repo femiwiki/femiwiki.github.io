@@ -1,0 +1,301 @@
+{
+  "DimensionValueAttributes": [],
+  "GroupDefinitions": [
+    {
+      "Key": "SERVICE",
+      "Type": "DIMENSION"
+    },
+    {
+      "Key": "RECORD_TYPE",
+      "Type": "DIMENSION"
+    }
+  ],
+  "ResultsByTime": [
+    {
+      "Estimated": false,
+      "Groups": [
+        {
+          "Keys": [
+            "AWS Cost Explorer",
+            "Credit"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "-0.1761690968",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Cost Explorer",
+            "Usage"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.1761690968",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Data Transfer",
+            "Credit"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "-45.0168020325",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Key Management Service",
+            "Usage"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Lambda",
+            "Usage"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0000150987",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Secrets Manager",
+            "Usage"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "EC2 - Other",
+            "Credit"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "-29.5567469603",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "EC2 - Other",
+            "Usage"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "31.4229556003",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Elastic Compute Cloud - Compute",
+            "Credit"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "-15.9408",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Elastic Compute Cloud - Compute",
+            "Usage"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "58.0139799369",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Route 53",
+            "Credit"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "-6.53071966",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Route 53",
+            "Usage"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "6.530719598",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon S3 Glacier Deep Archive",
+            "Credit"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "-2.0917560651",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Email Service",
+            "Credit"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "-0.0054",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Email Service",
+            "Usage"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0054258508",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Notification Service",
+            "Usage"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0000115893",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Queue Service",
+            "Usage"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Storage Service",
+            "Credit"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "-2.2349269332",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Storage Service",
+            "Usage"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "5.4040443521",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Virtual Private Cloud",
+            "Credit"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "-11.16",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Virtual Private Cloud",
+            "Usage"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "11.16",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AmazonCloudWatch",
+            "Usage"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Tax",
+            "Tax"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            }
+          }
+        }
+      ],
+      "TimePeriod": {
+        "End": "2025-11-01",
+        "Start": "2025-10-01"
+      },
+      "Total": {}
+    }
+  ]
+}
