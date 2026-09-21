@@ -52,7 +52,7 @@ ga_sessions() { # month -> json array of hourly session counts
     | jq --arg first "$first" '
       ($first | strptime("%Y-%m-%d") | mktime) as $start
       | [.rows[]? | select(.dimensionValues[0].value | test("^[0-9]{10}$"))
-         | {hour: ((.dimensionValues[0].value | strptime("%Y%m%d%H") | mktime) - $start) / 3600 | floor, n: (.metricValues[0].value | tonumber)}]
+         | {hour: (((((.dimensionValues[0].value | strptime("%Y%m%d%H") | mktime) - $start) / 3600) | floor)), n: (.metricValues[0].value | tonumber)}]
       | map({key: (.hour | tostring), value: .n}) | from_entries'
 }
 
@@ -106,8 +106,8 @@ for month in "${months[@]}"; do
       | [range($cw.hours) | $sessions[tostring] // 0] as $n
       | [range(24) as $h | [range($h; $cw.hours; 24) | $n[.]] | sort | .[length / 2 | floor]] as $median
       | [range($cw.hours) as $i | ([1, ($median[$i % 24] / 4)] | max) as $t | ([1, ($n[$i] / $t)] | min * 10000 | round / 10000)] as $values
-      | $cw | .checks["GA4 세션"] = $values' > "$out/Module:가용성/$month.json.ga" \
-      && mv "$out/Module:가용성/$month.json.ga" "$out/Module:가용성/$month.json"
+      | $cw | .checks["GA4 세션"] = $values' > "$out/Module:가용성/$month.json.ga"
+    mv "$out/Module:가용성/$month.json.ga" "$out/Module:가용성/$month.json"
   fi
   # The month's page is where people write what happened, so it is made once and
   # never overwritten, wherever it lives.
