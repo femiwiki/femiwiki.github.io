@@ -1,5 +1,6 @@
 ---
 extensions:
+  - Cite
   - Details
   - DynamicPageList4
   - Scribunto
