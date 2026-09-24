@@ -34,7 +34,7 @@
 디스코드로 온 알림은 12시 21분과 13시 10분 두 번뿐이었습니다. 두 상태 검사가 각각 한 번씩 보낸 것입니다. Route 53 상태 검사가 CloudWatch 경보를 거쳐 보내는데, CloudWatch 경보는 상태가 바뀌는 순간에만 알립니다. 사이트가 계속 죽어 있는 동안에는 바뀔 상태가 없어 더 오지 않았고, 되풀이해 보내도록 켤 수 있는 설정도 없습니다.
 
 === 남은 문제 ===
-상태 검사는 PHP가 응답해야 통과하므로, 워커가 모자라면 서버가 살아 있어도 실패합니다. 이 사고에서 autoheal이 컨테이너를 열 번 재시작한 것은 서버가 죽어서가 아니라 느려서였고, 재시작이 요청을 502로 끊어 느림을 장애로 바꿨습니다. 검사가 워커를 두고 요청과 경쟁하지 않게 하거나, 느린 것과 죽은 것을 갈라 보는 방법이 필요합니다.
+상태 검사는 PHP가 응답해야 통과하므로, 워커가 모자라면 서버가 살아 있어도 실패합니다. 이 사고에서 autoheal이 컨테이너를 열 번 재시작한 것은 서버가 죽어서가 아니라 느려서였고, 재시작이 요청을 502로 끊어 느림을 장애로 바꿨습니다. 검사가 워커를 두고 요청과 경쟁하지 않게 하거나, 느린 것과 죽은 것을 갈라 보는 방법이 필요합니다. [https://github.com/femiwiki/femiwiki/issues/561 femiwiki#561]에 적어 두었습니다.
 
 === 고친 것 ===
 * 이제는 PHP를 띄우기 전에 표시 파일을 지웁니다.<ref>https://github.com/femiwiki/docker-mediawiki/blob/8b5d53b92ddc51fae0716b0df2e1ab37eaa8624e/dockers/femiwiki/run#L67-L71</ref> [https://github.com/femiwiki/docker-mediawiki/pull/1095 https://github.com/femiwiki/docker-mediawiki/pull/1095]에서 고쳤습니다.
