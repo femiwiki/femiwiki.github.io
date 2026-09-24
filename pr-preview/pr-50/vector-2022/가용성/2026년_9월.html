@@ -683,7 +683,7 @@ RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.option
 </td></tr>
 <tr>
 <td>24일 8시 47분</td>
-<td>상한을 올린 이미지 배포<sup id="cite&#95;ref-9" class="reference"><a href="#cite_note-9"><span class="cite-bracket">&#91;</span>9<span class="cite-bracket">&#93;</span></a></sup>
+<td>상한을 올린 이미지 배포<sup id="cite&#95;ref-9" class="reference"><a href="#cite_note-9"><span class="cite-bracket">&#91;</span>9<span class="cite-bracket">&#93;</span></a></sup>. 사람에게 붙던 429가 멎음
 </td></tr></tbody></table>
 <div class="mw-heading mw-heading3"><h3 id="원인_2"><span id=".EC.9B.90.EC.9D.B8_2"></span>원인</h3></div>
 <p>비 로그인 상태의 검색, 차이, 옛 판, 역사 요청은 평소 시간당 1,300건 안팎입니다. 이날은 13시 무렵 두 배가 되고 17시부터는 8,000건 안팎이 됐습니다. 대부분 크롤러였고, 154.197.16.0/20과 154.193.16.0/20이 가장 많았지만 나머지도 수십 개 /16에 고르게 퍼져 있었습니다.
@@ -697,7 +697,7 @@ RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.option
 <ul><li>비 로그인 검색, 차이, 옛 판, 역사 요청을 이제 /24별이 아니라 사이트 전체에서 한데 세어 10분에 600건까지 받습니다. 면제는 로그인한 사용자의 쿠키가 있을 때만 줍니다.<sup id="cite&#95;ref-14" class="reference"><a href="#cite_note-14"><span class="cite-bracket">&#91;</span>14<span class="cite-bracket">&#93;</span></a></sup> <a rel="nofollow" class="external text" href="https://github.com/femiwiki/docker-mediawiki/pull/1109">docker-mediawiki#1109</a>에서 고쳤습니다.</li>
 <li>상태 검사를 통과한 서버가 하나도 없으면 읽기 요청은 503 대신 응답하는 서버로 보냅니다.<sup id="cite&#95;ref-15" class="reference"><a href="#cite_note-15"><span class="cite-bracket">&#91;</span>15<span class="cite-bracket">&#93;</span></a></sup> <a rel="nofollow" class="external text" href="https://github.com/femiwiki/docker-mediawiki/pull/1108">docker-mediawiki#1108</a>에서 고쳤습니다.</li>
 <li>둘은 23시 52분에 <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/pull/600">infra#600</a>으로 배포됐습니다. 그 뒤로 5xx와 상태 검사 실패는 없었습니다.</li>
-<li>사이트 전체로 10분에 600건이라는 상한은 크롤러만 거르지 못했습니다. 배포부터 24일 8시 10분까지 이 제한이 거부한 요청은 35,113건으로 /24별 제한의 2,376건보다 훨씬 많았고, 30분을 들여다보니 아이폰과 안드로이드 차림의 서로 다른 주소 103개가 거부당했습니다. 로그인하지 않은 사람들이 이 경로에 보내는 요청이 10분에 900건에서 1,500건인데 상한이 600건이라, 크롤러가 통을 비우고 나면 그다음에 역사나 차이를 누른 사람이 그대로 429를 받았습니다. 24일 8시 47분에 상한을 1,500건으로 올리고, 두 제한의 상한과 창 길이를 환경 변수로 빼서 이미지를 새로 굽지 않고도 고칠 수 있게 했습니다.<sup id="cite&#95;ref-16" class="reference"><a href="#cite_note-16"><span class="cite-bracket">&#91;</span>16<span class="cite-bracket">&#93;</span></a></sup> <a rel="nofollow" class="external text" href="https://github.com/femiwiki/docker-mediawiki/pull/1112">docker-mediawiki#1112</a>에서 고쳐 <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/pull/608">infra#608</a>로 배포했습니다.</li></ul>
+<li>사이트 전체로 10분에 600건이라는 상한은 크롤러만 거르지 못했습니다. 배포부터 24일 8시 10분까지 이 제한이 거부한 요청은 35,113건으로 /24별 제한의 2,376건보다 훨씬 많았고, 30분을 들여다보니 아이폰과 안드로이드 차림의 서로 다른 주소 103개가 거부당했습니다. 로그인하지 않은 사람들이 이 경로에 보내는 요청이 10분에 900건에서 1,500건인데 상한이 600건이라, 크롤러가 통을 비우고 나면 그다음에 역사나 차이를 누른 사람이 그대로 429를 받았습니다. 24일 8시 47분에 상한을 1,500건으로 올리고, 두 제한의 상한과 창 길이를 환경 변수로 빼서 이미지를 새로 굽지 않고도 고칠 수 있게 했습니다.<sup id="cite&#95;ref-16" class="reference"><a href="#cite_note-16"><span class="cite-bracket">&#91;</span>16<span class="cite-bracket">&#93;</span></a></sup> <a rel="nofollow" class="external text" href="https://github.com/femiwiki/docker-mediawiki/pull/1112">docker-mediawiki#1112</a>에서 고쳐 <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/pull/608">infra#608</a>로 배포했습니다. 배포 뒤 10분 동안 이 제한이 거부한 요청은 없었고, 같은 경로의 요청 1,090건이 그대로 처리됐습니다.</li></ul>
 <div class="mw-heading mw-heading2"><h2 id="출처"><span id=".EC.B6.9C.EC.B2.98"></span>출처</h2></div>
 <div class="mw-references-wrap mw-references-columns"><ol class="references">
 <li id="cite&#95;note-1"><span class="mw-cite-backlink"><a href="#cite_ref-1">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/blob/7b378505b8f233829e057f4512394675a7ac8fc0/docker/container.tf#L87">https://github.com/femiwiki/infra/blob/7b378505b8f233829e057f4512394675a7ac8fc0/docker/container.tf#L87</a></span>
@@ -714,9 +714,9 @@ RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.option
 </li>
 <li id="cite&#95;note-7"><span class="mw-cite-backlink"><a href="#cite_ref-7">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/docker-mediawiki/blob/8b5d53b92ddc51fae0716b0df2e1ab37eaa8624e/dockers/femiwiki/run#L67-L71">https://github.com/femiwiki/docker-mediawiki/blob/8b5d53b92ddc51fae0716b0df2e1ab37eaa8624e/dockers/femiwiki/run#L67-L71</a></span>
 </li>
-<li id="cite&#95;note-8"><span class="mw-cite-backlink"><a href="#cite_ref-8">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/actions/runs/35877058745">https://github.com/femiwiki/infra/actions/runs/35877058745</a></span>
+<li id="cite&#95;note-8"><span class="mw-cite-backlink"><a href="#cite_ref-8">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/pull/600">https://github.com/femiwiki/infra/pull/600</a></span>
 </li>
-<li id="cite&#95;note-9"><span class="mw-cite-backlink"><a href="#cite_ref-9">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/actions/runs/35935158799">https://github.com/femiwiki/infra/actions/runs/35935158799</a></span>
+<li id="cite&#95;note-9"><span class="mw-cite-backlink"><a href="#cite_ref-9">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/pull/608">https://github.com/femiwiki/infra/pull/608</a></span>
 </li>
 <li id="cite&#95;note-10"><span class="mw-cite-backlink"><a href="#cite_ref-10">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/docker-mediawiki/blob/4b0a06bb18e0cd32db3c511487f8787c21889e9e/dockers/femiwiki/Caddyfile#L29-L40">https://github.com/femiwiki/docker-mediawiki/blob/4b0a06bb18e0cd32db3c511487f8787c21889e9e/dockers/femiwiki/Caddyfile#L29-L40</a></span>
 </li>
@@ -745,7 +745,7 @@ RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.option
 			
 <footer id="footer" class="mw-footer" >
 	<ul id="footer-info">
-	<li id="footer-info-lastmod"> 이 문서는 2026년 9월 24일 (목) 00:03에 마지막으로 편집되었습니다.</li>
+	<li id="footer-info-lastmod"> 이 문서는 2026년 9월 24일 (목) 00:06에 마지막으로 편집되었습니다.</li>
 </ul>
 
 	<ul id="footer-places">
