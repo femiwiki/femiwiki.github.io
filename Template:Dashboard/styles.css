@@ -1,0 +1,11 @@
+/* The board scrolls inside its own frame, so the page does not grow with it. */
+.dashboard {
+	margin: 1em 0;
+}
+
+.dashboard > iframe {
+	width: 100%;
+	height: 80vh;
+	min-height: 480px;
+	border: 0;
+}
