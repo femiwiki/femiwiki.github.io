@@ -1,2 +1,5 @@
 * navigation
 ** mainpage|mainpage-description
+** 가용성|가용성
+** 비용|비용
+** 린트|린트
