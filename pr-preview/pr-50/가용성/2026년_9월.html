@@ -139,7 +139,7 @@ RLPAGEMODULES=[];</script>
 
   </div>
   <div id="lastmod-and-views">
-    <a id="lastmod" href="https://github.com/femiwiki/femiwiki.github.io/commits/main/%EA%B0%80%EC%9A%A9%EC%84%B1/2026%EB%85%84%209%EC%9B%94.wikitext"> 이 문서는 2026년 9월 23일 (수) 23:53에 마지막으로 편집되었습니다.</a>
+    <a id="lastmod" href="https://github.com/femiwiki/femiwiki.github.io/commits/main/%EA%B0%80%EC%9A%A9%EC%84%B1/2026%EB%85%84%209%EC%9B%94.wikitext"> 이 문서는 2026년 9월 23일 (수) 23:59에 마지막으로 편집되었습니다.</a>
     <nav id="p-views" class="mw-portlet mw-portlet-views" aria-labelledby="p-views-label" role="navigation" 
   >
   <h3 id="p-views-label" >
@@ -165,17 +165,18 @@ RLPAGEMODULES=[];</script>
 <ul>
 <li class="toclevel-2 tocsection-2"><a href="#원인"><span class="tocnumber">1.1</span> <span class="toctext">원인</span></a></li>
 <li class="toclevel-2 tocsection-3"><a href="#알림"><span class="tocnumber">1.2</span> <span class="toctext">알림</span></a></li>
-<li class="toclevel-2 tocsection-4"><a href="#고친_것"><span class="tocnumber">1.3</span> <span class="toctext">고친 것</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#남은_문제"><span class="tocnumber">1.3</span> <span class="toctext">남은 문제</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#고친_것"><span class="tocnumber">1.4</span> <span class="toctext">고친 것</span></a></li>
 </ul>
 </li>
-<li class="toclevel-1 tocsection-5"><a href="#9월_23일_사고"><span class="tocnumber">2</span> <span class="toctext">9월 23일 사고</span></a>
+<li class="toclevel-1 tocsection-6"><a href="#9월_23일_사고"><span class="tocnumber">2</span> <span class="toctext">9월 23일 사고</span></a>
 <ul>
-<li class="toclevel-2 tocsection-6"><a href="#원인_2"><span class="tocnumber">2.1</span> <span class="toctext">원인</span></a></li>
-<li class="toclevel-2 tocsection-7"><a href="#알림_2"><span class="tocnumber">2.2</span> <span class="toctext">알림</span></a></li>
-<li class="toclevel-2 tocsection-8"><a href="#고친_것_2"><span class="tocnumber">2.3</span> <span class="toctext">고친 것</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#원인_2"><span class="tocnumber">2.1</span> <span class="toctext">원인</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#알림_2"><span class="tocnumber">2.2</span> <span class="toctext">알림</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#고친_것_2"><span class="tocnumber">2.3</span> <span class="toctext">고친 것</span></a></li>
 </ul>
 </li>
-<li class="toclevel-1 tocsection-9"><a href="#출처"><span class="tocnumber">3</span> <span class="toctext">출처</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#출처"><span class="tocnumber">3</span> <span class="toctext">출처</span></a></li>
 </ul>
 </div>
 
@@ -224,11 +225,14 @@ RLPAGEMODULES=[];</script>
 <div class="mw-heading mw-heading3"><h3 id="알림"><span id=".EC.95.8C.EB.A6.BC"></span>알림</h3></div>
 <p>디스코드로 온 알림은 12시 21분과 13시 10분 두 번뿐이었습니다. 두 상태 검사가 각각 한 번씩 보낸 것입니다. Route 53 상태 검사가 CloudWatch 경보를 거쳐 보내는데, CloudWatch 경보는 상태가 바뀌는 순간에만 알립니다. 사이트가 계속 죽어 있는 동안에는 바뀔 상태가 없어 더 오지 않았고, 되풀이해 보내도록 켤 수 있는 설정도 없습니다.
 </p>
+<div class="mw-heading mw-heading3"><h3 id="남은_문제"><span id=".EB.82.A8.EC.9D.80_.EB.AC.B8.EC.A0.9C"></span>남은 문제</h3></div>
+<p>상태 검사는 PHP가 응답해야 통과하므로, 워커가 모자라면 서버가 살아 있어도 실패합니다. 이 사고에서 autoheal이 컨테이너를 열 번 재시작한 것은 서버가 죽어서가 아니라 느려서였고, 재시작이 요청을 502로 끊어 느림을 장애로 바꿨습니다. 검사가 워커를 두고 요청과 경쟁하지 않게 하거나, 느린 것과 죽은 것을 갈라 보는 방법이 필요합니다.
+</p>
 <div class="mw-heading mw-heading3"><h3 id="고친_것"><span id=".EA.B3.A0.EC.B9.9C_.EA.B2.83"></span>고친 것</h3></div>
 <ul><li>이제는 PHP를 띄우기 전에 표시 파일을 지웁니다.<sup id="cite&#95;ref-7" class="reference"><a href="#cite_note-7"><span class="cite-bracket">&#91;</span>7<span class="cite-bracket">&#93;</span></a></sup> <a rel="nofollow" class="external text" href="https://github.com/femiwiki/docker-mediawiki/pull/1095">https://github.com/femiwiki/docker-mediawiki/pull/1095</a>에서 고쳤습니다.</li>
 <li>알림은 Grafana에 하나를 더 두었습니다. 5분 동안 성공한 응답이 100건에 못 미치면 알리고, 심각한 경보는 30분마다 담당 역할을 부르며 다시 옵니다. 한산한 시간에도 5분에 900건쯤 나가고 사고 시간에는 2건이었으니, 이 수가 떨어지면 5xx가 쏟아지든 서버가 죽든 로그가 끊기든 똑같이 걸립니다. <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/pull/562">https://github.com/femiwiki/infra/pull/562</a>에서 적용했습니다.</li></ul>
 <div class="mw-heading mw-heading2"><h2 id="9월_23일_사고"><span id="9.EC.9B.94_23.EC.9D.BC_.EC.82.AC.EA.B3.A0"></span>9월 23일 사고</h2></div>
-<p>9월 23일 22시 30분부터 23시 37분까지 로그인과 편집, 특수 문서처럼 PHP가 직접 만드는 요청이 자주 실패했습니다. 이 67분 가운데 36분 동안 특수:빈문서 상태 검사가 실패했고, 서버는 502와 503을 2,689건 냈습니다. 같은 동안 200 응답도 33,552건 나갔고 페미위키:대문 검사는 한 번도 실패하지 않았으므로 비 로그인 요청은 대개 성공했습니다.
+<p>9월 23일 22시 30분부터 24일 8시 47분까지 크롤러가 몰고 온 부하와 그것을 막으려던 조치가 차례로 독자에게 닿았습니다. 앞의 67분 동안에는 로그인과 편집, 특수 문서처럼 PHP가 직접 만드는 요청이 자주 실패했습니다. 그 가운데 36분 동안 특수:빈문서 상태 검사가 실패했고, 서버는 502와 503을 2,689건 냈습니다. 같은 동안 200 응답도 33,552건 나갔고 페미위키:대문 검사는 한 번도 실패하지 않았으므로 비 로그인 요청은 대개 성공했습니다. 23시 52분 배포로 5xx는 멎었지만, 그때 넣은 속도 제한이 크롤러와 함께 로그인하지 않은 사람도 막았습니다. 이 상태는 24일 8시 47분에 상한을 올릴 때까지 이어졌습니다.
 </p>
 <table class="wikitable">
 <tbody><tr>
@@ -265,21 +269,25 @@ RLPAGEMODULES=[];</script>
 </td></tr>
 <tr>
 <td>23:50</td>
-<td>속도 제한을 고친 이미지 배포 시작. 23시 52분에 끝남
+<td>속도 제한을 고친 이미지 배포 시작. 23시 52분에 끝남. 5xx는 멎고, 대신 로그인하지 않은 독자가 429를 받기 시작
+</td></tr>
+<tr>
+<td>24일 8시 47분</td>
+<td>상한을 올린 이미지 배포
 </td></tr></tbody></table>
 <div class="mw-heading mw-heading3"><h3 id="원인_2"><span id=".EC.9B.90.EC.9D.B8_2"></span>원인</h3></div>
 <p>비 로그인 상태의 검색, 차이, 옛 판, 역사 요청은 평소 시간당 1,300건 안팎입니다. 이날은 13시 무렵 두 배가 되고 17시부터는 8,000건 안팎이 됐습니다. 대부분 크롤러였고, 154.197.16.0/20과 154.193.16.0/20이 가장 많았지만 나머지도 수십 개 /16에 고르게 퍼져 있었습니다.
 </p><p>캐시를 거치지 않고 PHP로 가는 요청에는 속도 제한이 있었습니다. 쿠키가 없는 요청을 /24마다 묶어 10분에 300건까지 받습니다.<sup id="cite&#95;ref-8" class="reference"><a href="#cite_note-8"><span class="cite-bracket">&#91;</span>8<span class="cite-bracket">&#93;</span></a></sup> 이 크롤러는 /24마다 10분에 수십 건씩만 보냈기 때문에 한 번도 걸리지 않았고, 이날 429를 받은 것은 따로 들어온 두 /24뿐이었습니다. 또 이 제한은 이름에 femiwiki가 든 쿠키만 있으면 면제였는데, 로그인 페이지는 처음 연 누구에게나 세션 쿠키를 줍니다. 크롤러 요청의 5분의 1쯤은 특수:로그인에서 받은 이 쿠키를 달고 와서 제한에서 빠졌습니다.
-</p><p>앱 서버의 워커는 10개까지 뜹니다.<sup id="cite&#95;ref-9" class="reference"><a href="#cite_note-9"><span class="cite-bracket">&#91;</span>9<span class="cite-bracket">&#93;</span></a></sup> 비싼 요청이 이만큼 들어오자 워커는 내내 모자랐고, 2코어인 서버의 CPU 사용량은 0.8코어에서 1.7코어로 올랐습니다. 데이터베이스는 한가했습니다. 응답이 밀리자 컨테이너 상태 검사도 실패했고, 30초 간격으로 세 번 실패하면<sup id="cite&#95;ref-10" class="reference"><a href="#cite_note-10"><span class="cite-bracket">&#91;</span>10<span class="cite-bracket">&#93;</span></a></sup> autoheal이 컨테이너를 재시작합니다. 22시 30분부터 23시 34분까지 열 번 재시작했고, 그때마다 처리 중이던 요청과 새로 들어온 요청이 502가 됐습니다. 재시작이 없던 10분 동안에는 502도 없었습니다. 503은 153건이었고, 살펴본 것은 모두 Caddy가 상태 검사를 통과한 서버를 찾지 못해 5초를 기다린 끝에 낸 것이었습니다.
+</p><p>앱 서버의 워커는 10개까지 뜹니다.<sup id="cite&#95;ref-9" class="reference"><a href="#cite_note-9"><span class="cite-bracket">&#91;</span>9<span class="cite-bracket">&#93;</span></a></sup> 비싼 요청이 이만큼 들어오자 워커는 내내 모자랐습니다. CPU 사용량은 2코어 가운데 0.8코어에서 1.7코어로 올랐지만 이것은 바쁠 때 쓰려고 크레딧을 모아 둔 결과이므로 문제가 아니었고, 데이터베이스도 한가했습니다. 모자란 것은 워커뿐이었습니다. 응답이 밀리자 컨테이너 상태 검사도 실패했고, 30초 간격으로 세 번 실패하면<sup id="cite&#95;ref-10" class="reference"><a href="#cite_note-10"><span class="cite-bracket">&#91;</span>10<span class="cite-bracket">&#93;</span></a></sup> autoheal이 컨테이너를 재시작합니다. 22시 30분부터 23시 34분까지 열 번 재시작했고, 그때마다 처리 중이던 요청과 새로 들어온 요청이 502가 됐습니다. 재시작이 없던 10분 동안에는 502도 없었습니다. 503은 153건이었고, 살펴본 것은 모두 Caddy가 상태 검사를 통과한 서버를 찾지 못해 5초를 기다린 끝에 낸 것이었습니다.
 </p>
 <div class="mw-heading mw-heading3"><h3 id="알림_2"><span id=".EC.95.8C.EB.A6.BC_2"></span>알림</h3></div>
-<p>Route 53의 특수:빈문서 검사가 22시 59분, 23시 18분, 23시 32분에 경보로 바뀌어 디스코드로 알렸고, 그 사이사이 잠깐씩 정상으로 돌아왔습니다. Grafana의 사이트 다운 경보는 울리지 않았습니다. 성공한 응답 수를 세는 경보인데 읽기 요청은 계속 성공했기 때문입니다.
+<p>Route 53의 특수:빈문서 검사가 22시 59분, 23시 18분, 23시 32분에 경보로 바뀌어 디스코드로 알렸고, 그 사이사이 잠깐씩 정상으로 돌아왔습니다. Grafana의 사이트 다운 경보는 울리지 않았습니다. 5분 동안 성공한 응답이 100건에 못 미치면 울리는 경보인데<sup id="cite&#95;ref-11" class="reference"><a href="#cite_note-11"><span class="cite-bracket">&#91;</span>11<span class="cite-bracket">&#93;</span></a></sup>, 읽기 요청은 계속 성공했기 때문입니다.
 </p>
 <div class="mw-heading mw-heading3"><h3 id="고친_것_2"><span id=".EA.B3.A0.EC.B9.9C_.EA.B2.83_2"></span>고친 것</h3></div>
-<ul><li>비 로그인 검색, 차이, 옛 판, 역사 요청을 이제 /24별이 아니라 사이트 전체에서 한데 세어 10분에 600건까지 받습니다. 면제는 로그인한 사용자의 쿠키가 있을 때만 줍니다.<sup id="cite&#95;ref-11" class="reference"><a href="#cite_note-11"><span class="cite-bracket">&#91;</span>11<span class="cite-bracket">&#93;</span></a></sup> <a rel="nofollow" class="external text" href="https://github.com/femiwiki/docker-mediawiki/pull/1109">docker-mediawiki#1109</a>에서 고쳤습니다.</li>
-<li>상태 검사를 통과한 서버가 하나도 없으면 읽기 요청은 503 대신 응답하는 서버로 보냅니다.<sup id="cite&#95;ref-12" class="reference"><a href="#cite_note-12"><span class="cite-bracket">&#91;</span>12<span class="cite-bracket">&#93;</span></a></sup> <a rel="nofollow" class="external text" href="https://github.com/femiwiki/docker-mediawiki/pull/1108">docker-mediawiki#1108</a>에서 고쳤습니다.</li>
+<ul><li>비 로그인 검색, 차이, 옛 판, 역사 요청을 이제 /24별이 아니라 사이트 전체에서 한데 세어 10분에 600건까지 받습니다. 면제는 로그인한 사용자의 쿠키가 있을 때만 줍니다.<sup id="cite&#95;ref-12" class="reference"><a href="#cite_note-12"><span class="cite-bracket">&#91;</span>12<span class="cite-bracket">&#93;</span></a></sup> <a rel="nofollow" class="external text" href="https://github.com/femiwiki/docker-mediawiki/pull/1109">docker-mediawiki#1109</a>에서 고쳤습니다.</li>
+<li>상태 검사를 통과한 서버가 하나도 없으면 읽기 요청은 503 대신 응답하는 서버로 보냅니다.<sup id="cite&#95;ref-13" class="reference"><a href="#cite_note-13"><span class="cite-bracket">&#91;</span>13<span class="cite-bracket">&#93;</span></a></sup> <a rel="nofollow" class="external text" href="https://github.com/femiwiki/docker-mediawiki/pull/1108">docker-mediawiki#1108</a>에서 고쳤습니다.</li>
 <li>둘은 23시 52분에 <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/pull/600">infra#600</a>으로 배포됐습니다. 그 뒤로 5xx와 상태 검사 실패는 없었습니다.</li>
-<li>사이트 전체로 10분에 600건이라는 상한은 크롤러만 거르지 못했습니다. 배포 뒤 12시간 동안 이 제한이 거부한 요청은 35,113건으로 /24별 제한의 2,376건보다 훨씬 많았고, 30분을 들여다보니 아이폰과 안드로이드 차림의 서로 다른 주소 103개가 거부당했습니다. 로그인하지 않은 사람들이 이 경로에 보내는 요청이 10분에 900건에서 1,500건인데 상한이 600건이라, 크롤러가 통을 비우고 나면 그다음에 역사나 차이를 누른 사람이 그대로 429를 받았습니다. 24일 8시 47분에 상한을 1,500건으로 올리고, 두 제한의 상한과 창 길이를 환경 변수로 빼서 이미지를 새로 굽지 않고도 고칠 수 있게 했습니다.<sup id="cite&#95;ref-13" class="reference"><a href="#cite_note-13"><span class="cite-bracket">&#91;</span>13<span class="cite-bracket">&#93;</span></a></sup> <a rel="nofollow" class="external text" href="https://github.com/femiwiki/docker-mediawiki/pull/1112">docker-mediawiki#1112</a>에서 고쳐 <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/pull/608">infra#608</a>로 배포했습니다.</li></ul>
+<li>사이트 전체로 10분에 600건이라는 상한은 크롤러만 거르지 못했습니다. 배포부터 24일 8시 10분까지 이 제한이 거부한 요청은 35,113건으로 /24별 제한의 2,376건보다 훨씬 많았고, 30분을 들여다보니 아이폰과 안드로이드 차림의 서로 다른 주소 103개가 거부당했습니다. 로그인하지 않은 사람들이 이 경로에 보내는 요청이 10분에 900건에서 1,500건인데 상한이 600건이라, 크롤러가 통을 비우고 나면 그다음에 역사나 차이를 누른 사람이 그대로 429를 받았습니다. 24일 8시 47분에 상한을 1,500건으로 올리고, 두 제한의 상한과 창 길이를 환경 변수로 빼서 이미지를 새로 굽지 않고도 고칠 수 있게 했습니다.<sup id="cite&#95;ref-14" class="reference"><a href="#cite_note-14"><span class="cite-bracket">&#91;</span>14<span class="cite-bracket">&#93;</span></a></sup> <a rel="nofollow" class="external text" href="https://github.com/femiwiki/docker-mediawiki/pull/1112">docker-mediawiki#1112</a>에서 고쳐 <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/pull/608">infra#608</a>로 배포했습니다.</li></ul>
 <div class="mw-heading mw-heading2"><h2 id="출처"><span id=".EC.B6.9C.EC.B2.98"></span>출처</h2></div>
 <div class="mw-references-wrap mw-references-columns"><ol class="references">
 <li id="cite&#95;note-1"><span class="mw-cite-backlink"><a href="#cite_ref-1">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/blob/7b378505b8f233829e057f4512394675a7ac8fc0/docker/container.tf#L87">https://github.com/femiwiki/infra/blob/7b378505b8f233829e057f4512394675a7ac8fc0/docker/container.tf#L87</a></span>
@@ -302,11 +310,13 @@ RLPAGEMODULES=[];</script>
 </li>
 <li id="cite&#95;note-10"><span class="mw-cite-backlink"><a href="#cite_ref-10">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/blob/0bee714c955ab49cf9f3acd5e003dc0f961e097d/docker/container.tf#L125-L130">https://github.com/femiwiki/infra/blob/0bee714c955ab49cf9f3acd5e003dc0f961e097d/docker/container.tf#L125-L130</a></span>
 </li>
-<li id="cite&#95;note-11"><span class="mw-cite-backlink"><a href="#cite_ref-11">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/docker-mediawiki/blob/bf16c29e0ffd829df734d5a920defd4902da77ea/dockers/femiwiki/Caddyfile#L41-L56">https://github.com/femiwiki/docker-mediawiki/blob/bf16c29e0ffd829df734d5a920defd4902da77ea/dockers/femiwiki/Caddyfile#L41-L56</a></span>
+<li id="cite&#95;note-11"><span class="mw-cite-backlink"><a href="#cite_ref-11">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/blob/665ed7dfc95a940ae7d2d7112a96b8c03669f0b7/grafana/alerts.tf#L134-L188">https://github.com/femiwiki/infra/blob/665ed7dfc95a940ae7d2d7112a96b8c03669f0b7/grafana/alerts.tf#L134-L188</a></span>
 </li>
-<li id="cite&#95;note-12"><span class="mw-cite-backlink"><a href="#cite_ref-12">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/docker-mediawiki/blob/bf16c29e0ffd829df734d5a920defd4902da77ea/dockers/femiwiki/Caddyfile#L80-L106">https://github.com/femiwiki/docker-mediawiki/blob/bf16c29e0ffd829df734d5a920defd4902da77ea/dockers/femiwiki/Caddyfile#L80-L106</a></span>
+<li id="cite&#95;note-12"><span class="mw-cite-backlink"><a href="#cite_ref-12">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/docker-mediawiki/blob/bf16c29e0ffd829df734d5a920defd4902da77ea/dockers/femiwiki/Caddyfile#L41-L56">https://github.com/femiwiki/docker-mediawiki/blob/bf16c29e0ffd829df734d5a920defd4902da77ea/dockers/femiwiki/Caddyfile#L41-L56</a></span>
 </li>
-<li id="cite&#95;note-13"><span class="mw-cite-backlink"><a href="#cite_ref-13">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/docker-mediawiki/blob/ec57eae2979b4c94e769097e9bd8639efddb7dc8/dockers/femiwiki/Caddyfile#L41-L61">https://github.com/femiwiki/docker-mediawiki/blob/ec57eae2979b4c94e769097e9bd8639efddb7dc8/dockers/femiwiki/Caddyfile#L41-L61</a></span>
+<li id="cite&#95;note-13"><span class="mw-cite-backlink"><a href="#cite_ref-13">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/docker-mediawiki/blob/bf16c29e0ffd829df734d5a920defd4902da77ea/dockers/femiwiki/Caddyfile#L80-L106">https://github.com/femiwiki/docker-mediawiki/blob/bf16c29e0ffd829df734d5a920defd4902da77ea/dockers/femiwiki/Caddyfile#L80-L106</a></span>
+</li>
+<li id="cite&#95;note-14"><span class="mw-cite-backlink"><a href="#cite_ref-14">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/docker-mediawiki/blob/ec57eae2979b4c94e769097e9bd8639efddb7dc8/dockers/femiwiki/Caddyfile#L41-L61">https://github.com/femiwiki/docker-mediawiki/blob/ec57eae2979b4c94e769097e9bd8639efddb7dc8/dockers/femiwiki/Caddyfile#L41-L61</a></span>
 </li>
 </ol></div>
 
@@ -322,7 +332,7 @@ RLPAGEMODULES=[];</script>
 
 <footer id="footer" class="mw-footer">
 	<ul id="footer-info" >
-	<li id="footer-info-lastmod"> 이 문서는 2026년 9월 23일 (수) 23:53에 마지막으로 편집되었습니다.</li>
+	<li id="footer-info-lastmod"> 이 문서는 2026년 9월 23일 (수) 23:59에 마지막으로 편집되었습니다.</li>
 </ul>
 
 	<ul id="footer-places" >
