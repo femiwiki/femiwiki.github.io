@@ -60,9 +60,9 @@
 |-
 | 23:37 || 마지막 상태 검사 실패
 |-
-| 23:50 || 속도 제한을 고친 이미지 배포 시작. 23시 52분에 끝남<ref>https://github.com/femiwiki/infra/pull/600</ref>. 5xx는 멎고, 대신 로그인하지 않은 독자가 429를 받기 시작
+| 23:50 || 속도 제한을 고친 이미지 배포 시작. 23시 52분에 끝남.<ref>https://github.com/femiwiki/infra/pull/600</ref> 5xx는 멎고, 대신 로그인하지 않은 독자가 429를 받기 시작
 |-
-| 24일 8시 47분 || 상한을 올린 이미지 배포<ref>https://github.com/femiwiki/infra/pull/608</ref>. 사람에게 붙던 429가 멎음
+| 24일 8시 47분 || 상한을 올린 이미지 배포.<ref>https://github.com/femiwiki/infra/pull/608</ref> 사람에게 붙던 429가 멎음
 |}
 
 === 원인 ===
@@ -73,7 +73,7 @@
 앱 서버의 워커는 10개까지 뜹니다.<ref>https://github.com/femiwiki/infra/blob/0bee714c955ab49cf9f3acd5e003dc0f961e097d/docker/container.tf#L95</ref> 비싼 요청이 이만큼 들어오자 워커는 내내 모자랐습니다. CPU 사용량은 2코어 가운데 0.8코어에서 1.7코어로 올랐지만 이것은 바쁠 때 쓰려고 크레딧을 모아 둔 결과이므로 문제가 아니었고, 데이터베이스도 한가했습니다. 모자란 것은 워커뿐이었습니다. 응답이 밀리자 컨테이너 상태 검사도 실패했고, 30초 간격으로 세 번 실패하면<ref>https://github.com/femiwiki/infra/blob/0bee714c955ab49cf9f3acd5e003dc0f961e097d/docker/container.tf#L125-L130</ref> autoheal이 컨테이너를 재시작합니다. 22시 30분부터 23시 34분까지 열 번 재시작했고, 그때마다 처리 중이던 요청과 새로 들어온 요청이 502가 됐습니다. 재시작이 없던 10분 동안에는 502도 없었습니다. 503은 153건이었고, 살펴본 것은 모두 Caddy가 상태 검사를 통과한 서버를 찾지 못해 5초를 기다린 끝에 낸 것이었습니다.
 
 === 알림 ===
-Route 53의 특수:빈문서 검사가 22시 59분, 23시 18분, 23시 32분에 경보로 바뀌어 디스코드로 알렸고, 그 사이사이 잠깐씩 정상으로 돌아왔습니다. Grafana의 사이트 다운 경보는 울리지 않았습니다. 5분 동안 성공한 응답이 100건에 못 미치면 울리는 경보인데<ref>https://github.com/femiwiki/infra/blob/665ed7dfc95a940ae7d2d7112a96b8c03669f0b7/grafana/alerts.tf#L134-L188</ref>, 읽기 요청은 계속 성공했기 때문입니다.
+Route 53의 특수:빈문서 검사가 22시 59분, 23시 18분, 23시 32분에 경보로 바뀌어 디스코드로 알렸고, 그 사이사이 잠깐씩 정상으로 돌아왔습니다. Grafana의 사이트 다운 경보는 울리지 않았습니다. 5분 동안 성공한 응답이 100건에 못 미치면 울리는 경보인데,<ref>https://github.com/femiwiki/infra/blob/665ed7dfc95a940ae7d2d7112a96b8c03669f0b7/grafana/alerts.tf#L134-L188</ref> 읽기 요청은 계속 성공했기 때문입니다.
 
 === 고친 것 ===
 * 비 로그인 검색, 차이, 옛 판, 역사 요청을 이제 /24별이 아니라 사이트 전체에서 한데 세어 10분에 600건까지 받습니다. 면제는 로그인한 사용자의 쿠키가 있을 때만 줍니다.<ref>https://github.com/femiwiki/docker-mediawiki/blob/bf16c29e0ffd829df734d5a920defd4902da77ea/dockers/femiwiki/Caddyfile#L41-L56</ref> [https://github.com/femiwiki/docker-mediawiki/pull/1109 docker-mediawiki#1109]에서 고쳤습니다.
