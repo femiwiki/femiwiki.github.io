@@ -250,28 +250,28 @@ RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.option
 				<div class="vector-toc-text">처음 위치</div>
 			</a>
 		</li>
-		<li id="toc-4월_13일의_장애"
+		<li id="toc-4월_13일_사고"
 		class="vector-toc-list-item vector-toc-level-1 vector-toc-list-item-expanded">
-		<a class="vector-toc-link" href="#4월_13일의_장애">
+		<a class="vector-toc-link" href="#4월_13일_사고">
 			<div class="vector-toc-text">
 				<span class="vector-toc-numb">1</span>
-				<span>4월 13일의 장애</span>
+				<span>4월 13일 사고</span>
 			</div>
 		</a>
 		
-		<ul id="toc-4월_13일의_장애-sublist" class="vector-toc-list">
+		<ul id="toc-4월_13일_사고-sublist" class="vector-toc-list">
 		</ul>
 	</li>
-	<li id="toc-4월_23일부터_5월_초까지의_장애"
+	<li id="toc-4월_23일부터_5월_초까지의_사고"
 		class="vector-toc-list-item vector-toc-level-1 vector-toc-list-item-expanded">
-		<a class="vector-toc-link" href="#4월_23일부터_5월_초까지의_장애">
+		<a class="vector-toc-link" href="#4월_23일부터_5월_초까지의_사고">
 			<div class="vector-toc-text">
 				<span class="vector-toc-numb">2</span>
-				<span>4월 23일부터 5월 초까지의 장애</span>
+				<span>4월 23일부터 5월 초까지의 사고</span>
 			</div>
 		</a>
 		
-		<ul id="toc-4월_23일부터_5월_초까지의_장애-sublist" class="vector-toc-list">
+		<ul id="toc-4월_23일부터_5월_초까지의_사고-sublist" class="vector-toc-list">
 		</ul>
 	</li>
 </ul>
@@ -482,10 +482,10 @@ RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.option
 					
 					<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="ko" dir="ltr"><p>2021-04에는 수집된 자료가 없습니다.
 </p>
-<div class="mw-heading mw-heading2"><h2 id="4월_13일의_장애"><span id="4.EC.9B.94_13.EC.9D.BC.EC.9D.98_.EC.9E.A5.EC.95.A0"></span>4월 13일의 장애</h2></div>
+<div class="mw-heading mw-heading2"><h2 id="4월_13일_사고"><span id="4.EC.9B.94_13.EC.9D.BC_.EC.82.AC.EA.B3.A0"></span>4월 13일 사고</h2></div>
 <p>4월 13일과 14일에 걸쳐 Caddy가 메모리 부족으로 거듭 죽었습니다. 캐시를 담아 두는 mwcache가 BadgerDB를 메모리 모드로 쓰고 있어서, 캐시가 쌓이는 만큼 메모리도 끝없이 늘었습니다. 14일 7시 37분에 죽은 것이 마지막이고, 그 뒤에 캐시 저장소를 Ristretto로 바꿨습니다(<a rel="nofollow" class="external text" href="https://github.com/femiwiki/femiwiki/issues/242">femiwiki#242</a>).
 </p>
-<div class="mw-heading mw-heading2"><h2 id="4월_23일부터_5월_초까지의_장애"><span id="4.EC.9B.94_23.EC.9D.BC.EB.B6.80.ED.84.B0_5.EC.9B.94_.EC.B4.88.EA.B9.8C.EC.A7.80.EC.9D.98_.EC.9E.A5.EC.95.A0"></span>4월 23일부터 5월 초까지의 장애</h2></div>
+<div class="mw-heading mw-heading2"><h2 id="4월_23일부터_5월_초까지의_사고"><span id="4.EC.9B.94_23.EC.9D.BC.EB.B6.80.ED.84.B0_5.EC.9B.94_.EC.B4.88.EA.B9.8C.EC.A7.80.EC.9D.98_.EC.82.AC.EA.B3.A0"></span>4월 23일부터 5월 초까지의 사고</h2></div>
 <p>4월 23일부터 열흘 남짓, 하루에도 몇 번씩 사이트가 멈췄다 돌아오기를 되풀이했습니다. 워커가 하나씩 늘어 최대치인 20개를 채우고 나면 5xx만 나왔고, 대개 손으로 컨테이너를 내렸다 올려야 풀렸습니다.
 </p><p>원인은 워커에 걸어 둔 메모리 한계가 낮아 커널이 워커를, 27일에는 Caddy를, 28일에는 MySQL을 죽인 것과 루트 볼륨의 버스트 잔액이 바닥난 것으로 24일에는 MySQL을 뺀 나머지를 잠시 옛 인스턴스로 옮겼습니다. 같은 기간 로그인도 간헐적으로 실패했는데 원인은 같았습니다(<a rel="nofollow" class="external text" href="https://github.com/femiwiki/femiwiki/issues/250">femiwiki#250</a>).
 </p><p>메모리 한계를 올리고 `request_terminate_timeout`을 넣어 조치했습니다(<a rel="nofollow" class="external text" href="https://github.com/femiwiki/femiwiki/issues/249">femiwiki#249</a>).
@@ -501,7 +501,7 @@ RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.option
 			
 <footer id="footer" class="mw-footer" >
 	<ul id="footer-info">
-	<li id="footer-info-lastmod"> 이 문서는 2026년 9월 21일 (월) 16:05에 마지막으로 편집되었습니다.</li>
+	<li id="footer-info-lastmod"> 이 문서는 2026년 9월 24일 (목) 01:05에 마지막으로 편집되었습니다.</li>
 </ul>
 
 	<ul id="footer-places">
