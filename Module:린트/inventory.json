@@ -1,9 +1,18 @@
 {
-  "generated": "2026-09-20",
+  "generated": "2026-09-24",
   "repos": [
     {
       "name": ".github",
       "kinds": {
+        "actions": {
+          "files": 1,
+          "tools": [
+            {
+              "name": "prettier",
+              "required": false
+            }
+          ]
+        },
         "json": {
           "files": 1,
           "tools": [
@@ -27,7 +36,7 @@
           "tools": []
         },
         "yaml": {
-          "files": 3,
+          "files": 2,
           "tools": [
             {
               "name": "prettier",
@@ -40,6 +49,15 @@
     {
       "name": "DiscordRCFeed",
       "kinds": {
+        "actions": {
+          "files": 3,
+          "tools": [
+            {
+              "name": "prettier",
+              "required": false
+            }
+          ]
+        },
         "json": {
           "files": 3,
           "tools": [
@@ -74,21 +92,25 @@
               "required": false
             }
           ]
-        },
-        "yaml": {
-          "files": 3,
-          "tools": [
-            {
-              "name": "prettier",
-              "required": false
-            }
-          ]
         }
       }
     },
     {
       "name": "FemiwikiCrawlingBlocker",
       "kinds": {
+        "actions": {
+          "files": 4,
+          "tools": [
+            {
+              "name": "prettier",
+              "required": true
+            },
+            {
+              "name": "zizmor",
+              "required": true
+            }
+          ]
+        },
         "json": {
           "files": 6,
           "tools": [
@@ -129,7 +151,7 @@
           ]
         },
         "yaml": {
-          "files": 6,
+          "files": 2,
           "tools": [
             {
               "name": "prettier",
@@ -142,6 +164,19 @@
     {
       "name": "FemiwikiSkin",
       "kinds": {
+        "actions": {
+          "files": 4,
+          "tools": [
+            {
+              "name": "prettier",
+              "required": true
+            },
+            {
+              "name": "zizmor",
+              "required": true
+            }
+          ]
+        },
         "css": {
           "files": 51,
           "tools": [
@@ -200,7 +235,7 @@
           ]
         },
         "yaml": {
-          "files": 6,
+          "files": 2,
           "tools": [
             {
               "name": "prettier",
@@ -213,6 +248,15 @@
     {
       "name": "OOUIFemiwikiTheme",
       "kinds": {
+        "actions": {
+          "files": 1,
+          "tools": [
+            {
+              "name": "prettier",
+              "required": false
+            }
+          ]
+        },
         "css": {
           "files": 38,
           "tools": [
@@ -258,7 +302,7 @@
           "tools": []
         },
         "yaml": {
-          "files": 2,
+          "files": 1,
           "tools": [
             {
               "name": "prettier",
@@ -271,6 +315,19 @@
     {
       "name": "UnifiedExtensionForFemiwiki",
       "kinds": {
+        "actions": {
+          "files": 4,
+          "tools": [
+            {
+              "name": "prettier",
+              "required": true
+            },
+            {
+              "name": "zizmor",
+              "required": true
+            }
+          ]
+        },
         "js": {
           "files": 1,
           "tools": [
@@ -320,7 +377,7 @@
           ]
         },
         "yaml": {
-          "files": 6,
+          "files": 2,
           "tools": [
             {
               "name": "prettier",
@@ -333,6 +390,10 @@
     {
       "name": "backupbot",
       "kinds": {
+        "actions": {
+          "files": 1,
+          "tools": []
+        },
         "dockerfile": {
           "files": 1,
           "tools": []
@@ -342,7 +403,7 @@
           "tools": []
         },
         "yaml": {
-          "files": 2,
+          "files": 1,
           "tools": []
         }
       }
@@ -350,6 +411,19 @@
     {
       "name": "caddy-mwcache",
       "kinds": {
+        "actions": {
+          "files": 5,
+          "tools": [
+            {
+              "name": "zizmor",
+              "required": true
+            }
+          ]
+        },
+        "caddyfile": {
+          "files": 1,
+          "tools": []
+        },
         "go": {
           "files": 6,
           "tools": [
@@ -372,7 +446,7 @@
           "tools": []
         },
         "yaml": {
-          "files": 10,
+          "files": 5,
           "tools": []
         }
       }
@@ -380,6 +454,28 @@
     {
       "name": "docker-mediawiki",
       "kinds": {
+        "actions": {
+          "files": 16,
+          "tools": [
+            {
+              "name": "prettier",
+              "required": true
+            },
+            {
+              "name": "zizmor",
+              "required": true
+            }
+          ]
+        },
+        "caddyfile": {
+          "files": 2,
+          "tools": [
+            {
+              "name": "caddy fmt",
+              "required": true
+            }
+          ]
+        },
         "dockerfile": {
           "files": 5,
           "tools": []
@@ -412,7 +508,7 @@
           ]
         },
         "php": {
-          "files": 5,
+          "files": 6,
           "tools": [
             {
               "name": "phpcs",
@@ -425,7 +521,7 @@
           ]
         },
         "yaml": {
-          "files": 16,
+          "files": 4,
           "tools": [
             {
               "name": "prettier",
@@ -447,6 +543,19 @@
     {
       "name": "femiwiki",
       "kinds": {
+        "actions": {
+          "files": 2,
+          "tools": [
+            {
+              "name": "prettier",
+              "required": false
+            },
+            {
+              "name": "zizmor",
+              "required": true
+            }
+          ]
+        },
         "json": {
           "files": 2,
           "tools": [
@@ -466,7 +575,7 @@
           ]
         },
         "yaml": {
-          "files": 4,
+          "files": 2,
           "tools": [
             {
               "name": "prettier",
@@ -479,6 +588,23 @@
     {
       "name": "femiwiki.github.io",
       "kinds": {
+        "actions": {
+          "files": 6,
+          "tools": [
+            {
+              "name": "yamllint",
+              "required": true
+            },
+            {
+              "name": "actionlint",
+              "required": true
+            },
+            {
+              "name": "zizmor",
+              "required": true
+            }
+          ]
+        },
         "css": {
           "files": 4,
           "tools": [
@@ -520,7 +646,7 @@
           ]
         },
         "md": {
-          "files": 1,
+          "files": 3,
           "tools": [
             {
               "name": "rumdl",
@@ -529,7 +655,7 @@
           ]
         },
         "sh": {
-          "files": 5,
+          "files": 6,
           "tools": [
             {
               "name": "shellcheck",
@@ -542,7 +668,7 @@
           "tools": []
         },
         "yaml": {
-          "files": 9,
+          "files": 3,
           "tools": [
             {
               "name": "yamllint",
@@ -555,20 +681,38 @@
     {
       "name": "infra",
       "kinds": {
+        "actions": {
+          "files": 6,
+          "tools": [
+            {
+              "name": "zizmor",
+              "required": true
+            }
+          ]
+        },
         "md": {
           "files": 1,
           "tools": []
         },
         "php": {
-          "files": 1,
+          "files": 2,
+          "tools": []
+        },
+        "sh": {
+          "files": 3,
           "tools": []
         },
         "tf": {
-          "files": 36,
-          "tools": []
+          "files": 43,
+          "tools": [
+            {
+              "name": "tflint",
+              "required": false
+            }
+          ]
         },
         "yaml": {
-          "files": 8,
+          "files": 5,
           "tools": []
         }
       }
@@ -576,6 +720,15 @@
     {
       "name": "lambda",
       "kinds": {
+        "actions": {
+          "files": 1,
+          "tools": [
+            {
+              "name": "prettier",
+              "required": false
+            }
+          ]
+        },
         "md": {
           "files": 1,
           "tools": [
@@ -599,7 +752,7 @@
           "tools": []
         },
         "yaml": {
-          "files": 2,
+          "files": 1,
           "tools": [
             {
               "name": "prettier",
@@ -612,6 +765,27 @@
     {
       "name": "legunto",
       "kinds": {
+        "actions": {
+          "files": 6,
+          "tools": [
+            {
+              "name": "prettier",
+              "required": false
+            },
+            {
+              "name": "yamllint",
+              "required": false
+            },
+            {
+              "name": "actionlint",
+              "required": false
+            },
+            {
+              "name": "zizmor",
+              "required": false
+            }
+          ]
+        },
         "json": {
           "files": 3,
           "tools": [
@@ -648,7 +822,7 @@
           "tools": []
         },
         "yaml": {
-          "files": 8,
+          "files": 2,
           "tools": [
             {
               "name": "prettier",
@@ -674,6 +848,23 @@
     {
       "name": "quibble-action",
       "kinds": {
+        "actions": {
+          "files": 5,
+          "tools": [
+            {
+              "name": "yamllint",
+              "required": true
+            },
+            {
+              "name": "actionlint",
+              "required": true
+            },
+            {
+              "name": "zizmor",
+              "required": true
+            }
+          ]
+        },
         "json": {
           "files": 2,
           "tools": [
@@ -706,7 +897,7 @@
           "tools": []
         },
         "yaml": {
-          "files": 7,
+          "files": 2,
           "tools": [
             {
               "name": "yamllint",
@@ -719,6 +910,15 @@
     {
       "name": "rankingbot",
       "kinds": {
+        "actions": {
+          "files": 3,
+          "tools": [
+            {
+              "name": "zizmor",
+              "required": true
+            }
+          ]
+        },
         "json": {
           "files": 1,
           "tools": []
@@ -741,7 +941,7 @@
           "tools": []
         },
         "yaml": {
-          "files": 5,
+          "files": 2,
           "tools": []
         }
       }
@@ -749,6 +949,15 @@
     {
       "name": "remote-gadgets",
       "kinds": {
+        "actions": {
+          "files": 3,
+          "tools": [
+            {
+              "name": "prettier",
+              "required": false
+            }
+          ]
+        },
         "css": {
           "files": 18,
           "tools": [
@@ -799,13 +1008,22 @@
           "tools": []
         },
         "yaml": {
-          "files": 5,
+          "files": 2,
           "tools": [
             {
               "name": "prettier",
               "required": false
             }
           ]
+        }
+      }
+    },
+    {
+      "name": "status",
+      "kinds": {
+        "md": {
+          "files": 1,
+          "tools": []
         }
       }
     },
@@ -821,6 +1039,15 @@
     {
       "name": "tweetbot",
       "kinds": {
+        "actions": {
+          "files": 3,
+          "tools": [
+            {
+              "name": "zizmor",
+              "required": true
+            }
+          ]
+        },
         "md": {
           "files": 1,
           "tools": []
@@ -839,7 +1066,7 @@
           "tools": []
         },
         "yaml": {
-          "files": 5,
+          "files": 2,
           "tools": []
         }
       }
