@@ -1,9 +1,7 @@
 # AGENTS.md
 
-무엇이 문서가 되고 어떻게 구워지는지는
-[wikven 문서](https://chaotic-ground.github.io/wikven/Pages)에, 언제 굽고 올리는지는
-`.github/workflows/`에, 어떤 수치가 어디서 오는지는 그 수치를 가져오는 `scripts/`의 스크립트에
-있습니다. 여기에는 그 파일들이 말하지 않는 것만 적습니다.
+문서가 어떻게 만들어지는지는 [wikven 문서](https://chaotic-ground.github.io/wikven/Pages)에
+있습니다. 여기에는 저장소의 다른 파일이 말하지 않는 것만 적습니다.
 
 ## 글쓰기
 
