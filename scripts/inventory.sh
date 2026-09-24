@@ -11,7 +11,7 @@ org=femiwiki
 mkdir -p "$out/Module:린트"
 
 # tool;pattern;kinds it covers
-tools='prettier;prettier;js css json yaml md
+tools='prettier;prettier;js css json yaml actions md
 biome;biome;js css json
 eslint;eslint;js
 stylelint;stylelint;css
@@ -28,16 +28,20 @@ gofmt;gofmt|go fmt;go
 golangci-lint;golangci;go
 go vet;go vet;go
 terraform fmt;terraform fmt;tf
+tofu fmt;tofu fmt;tf
 tflint;tflint;tf
 shellcheck;shellcheck;sh
 shfmt;shfmt;sh
 stylua;stylua;lua
 luacheck;luacheck;lua
 hadolint;hadolint;dockerfile
-yamllint;yamllint;yaml
+yamllint;yamllint;yaml actions
+actionlint;actionlint;actions
+zizmor;zizmor;actions
 rumdl;rumdl;md
 markdownlint;markdownlint;md
-taplo;taplo;toml'
+taplo;taplo;toml
+caddy fmt;caddy fmt;caddyfile'
 
 fetch() { # repo path [ref]
   gh api -H 'Accept: application/vnd.github.raw+json' "repos/$org/$1/contents/$2${3:+?ref=$3}" 2>/dev/null || true
@@ -123,11 +127,13 @@ count_kinds() { # tree-json -> json {kind: files}
       elif test("\\.(js|mjs|cjs|ts|vue)$") then "js"
       elif test("\\.(css|less|scss)$") then "css"
       elif test("\\.json$") then "json"
+      elif test("^\\.github/(workflows/[^/]+|actions/.+/action)\\.ya?ml$") then "actions"
       elif test("\\.ya?ml$") then "yaml"
       elif test("\\.md$") then "md"
       elif test("\\.(sh|bash)$") then "sh"
       elif test("\\.lua$") then "lua"
       elif test("\\.toml$") then "toml"
+      elif test("(^|/)Caddyfile$|\\.[Cc]addyfile$") then "caddyfile"
       else empty end;
     map(select(test("^(vendor|node_modules)/|(^|/)i18n/") | not) | kind)
     | group_by(.) | map({key: .[0], value: length}) | from_entries' <<<"$1"
