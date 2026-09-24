@@ -1,3 +1,9 @@
+<templatestyles src="Dashboard/styles.css" />
+<html>
+<div class="dashboard"><iframe src="https://femiwiki.grafana.net/public-dashboards/eebf9593bc094b5eb30b35009afd8d42" title="페미위키 가용성" loading="lazy"></iframe></div>
+</html>
+최근 2주입니다. Caddy가 끝낸 응답 가운데 5xx가 아닌 것이 99퍼센트를 넘으면 초록이고, 그 아래로 떨어지면 빨강입니다. 비어 있는 구간은 잰 것이 없다는 뜻이며, 이 수치는 14일만 보관합니다.
+
 페미위키가 얼마나 떠 있었는지입니다. 날짜와 시간은 한국 시간이고, 매달 2일에 지난달 것을 갱신합니다. 달을 누르면 날짜와 시간별로 볼 수 있고, 그 달에 무슨 일이 있었는지도 거기에 적습니다.
 
 세 가지 지표가 있습니다.

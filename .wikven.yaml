@@ -11,6 +11,7 @@ config:
   Sitename: 페미위키
   FileExtensions: [png, gif, jpg, jpeg, webp, svg, pdf]
   LanguageCode: ko
+  RawHtml: true
   NamespacesWithSubpages:
     0: true
   DefaultSkin: femiwiki
