@@ -139,7 +139,7 @@ RLPAGEMODULES=[];</script>
 
   </div>
   <div id="lastmod-and-views">
-    <a id="lastmod" href="https://github.com/femiwiki/femiwiki.github.io/commits/main/%EA%B0%80%EC%9A%A9%EC%84%B1/2026%EB%85%84%209%EC%9B%94.wikitext"> 이 문서는 2026년 9월 24일 (목) 00:06에 마지막으로 편집되었습니다.</a>
+    <a id="lastmod" href="https://github.com/femiwiki/femiwiki.github.io/commits/main/%EA%B0%80%EC%9A%A9%EC%84%B1/2026%EB%85%84%209%EC%9B%94.wikitext"> 이 문서는 2026년 9월 24일 (목) 00:20에 마지막으로 편집되었습니다.</a>
     <nav id="p-views" class="mw-portlet mw-portlet-views" aria-labelledby="p-views-label" role="navigation" 
   >
   <h3 id="p-views-label" >
@@ -269,11 +269,11 @@ RLPAGEMODULES=[];</script>
 </td></tr>
 <tr>
 <td>23:50</td>
-<td>속도 제한을 고친 이미지 배포 시작. 23시 52분에 끝남<sup id="cite&#95;ref-8" class="reference"><a href="#cite_note-8"><span class="cite-bracket">&#91;</span>8<span class="cite-bracket">&#93;</span></a></sup>. 5xx는 멎고, 대신 로그인하지 않은 독자가 429를 받기 시작
+<td>속도 제한을 고친 이미지 배포 시작. 23시 52분에 끝남.<sup id="cite&#95;ref-8" class="reference"><a href="#cite_note-8"><span class="cite-bracket">&#91;</span>8<span class="cite-bracket">&#93;</span></a></sup> 5xx는 멎고, 대신 로그인하지 않은 독자가 429를 받기 시작
 </td></tr>
 <tr>
 <td>24일 8시 47분</td>
-<td>상한을 올린 이미지 배포<sup id="cite&#95;ref-9" class="reference"><a href="#cite_note-9"><span class="cite-bracket">&#91;</span>9<span class="cite-bracket">&#93;</span></a></sup>. 사람에게 붙던 429가 멎음
+<td>상한을 올린 이미지 배포.<sup id="cite&#95;ref-9" class="reference"><a href="#cite_note-9"><span class="cite-bracket">&#91;</span>9<span class="cite-bracket">&#93;</span></a></sup> 사람에게 붙던 429가 멎음
 </td></tr></tbody></table>
 <div class="mw-heading mw-heading3"><h3 id="원인_2"><span id=".EC.9B.90.EC.9D.B8_2"></span>원인</h3></div>
 <p>비 로그인 상태의 검색, 차이, 옛 판, 역사 요청은 평소 시간당 1,300건 안팎입니다. 이날은 13시 무렵 두 배가 되고 17시부터는 8,000건 안팎이 됐습니다. 대부분 크롤러였고, 154.197.16.0/20과 154.193.16.0/20이 가장 많았지만 나머지도 수십 개 /16에 고르게 퍼져 있었습니다.
@@ -281,7 +281,7 @@ RLPAGEMODULES=[];</script>
 </p><p>앱 서버의 워커는 10개까지 뜹니다.<sup id="cite&#95;ref-11" class="reference"><a href="#cite_note-11"><span class="cite-bracket">&#91;</span>11<span class="cite-bracket">&#93;</span></a></sup> 비싼 요청이 이만큼 들어오자 워커는 내내 모자랐습니다. CPU 사용량은 2코어 가운데 0.8코어에서 1.7코어로 올랐지만 이것은 바쁠 때 쓰려고 크레딧을 모아 둔 결과이므로 문제가 아니었고, 데이터베이스도 한가했습니다. 모자란 것은 워커뿐이었습니다. 응답이 밀리자 컨테이너 상태 검사도 실패했고, 30초 간격으로 세 번 실패하면<sup id="cite&#95;ref-12" class="reference"><a href="#cite_note-12"><span class="cite-bracket">&#91;</span>12<span class="cite-bracket">&#93;</span></a></sup> autoheal이 컨테이너를 재시작합니다. 22시 30분부터 23시 34분까지 열 번 재시작했고, 그때마다 처리 중이던 요청과 새로 들어온 요청이 502가 됐습니다. 재시작이 없던 10분 동안에는 502도 없었습니다. 503은 153건이었고, 살펴본 것은 모두 Caddy가 상태 검사를 통과한 서버를 찾지 못해 5초를 기다린 끝에 낸 것이었습니다.
 </p>
 <div class="mw-heading mw-heading3"><h3 id="알림_2"><span id=".EC.95.8C.EB.A6.BC_2"></span>알림</h3></div>
-<p>Route 53의 특수:빈문서 검사가 22시 59분, 23시 18분, 23시 32분에 경보로 바뀌어 디스코드로 알렸고, 그 사이사이 잠깐씩 정상으로 돌아왔습니다. Grafana의 사이트 다운 경보는 울리지 않았습니다. 5분 동안 성공한 응답이 100건에 못 미치면 울리는 경보인데<sup id="cite&#95;ref-13" class="reference"><a href="#cite_note-13"><span class="cite-bracket">&#91;</span>13<span class="cite-bracket">&#93;</span></a></sup>, 읽기 요청은 계속 성공했기 때문입니다.
+<p>Route 53의 특수:빈문서 검사가 22시 59분, 23시 18분, 23시 32분에 경보로 바뀌어 디스코드로 알렸고, 그 사이사이 잠깐씩 정상으로 돌아왔습니다. Grafana의 사이트 다운 경보는 울리지 않았습니다. 5분 동안 성공한 응답이 100건에 못 미치면 울리는 경보인데,<sup id="cite&#95;ref-13" class="reference"><a href="#cite_note-13"><span class="cite-bracket">&#91;</span>13<span class="cite-bracket">&#93;</span></a></sup> 읽기 요청은 계속 성공했기 때문입니다.
 </p>
 <div class="mw-heading mw-heading3"><h3 id="고친_것_2"><span id=".EA.B3.A0.EC.B9.9C_.EA.B2.83_2"></span>고친 것</h3></div>
 <ul><li>비 로그인 검색, 차이, 옛 판, 역사 요청을 이제 /24별이 아니라 사이트 전체에서 한데 세어 10분에 600건까지 받습니다. 면제는 로그인한 사용자의 쿠키가 있을 때만 줍니다.<sup id="cite&#95;ref-14" class="reference"><a href="#cite_note-14"><span class="cite-bracket">&#91;</span>14<span class="cite-bracket">&#93;</span></a></sup> <a rel="nofollow" class="external text" href="https://github.com/femiwiki/docker-mediawiki/pull/1109">docker-mediawiki#1109</a>에서 고쳤습니다.</li>
@@ -336,7 +336,7 @@ RLPAGEMODULES=[];</script>
 
 <footer id="footer" class="mw-footer">
 	<ul id="footer-info" >
-	<li id="footer-info-lastmod"> 이 문서는 2026년 9월 24일 (목) 00:06에 마지막으로 편집되었습니다.</li>
+	<li id="footer-info-lastmod"> 이 문서는 2026년 9월 24일 (목) 00:20에 마지막으로 편집되었습니다.</li>
 </ul>
 
 	<ul id="footer-places" >
