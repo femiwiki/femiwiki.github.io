@@ -1,10 +1,1 @@
 {{#invoke:Availability.lua|month|2021-06}}
-
-== 6월의 간헐적 중단 ==
-6월에는 이삼일에 한 번씩 워커 수가 늘어난 채로 줄지 않았습니다. 최대치인 20개를 채우고 나면 새 요청은 기다리다 타임아웃됐습니다. 데이터베이스를 많이 읽는 특수 문서를 한 번 열면 워커가 불어나는 것이 확인됐고, 그때 MySQL은 디스크에서 몇 기가바이트씩 읽고 있었습니다.
-
-19일에 특수:내영향을 껐고, 이어서 스왑을 지우고 MiserMode를 잠시 켜 봤지만 증상은 7월까지 이어졌습니다([https://github.com/femiwiki/femiwiki/issues/275 femiwiki#275]).
-
-19일의 중단은 50분 넘게 이어졌는데 그동안 알림은 한 번도 오지 않았습니다([https://github.com/femiwiki/infra/issues/97 infra#97]).
-
-[[Category:사고 보고서|2021-06]]

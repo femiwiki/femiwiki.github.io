@@ -64,6 +64,30 @@
 	background-color: #dcdde1;
 }
 
+/* An incident: a card in the lists, the head of its own report. */
+.av-incident,
+.av-report {
+	margin: 0.8em 0;
+	padding: 0.6em 0.9em;
+	border-left: 4px solid #d63031;
+	border-radius: 2px;
+	background-color: rgba(127, 127, 127, 0.08);
+}
+
+.av-incident-head {
+	font-weight: bold;
+}
+
+.av-when {
+	font-size: 0.85em;
+	opacity: 0.7;
+}
+
+.av-incident p,
+.av-report p {
+	margin: 0.3em 0 0;
+}
+
 .av-grid > * > tr > td.av-a,
 .av-grid > * > tr > td.av-a a,
 .av-grid > * > tr > td.av-e,

@@ -198,7 +198,7 @@ function p.status(frame)
     table.sort(order, function(a, b)
       return a > b
     end)
-    out[#out + 1] = '== ' .. name .. ' =='
+    out[#out + 1] = '=== ' .. name .. ' ==='
     out[#out + 1] = '{| class="wikitable av-grid"'
     out[#out + 1] = '! 연도 !! 1 !! 2 !! 3 !! 4 !! 5 !! 6 !! 7 !! 8 !! 9 !! 10 !! 11 !! 12 !! 연간'
     for _, y in ipairs(order) do
@@ -261,15 +261,20 @@ end
 -- Days by hours for one month, one table per check.
 function p.month(frame)
   local m = frame.args[1]
+  local year, month = tonumber(m:sub(1, 4)), tonumber(m:sub(6, 7))
+  -- The incidents that started this month, headed only when there are any.
+  local incidents = frame:expandTemplate({
+    title = '사고 목록',
+    args = { ['달'] = string.format('%d년 %d월', year, month), ['머리'] = '\\n== 사고 ==\\n' },
+  })
   local ok, data = pcall(load, m .. '.json')
   if not ok then
-    return m .. '에는 수집된 자료가 없습니다.'
+    return incidents .. '\n\n' .. m .. '에는 수집된 자료가 없습니다.'
   end
-  local year, month = tonumber(m:sub(1, 4)), tonumber(m:sub(6, 7))
   local days = daysIn(year, month)
   local names = checkNames(data.checks)
 
-  local out = { styles(frame) }
+  local out = { styles(frame), incidents }
   for _, name in ipairs(names) do
     local hours = list(data.checks[name])
     local monthly = mean(hours)

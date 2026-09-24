@@ -1,0 +1,12 @@
+<templatestyles src="Availability/styles.css" />{{#dpl:
+category=사고 보고서
+|titlematch=가용성/{{#if:{{{달|}}}|{{anchorencode:{{{달}}}}}_%|%}}
+|ordermethod=sortkey
+|order=descending
+|include={사고 보고서}.dpl
+|format=,,,
+|resultsheader={{{머리|}}}
+|suppresserrors=true
+}}<noinclude>
+사고 보고서를 최근 것부터 카드로 늘어놓습니다. <code>달</code>에 <code>2026년 9월</code>처럼 주면 그 달에 시작한 사고만, <code>머리</code>를 주면 사고가 있을 때만 그것을 앞에 붙입니다(줄바꿈은 <code>\n</code>).
+</noinclude>
