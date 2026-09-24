@@ -139,7 +139,7 @@ RLPAGEMODULES=[];</script>
 
   </div>
   <div id="lastmod-and-views">
-    <a id="lastmod" href="https://github.com/femiwiki/femiwiki.github.io/commits/main/%EA%B0%80%EC%9A%A9%EC%84%B1/2026%EB%85%84%209%EC%9B%94.wikitext"> 이 문서는 2026년 9월 24일 (목) 22:55에 마지막으로 편집되었습니다.</a>
+    <a id="lastmod" href="https://github.com/femiwiki/femiwiki.github.io/commits/main/%EA%B0%80%EC%9A%A9%EC%84%B1/2026%EB%85%84%209%EC%9B%94.wikitext"> 이 문서는 2026년 9월 24일 (목) 23:11에 마지막으로 편집되었습니다.</a>
     <nav id="p-views" class="mw-portlet mw-portlet-views" aria-labelledby="p-views-label" role="navigation" 
   >
   <h3 id="p-views-label" >
@@ -397,18 +397,23 @@ RLPAGEMODULES=[];</script>
 <tr>
 <td>07:33</td>
 <td>mwcache의 용량 문제를 고친 이미지 배포.<sup id="cite&#95;ref-24" class="reference"><a href="#cite_note-24"><span class="cite-bracket">&#91;</span>24<span class="cite-bracket">&#93;</span></a></sup>
+</td></tr>
+<tr>
+<td>08:08</td>
+<td>사이트 전체 상한을 10분에 1,600건으로 내린 배포가 끝남.<sup id="cite&#95;ref-25" class="reference"><a href="#cite_note-25"><span class="cite-bracket">&#91;</span>25<span class="cite-bracket">&#93;</span></a></sup>
 </td></tr></tbody></table>
 <div class="mw-heading mw-heading3"><h3 id="원인_4"><span id=".EC.9B.90.EC.9D.B8_4"></span>원인</h3></div>
 <p>6시부터 6시 20분까지 20분 동안 요청이 10,684건 들어왔습니다. <code>/index.php</code>나 <code>/api.php</code>가 6,535건, 쿼리 없이 <code>/w/</code> 문서를 읽은 것이 2,453건, 쿼리가 붙은 <code>/w/</code>가 54건이었고, 나머지 1,642건쯤은 정적 파일이었습니다.
 </p><p>이 가운데 비 로그인 검색, 차이, 옛 판, 역사, 정보 요청이 4,532건이었습니다. 속도 제한이 621건을 429로 거절했고 3,911건이 PHP까지 갔습니다. 분당 195건입니다. 전날 23시 40분부터 24시까지 같은 모양의 요청은 20분에 3,228건, 분당 161건이었고 아무 일도 없었습니다. 분당 161건은 버텼고 195건에서는 쓰러졌습니다.
-</p><p>당시 사이트 전체 상한은 10분에 2,000건, 곧 분당 200건이었습니다.<sup id="cite&#95;ref-25" class="reference"><a href="#cite_note-25"><span class="cite-bracket">&#91;</span>25<span class="cite-bracket">&#93;</span></a></sup> 9월 24일 16시 사고 직후에 3,000건에서 내린 값입니다.<sup id="cite&#95;ref-26" class="reference"><a href="#cite_note-26"><span class="cite-bracket">&#91;</span>26<span class="cite-bracket">&#93;</span></a></sup> 상한이 서버의 한계 바로 위에 놓여 있었던 셈입니다.
+</p><p>당시 사이트 전체 상한은 10분에 2,000건, 곧 분당 200건이었습니다.<sup id="cite&#95;ref-26" class="reference"><a href="#cite_note-26"><span class="cite-bracket">&#91;</span>26<span class="cite-bracket">&#93;</span></a></sup> 9월 24일 16시 사고 직후에 3,000건에서 내린 값입니다.<sup id="cite&#95;ref-27" class="reference"><a href="#cite_note-27"><span class="cite-bracket">&#91;</span>27<span class="cite-bracket">&#93;</span></a></sup> 사고 구간에 PHP까지 간 양은 10분에 1,955건으로 상한에 거의 닿았지만, 서버는 그보다 적은 양에서 이미 쓰러졌습니다. 상한이 서버의 한계보다 위에 놓여 있어서, 한계를 넘는 양이 상한에 걸리지 않고 PHP까지 갔습니다.
 </p><p>요청을 보낸 쪽은 자신을 크롤러라고 밝히지 않았습니다. 사고 구간의 User-Agent 500건을 뽑아 보니 봇을 자처한 것은 하나도 없었고, 모두 그럴듯한 브라우저였습니다. iPhone은 18.2부터 18.6까지, Android는 14와 15였고 기기 모델도 제각각이었습니다. 주소도 넓게 퍼져 있어서, 20분 동안 한 주소가 보낸 요청은 많아야 43건이었습니다. 그래서 <code>/24</code>별 제한(10분에 300건과 100건)은 한 번도 발동하지 않았고, 이 트래픽을 볼 수 있던 것은 사이트 전체 상한뿐이었습니다. User-Agent로 거르는 규칙도 이런 트래픽에는 소용이 없습니다.
-</p><p>캐시도 받쳐 주지 못했습니다. 당시 mwcache는 ristretto의 내부 비용 계산 때문에 실제로는 항목을 17개밖에 담지 못했습니다.<sup id="cite&#95;ref-27" class="reference"><a href="#cite_note-27"><span class="cite-bracket">&#91;</span>27<span class="cite-bracket">&#93;</span></a></sup> 쿼리 없는 문서 읽기 2,453건 가운데 캐시에서 나간 것은 749건뿐이고, 1,704건이 PHP까지 갔습니다.
+</p><p>캐시도 받쳐 주지 못했습니다. 당시 mwcache는 ristretto의 내부 비용 계산 때문에 실제로는 항목을 17개밖에 담지 못했습니다.<sup id="cite&#95;ref-28" class="reference"><a href="#cite_note-28"><span class="cite-bracket">&#91;</span>28<span class="cite-bracket">&#93;</span></a></sup> 쿼리 없는 문서 읽기 2,453건 가운데 캐시에서 나간 것은 749건뿐이고, 1,704건이 PHP까지 갔습니다.
 </p>
 <div class="mw-heading mw-heading3"><h3 id="고친_것_4"><span id=".EA.B3.A0.EC.B9.9C_.EA.B2.83_4"></span>고친 것</h3></div>
-<ul><li>mwcache의 용량 문제를 고쳤습니다. <a rel="nofollow" class="external text" href="https://github.com/femiwiki/docker-mediawiki/pull/1048">docker-mediawiki#1048</a>에서 고쳐 7시 33분에 <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/pull/661">infra#661</a>로 배포했습니다. 배포 뒤 서로 다른 문서 25개를 한 번씩 읽어 데운 다음 다시 읽으니 25개 모두 캐시에서 나왔습니다.</li></ul>
+<ul><li>mwcache의 용량 문제를 고쳤습니다. <a rel="nofollow" class="external text" href="https://github.com/femiwiki/docker-mediawiki/pull/1048">docker-mediawiki#1048</a>에서 고쳐 7시 33분에 <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/pull/661">infra#661</a>로 배포했습니다. 배포 뒤 서로 다른 문서 25개를 한 번씩 읽어 데운 다음 다시 읽으니 25개 모두 캐시에서 나왔습니다.</li>
+<li>사이트 전체 상한을 1,600건으로 내렸습니다.<sup id="cite&#95;ref-29" class="reference"><a href="#cite_note-29"><span class="cite-bracket">&#91;</span>29<span class="cite-bracket">&#93;</span></a></sup> 전날 밤 10분에 1,610건은 버텼고 이날 1,955건에서는 쓰러졌으니, 1,600건은 이 서버가 버티는 것을 실제로 본 가장 높은 값입니다. <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/pull/687">infra#687</a>에서 고쳐 8시 8분에 배포했습니다.</li></ul>
 <div class="mw-heading mw-heading3"><h3 id="남은_문제_3"><span id=".EB.82.A8.EC.9D.80_.EB.AC.B8.EC.A0.9C_3"></span>남은 문제</h3></div>
-<ul><li>사이트 전체 상한을 더 내리는 일은 남겨 두었습니다. 캐시가 정상으로 돌아온 상태에서 한계를 다시 재고 정하기로 했습니다. 상한을 낮출수록 로그인하지 않은 독자가 크롤러 몫까지 429를 받는 문제는 <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/issues/626">infra#626</a>에 적어 두었습니다.</li>
+<ul><li>상한을 내린 만큼 독자가 거절당하는 일이 늘어납니다. 배포 전 7일 동안의 10분 구간 가운데 1,600건을 넘은 것은 21%로, 2,000건일 때의 10.6%보다 두 배 많습니다. 걸리는 것은 로그인하지 않은 상태의 검색, 차이, 옛 판 보기이고, 로그인한 사람은 제한을 받지 않습니다. 모두가 사이트를 열지 못하는 것보다 낫다고 보고 이 대가를 받아들였습니다. 로그인하지 않은 독자가 크롤러 몫까지 429를 받는 문제는 <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/issues/626">infra#626</a>에 적어 두었습니다.</li>
 <li>캐시 용량을 바이트 예산으로 정하는 일은 <a rel="nofollow" class="external text" href="https://github.com/femiwiki/femiwiki/issues/452">femiwiki#452</a>에 적어 두었습니다.</li>
 <li>이번 요청은 봇을 자처하지 않았고 주소도 흩어져 있어서, User-Agent나 주소로 거르는 규칙으로는 막을 수 없었습니다. 손으로 쓴 차단 규칙을 접는 일은 <a rel="nofollow" class="external text" href="https://github.com/femiwiki/femiwiki/issues/569">femiwiki#569</a>에서 다룹니다.</li></ul>
 <div class="mw-heading mw-heading2"><h2 id="출처"><span id=".EC.B6.9C.EC.B2.98"></span>출처</h2></div>
@@ -461,11 +466,15 @@ RLPAGEMODULES=[];</script>
 </li>
 <li id="cite&#95;note-24"><span class="mw-cite-backlink"><a href="#cite_ref-24">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/pull/661">https://github.com/femiwiki/infra/pull/661</a></span>
 </li>
-<li id="cite&#95;note-25"><span class="mw-cite-backlink"><a href="#cite_ref-25">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/blob/ec38a0d7973bc91c498c1ff1e71f62a71c2fae23/docker/container.tf#L33">https://github.com/femiwiki/infra/blob/ec38a0d7973bc91c498c1ff1e71f62a71c2fae23/docker/container.tf#L33</a></span>
+<li id="cite&#95;note-25"><span class="mw-cite-backlink"><a href="#cite_ref-25">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/pull/687">https://github.com/femiwiki/infra/pull/687</a></span>
 </li>
-<li id="cite&#95;note-26"><span class="mw-cite-backlink"><a href="#cite_ref-26">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/pull/648">https://github.com/femiwiki/infra/pull/648</a></span>
+<li id="cite&#95;note-26"><span class="mw-cite-backlink"><a href="#cite_ref-26">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/blob/ec38a0d7973bc91c498c1ff1e71f62a71c2fae23/docker/container.tf#L33">https://github.com/femiwiki/infra/blob/ec38a0d7973bc91c498c1ff1e71f62a71c2fae23/docker/container.tf#L33</a></span>
 </li>
-<li id="cite&#95;note-27"><span class="mw-cite-backlink"><a href="#cite_ref-27">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/docker-mediawiki/pull/1048">https://github.com/femiwiki/docker-mediawiki/pull/1048</a></span>
+<li id="cite&#95;note-27"><span class="mw-cite-backlink"><a href="#cite_ref-27">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/pull/648">https://github.com/femiwiki/infra/pull/648</a></span>
+</li>
+<li id="cite&#95;note-28"><span class="mw-cite-backlink"><a href="#cite_ref-28">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/docker-mediawiki/pull/1048">https://github.com/femiwiki/docker-mediawiki/pull/1048</a></span>
+</li>
+<li id="cite&#95;note-29"><span class="mw-cite-backlink"><a href="#cite_ref-29">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/blob/6e5777da89b96211c24766cb8fc229e7b3a7fe2f/docker/container.tf#L35">https://github.com/femiwiki/infra/blob/6e5777da89b96211c24766cb8fc229e7b3a7fe2f/docker/container.tf#L35</a></span>
 </li>
 </ol></div>
 
@@ -481,7 +490,7 @@ RLPAGEMODULES=[];</script>
 
 <footer id="footer" class="mw-footer">
 	<ul id="footer-info" >
-	<li id="footer-info-lastmod"> 이 문서는 2026년 9월 24일 (목) 22:55에 마지막으로 편집되었습니다.</li>
+	<li id="footer-info-lastmod"> 이 문서는 2026년 9월 24일 (목) 23:11에 마지막으로 편집되었습니다.</li>
 </ul>
 
 	<ul id="footer-places" >
