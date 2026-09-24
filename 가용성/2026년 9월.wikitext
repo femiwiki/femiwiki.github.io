@@ -146,6 +146,8 @@ Grafana에 전날 넣은 워커 대기열 경보가 16시 8분 40초에 울렸�
 | 06:19 || 대기열 0. 저절로 회복
 |-
 | 07:33 || mwcache의 용량 문제를 고친 이미지 배포.<ref>https://github.com/femiwiki/infra/pull/661</ref>
+|-
+| 08:08 || 사이트 전체 상한을 10분에 1,600건으로 내린 배포가 끝남.<ref>https://github.com/femiwiki/infra/pull/687</ref>
 |}
 
 === 원인 ===
@@ -153,7 +155,7 @@ Grafana에 전날 넣은 워커 대기열 경보가 16시 8분 40초에 울렸�
 
 이 가운데 비 로그인 검색, 차이, 옛 판, 역사, 정보 요청이 4,532건이었습니다. 속도 제한이 621건을 429로 거절했고 3,911건이 PHP까지 갔습니다. 분당 195건입니다. 전날 23시 40분부터 24시까지 같은 모양의 요청은 20분에 3,228건, 분당 161건이었고 아무 일도 없었습니다. 분당 161건은 버텼고 195건에서는 쓰러졌습니다.
 
-당시 사이트 전체 상한은 10분에 2,000건, 곧 분당 200건이었습니다.<ref>https://github.com/femiwiki/infra/blob/ec38a0d7973bc91c498c1ff1e71f62a71c2fae23/docker/container.tf#L33</ref> 9월 24일 16시 사고 직후에 3,000건에서 내린 값입니다.<ref>https://github.com/femiwiki/infra/pull/648</ref> 상한이 서버의 한계 바로 위에 놓여 있었던 셈입니다.
+당시 사이트 전체 상한은 10분에 2,000건, 곧 분당 200건이었습니다.<ref>https://github.com/femiwiki/infra/blob/ec38a0d7973bc91c498c1ff1e71f62a71c2fae23/docker/container.tf#L33</ref> 9월 24일 16시 사고 직후에 3,000건에서 내린 값입니다.<ref>https://github.com/femiwiki/infra/pull/648</ref> 사고 구간에 PHP까지 간 양은 10분에 1,955건으로 상한에 거의 닿았지만, 서버는 그보다 적은 양에서 이미 쓰러졌습니다. 상한이 서버의 한계보다 위에 놓여 있어서, 한계를 넘는 양이 상한에 걸리지 않고 PHP까지 갔습니다.
 
 요청을 보낸 쪽은 자신을 크롤러라고 밝히지 않았습니다. 사고 구간의 User-Agent 500건을 뽑아 보니 봇을 자처한 것은 하나도 없었고, 모두 그럴듯한 브라우저였습니다. iPhone은 18.2부터 18.6까지, Android는 14와 15였고 기기 모델도 제각각이었습니다. 주소도 넓게 퍼져 있어서, 20분 동안 한 주소가 보낸 요청은 많아야 43건이었습니다. 그래서 <code>/24</code>별 제한(10분에 300건과 100건)은 한 번도 발동하지 않았고, 이 트래픽을 볼 수 있던 것은 사이트 전체 상한뿐이었습니다. User-Agent로 거르는 규칙도 이런 트래픽에는 소용이 없습니다.
 
@@ -161,9 +163,10 @@ Grafana에 전날 넣은 워커 대기열 경보가 16시 8분 40초에 울렸�
 
 === 고친 것 ===
 * mwcache의 용량 문제를 고쳤습니다. [https://github.com/femiwiki/docker-mediawiki/pull/1048 docker-mediawiki#1048]에서 고쳐 7시 33분에 [https://github.com/femiwiki/infra/pull/661 infra#661]로 배포했습니다. 배포 뒤 서로 다른 문서 25개를 한 번씩 읽어 데운 다음 다시 읽으니 25개 모두 캐시에서 나왔습니다.
+* 사이트 전체 상한을 1,600건으로 내렸습니다.<ref>https://github.com/femiwiki/infra/blob/6e5777da89b96211c24766cb8fc229e7b3a7fe2f/docker/container.tf#L35</ref> 전날 밤 10분에 1,610건은 버텼고 이날 1,955건에서는 쓰러졌으니, 1,600건은 이 서버가 버티는 것을 실제로 본 가장 높은 값입니다. [https://github.com/femiwiki/infra/pull/687 infra#687]에서 고쳐 8시 8분에 배포했습니다.
 
 === 남은 문제 ===
-* 사이트 전체 상한을 더 내리는 일은 남겨 두었습니다. 캐시가 정상으로 돌아온 상태에서 한계를 다시 재고 정하기로 했습니다. 상한을 낮출수록 로그인하지 않은 독자가 크롤러 몫까지 429를 받는 문제는 [https://github.com/femiwiki/infra/issues/626 infra#626]에 적어 두었습니다.
+* 상한을 내린 만큼 독자가 거절당하는 일이 늘어납니다. 배포 전 7일 동안의 10분 구간 가운데 1,600건을 넘은 것은 21%로, 2,000건일 때의 10.6%보다 두 배 많습니다. 걸리는 것은 로그인하지 않은 상태의 검색, 차이, 옛 판 보기이고, 로그인한 사람은 제한을 받지 않습니다. 모두가 사이트를 열지 못하는 것보다 낫다고 보고 이 대가를 받아들였습니다. 로그인하지 않은 독자가 크롤러 몫까지 429를 받는 문제는 [https://github.com/femiwiki/infra/issues/626 infra#626]에 적어 두었습니다.
 * 캐시 용량을 바이트 예산으로 정하는 일은 [https://github.com/femiwiki/femiwiki/issues/452 femiwiki#452]에 적어 두었습니다.
 * 이번 요청은 봇을 자처하지 않았고 주소도 흩어져 있어서, User-Agent나 주소로 거르는 규칙으로는 막을 수 없었습니다. 손으로 쓴 차단 규칙을 접는 일은 [https://github.com/femiwiki/femiwiki/issues/569 femiwiki#569]에서 다룹니다.
 
