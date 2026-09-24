@@ -9,11 +9,13 @@ local kinds = {
   { 'css', 'CSS' },
   { 'json', 'JSON' },
   { 'yaml', 'YAML' },
+  { 'actions', 'Actions' },
   { 'md', 'Markdown' },
   { 'sh', 'Shell' },
   { 'lua', 'Lua' },
   { 'dockerfile', 'Dockerfile' },
   { 'toml', 'TOML' },
+  { 'caddyfile', 'Caddyfile' },
 }
 
 local function chip(text, state)
