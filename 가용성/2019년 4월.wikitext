@@ -1,6 +1,6 @@
 {{#invoke:Availability.lua|month|2019-04}}
 
-== 4월 11일의 장애 ==
+== 4월 11일 사고 ==
 4월 11일 미디어위키 서버의 루트 디스크(8GiB)가 가득 찼는데 그중 5.8GiB가 도커 몫이었습니다. 쓰지 않는 이미지를 지워 풀었습니다([https://github.com/femiwiki/femiwiki/issues/70 femiwiki#70]).
 
 [[Category:사고 보고서|2019-04]]
