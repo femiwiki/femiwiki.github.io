@@ -1,9 +1,9 @@
 {{#invoke:Availability.lua|month|2021-05}}
 
-== 5월 4일의 장애 ==
+== 5월 4일 사고 ==
 5월 4일 14시 51분부터 16시 26분까지 1시간 35분 동안 서비스가 멈췄습니다. MySQL과 Caddy, EBS 볼륨을 붙여 주는 CSI 플러그인이 함께 죽었습니다. 되살리면서 Parsoid를 빠뜨려 시각편집기는 그보다 늦게 돌아왔습니다([https://github.com/femiwiki/femiwiki/issues/249 femiwiki#249]).
 
-== 5월 16일과 19일의 장애 ==
+== 5월 16일과 19일 사고 ==
 16일에는 15시 47분부터 yum-cron이 디스크를 붙들었고 사이트가 느려졌습니다. 16시 5분에 워커 컨테이너가 스스로 재시작하면서 돌아왔습니다([https://github.com/femiwiki/femiwiki/issues/257 femiwiki#257]).
 
 19일에는 12시 헬스 체크부터 실패했습니다. yum-cron을 멈추고 13시 25분에 워커를 재시작한 뒤 돌아왔지만 그것이 원인이었는지는 분명하지 않습니다([https://github.com/femiwiki/femiwiki/issues/259 femiwiki#259]).
