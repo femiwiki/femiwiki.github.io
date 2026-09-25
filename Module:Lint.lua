@@ -116,6 +116,37 @@ function p.status(frame)
     out[#out + 1] = line
   end
   out[#out + 1] = ''
+  out[#out + 1] = '== 종류별 도구 =='
+  out[#out + 1] = '{| class="wikitable lint-table"'
+  out[#out + 1] = '! 종류 !! 도구 (저장소 수)'
+  for _, k in ipairs(kinds) do
+    local uses, names = {}, {}
+    for _, r in ipairs(repos) do
+      local entry = r.kinds[k[1]]
+      for _, t in ipairs(entry and entry.tools or {}) do
+        if not uses[t.name] then
+          uses[t.name] = 0
+          names[#names + 1] = t.name
+        end
+        uses[t.name] = uses[t.name] + 1
+      end
+    end
+    if #names > 0 then
+      table.sort(names, function(a, b)
+        if uses[a] ~= uses[b] then
+          return uses[a] > uses[b]
+        end
+        return a < b
+      end)
+      local list = {}
+      for _, name in ipairs(names) do
+        list[#list + 1] = chip(string.format('%s (%d)', name, uses[name]))
+      end
+      out[#out + 1] = string.format('|-\n| %s\n| %s', k[2], chips(list))
+    end
+  end
+  out[#out + 1] = '|}'
+  out[#out + 1] = ''
   out[#out + 1] = '== 저장소별 =='
   out[#out + 1] = '{| class="wikitable lint-table"'
   out[#out + 1] = '! 저장소 !! 파일 종류와 검사하는 도구'
