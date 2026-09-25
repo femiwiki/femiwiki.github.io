@@ -5,8 +5,8 @@ category=사고 보고서
 |order=descending
 |include={사고 보고서}.dpl
 |format=,,,
-|resultsheader={{{머리|}}}
+|resultsheader={{#if:{{{달|}}}|\n== 사고 ==\n}}
 |suppresserrors=true
 }}<noinclude>
-사고 보고서를 최근 것부터 카드로 늘어놓습니다. <code>달</code>에 <code>2026년 9월</code>처럼 주면 그 달에 시작한 사고만, <code>머리</code>를 주면 사고가 있을 때만 그것을 앞에 붙입니다(줄바꿈은 <code>\n</code>).
+사고 보고서를 최근 것부터 카드로 늘어놓습니다. [[가용성]]은 <code><nowiki>{{사고 목록}}</nowiki></code>으로 모두를, 월 문서는 <code><nowiki>{{사고 목록|달=2026년 9월}}</nowiki></code>로 그 달에 시작한 사고만 보입니다. <code>달</code>을 주면 사고가 있을 때만 "사고" 절 제목을 붙입니다.
 </noinclude>

@@ -109,10 +109,12 @@ for month in "${months[@]}"; do
       | $cw | .checks["GA4 세션"] = $values' > "$out/Module:가용성/$month.json.ga"
     mv "$out/Module:가용성/$month.json.ga" "$out/Module:가용성/$month.json"
   fi
-  # The month's page is where people write what happened, so it is made once and
-  # never overwritten, wherever it lives.
-  page="가용성/${month%-*}년 $((10#${month#*-}))월.wikitext"
-  [ -e "$page" ] || [ -e "$out/$page" ] || printf '{{#invoke:Availability.lua|month|%s}}\n' "$month" > "$out/$page"
+  # The month's page lists the month's incident reports above its tables. It is made
+  # once and never overwritten, wherever it lives.
+  label="${month%-*}년 $((10#${month#*-}))월"
+  page="가용성/$label.wikitext"
+  [ -e "$page" ] || [ -e "$out/$page" ] \
+    || printf '{{사고 목록|달=%s}}\n{{#invoke:Availability.lua|month|%s}}\n' "$label" "$month" > "$out/$page"
   page="가용성/${month%-*}년.wikitext"
   [ -e "$page" ] || [ -e "$out/$page" ] || printf '{{#invoke:Availability.lua|year|%s}}\n' "${month%-*}" > "$out/$page"
   echo "$month"

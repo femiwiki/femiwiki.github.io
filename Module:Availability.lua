@@ -261,20 +261,15 @@ end
 -- Days by hours for one month, one table per check.
 function p.month(frame)
   local m = frame.args[1]
-  local year, month = tonumber(m:sub(1, 4)), tonumber(m:sub(6, 7))
-  -- The incidents that started this month, headed only when there are any.
-  local incidents = frame:expandTemplate({
-    title = '사고 목록',
-    args = { ['달'] = string.format('%d년 %d월', year, month), ['머리'] = '\\n== 사고 ==\\n' },
-  })
   local ok, data = pcall(load, m .. '.json')
   if not ok then
-    return incidents .. '\n\n' .. m .. '에는 수집된 자료가 없습니다.'
+    return m .. '에는 수집된 자료가 없습니다.'
   end
+  local year, month = tonumber(m:sub(1, 4)), tonumber(m:sub(6, 7))
   local days = daysIn(year, month)
   local names = checkNames(data.checks)
 
-  local out = { styles(frame), incidents }
+  local out = { styles(frame) }
   for _, name in ipairs(names) do
     local hours = list(data.checks[name])
     local monthly = mean(hours)
