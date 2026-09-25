@@ -1,1 +1,2 @@
+{{사고 목록|달=2023년 2월}}
 {{#invoke:Availability.lua|month|2023-02}}

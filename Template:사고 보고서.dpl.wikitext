@@ -1,0 +1,7 @@
+<div class="av-incident">
+<div class="av-incident-head">[[{{{%PAGE%}}}|{{#titleparts:{{{%PAGE%}}}||2}}]]</div>
+<div class="av-when">{{{시작}}}{{#if:{{{끝|}}}|부터 {{{끝}}}까지}}</div>
+{{{요약}}}
+</div><noinclude>
+[[틀:사고 목록]]이 사고 문서마다 부르는 카드입니다. [[틀:사고 보고서]]에 적은 값을 그대로 받습니다.
+</noinclude>
