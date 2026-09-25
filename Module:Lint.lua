@@ -50,11 +50,18 @@ local function count(set)
   return n
 end
 
-local function gapTable(rows)
+local function gapSection(title, rows)
   if #rows == 0 then
     return {}
   end
-  return { '{| class="wikitable lint-table"', '! 종류 !! 저장소 (파일 수)', table.concat(rows, '\n'), '|}' }
+  return {
+    '== ' .. title .. ' ==',
+    '{| class="wikitable lint-table"',
+    '! 종류 !! 저장소 (파일 수)',
+    table.concat(rows, '\n'),
+    '|}',
+    '',
+  }
 end
 
 function p.status(frame)
@@ -105,17 +112,13 @@ function p.status(frame)
       count(optionalRepos)
     ),
     '',
-    '== 검사되지 않는 파일 ==',
   }
-  for _, line in ipairs(gapTable(unchecked)) do
+  for _, line in ipairs(gapSection('검사되지 않는 파일', unchecked)) do
     out[#out + 1] = line
   end
-  out[#out + 1] = ''
-  out[#out + 1] = '== 필수가 아닌 검사만 받는 파일 =='
-  for _, line in ipairs(gapTable(optional)) do
+  for _, line in ipairs(gapSection('필수가 아닌 검사만 받는 파일', optional)) do
     out[#out + 1] = line
   end
-  out[#out + 1] = ''
   out[#out + 1] = '== 종류별 도구 =='
   out[#out + 1] = '{| class="wikitable lint-table"'
   out[#out + 1] = '! 종류 !! 도구 (저장소 수)'
