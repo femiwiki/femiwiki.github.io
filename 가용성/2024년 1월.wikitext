@@ -1,1 +1,2 @@
+{{사고 목록|달=2024년 1월}}
 {{#invoke:Availability.lua|month|2024-01}}

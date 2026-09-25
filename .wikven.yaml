@@ -3,6 +3,7 @@ extensions:
   - Cite
   - Details
   - DynamicPageList4
+  - ParserFunctions
   - Scribunto
   - TemplateStyles
 skins:

@@ -198,7 +198,7 @@ function p.status(frame)
     table.sort(order, function(a, b)
       return a > b
     end)
-    out[#out + 1] = '== ' .. name .. ' =='
+    out[#out + 1] = '=== ' .. name .. ' ==='
     out[#out + 1] = '{| class="wikitable av-grid"'
     out[#out + 1] = '! 연도 !! 1 !! 2 !! 3 !! 4 !! 5 !! 6 !! 7 !! 8 !! 9 !! 10 !! 11 !! 12 !! 연간'
     for _, y in ipairs(order) do

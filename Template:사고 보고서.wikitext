@@ -1,0 +1,18 @@
+<templatestyles src="Availability/styles.css" /><div class="av-report">
+<div class="av-when">{{{시작}}}{{#if:{{{끝|}}}|부터 {{{끝}}}까지}} · [[가용성/{{#time:Y년 n월|{{{시작}}}}}|그 달의 가용성]]</div>
+{{{요약}}}
+</div><includeonly>[[Category:사고 보고서|{{{시작}}}]]</includeonly><noinclude>
+사고 보고서 문서의 맨 위에 둡니다. 기간과 요약을 머리에 보이고, 문서를 [[:Category:사고 보고서]]에 넣습니다. [[가용성]]과 월 문서는 여기 적은 값으로 사고 목록을 만듭니다.
+
+<pre>
+{{사고 보고서
+|시작 = 2026-09-25 06:02
+|끝 = 2026-09-25 06:06
+|요약 = 9월 25일 6시 2분부터 5분 동안 페미위키를 이용할 수 없었습니다. ...
+}}
+</pre>
+
+* '''시작''': 한국 시간으로 <code>YYYY-MM-DD HH:MM</code>입니다. 보고서가 분까지 말하지 못하면 <code>YYYY-MM-DD</code>나 <code>YYYY-MM</code>까지만 적습니다. 목록은 이 값으로 정렬합니다.
+* '''끝''': 같은 꼴이고, 모르면 비워 둡니다.
+* '''요약''': 기간과 이용자가 겪은 것을 적은 한 문단입니다. 목록에도 그대로 보이므로 <code>&lt;ref&gt;</code>를 넣지 않습니다.
+</noinclude>
