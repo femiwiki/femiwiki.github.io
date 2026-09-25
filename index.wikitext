@@ -1,5 +1,13 @@
 페미위키를 운영하면서 공개하는 자료입니다. 위키 본문은 [https://femiwiki.com femiwiki.com]에 있습니다.
 
-* [[가용성]]: 페미위키가 떠 있었던 시간과 사고 보고서
+* [[가용성]]: 페미위키가 떠 있었던 시간과 사고 보고서. 가장 최근 사고는 {{#dpl:
+category=사고 보고서
+|ordermethod=sortkey
+|order=descending
+|count=1
+|format=,[[%PAGE%|%TITLE%]],,
+|replaceintitle=/^가용성\//,
+|suppresserrors=true
+}}입니다.
 * [[비용]]: 페미위키를 운영하는 데 드는 AWS 비용
 * [[린트]]: 저장소별 포매터와 린터 현황
