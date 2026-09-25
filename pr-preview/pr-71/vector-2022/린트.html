@@ -250,28 +250,28 @@ RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.option
 				<div class="vector-toc-text">처음 위치</div>
 			</a>
 		</li>
-		<li id="toc-검사되지_않는_파일"
-		class="vector-toc-list-item vector-toc-level-1 vector-toc-list-item-expanded">
-		<a class="vector-toc-link" href="#검사되지_않는_파일">
-			<div class="vector-toc-text">
-				<span class="vector-toc-numb">1</span>
-				<span>검사되지 않는 파일</span>
-			</div>
-		</a>
-		
-		<ul id="toc-검사되지_않는_파일-sublist" class="vector-toc-list">
-		</ul>
-	</li>
-	<li id="toc-필수가_아닌_검사만_받는_파일"
+		<li id="toc-필수가_아닌_검사만_받는_파일"
 		class="vector-toc-list-item vector-toc-level-1 vector-toc-list-item-expanded">
 		<a class="vector-toc-link" href="#필수가_아닌_검사만_받는_파일">
 			<div class="vector-toc-text">
-				<span class="vector-toc-numb">2</span>
+				<span class="vector-toc-numb">1</span>
 				<span>필수가 아닌 검사만 받는 파일</span>
 			</div>
 		</a>
 		
 		<ul id="toc-필수가_아닌_검사만_받는_파일-sublist" class="vector-toc-list">
+		</ul>
+	</li>
+	<li id="toc-종류별_도구"
+		class="vector-toc-list-item vector-toc-level-1 vector-toc-list-item-expanded">
+		<a class="vector-toc-link" href="#종류별_도구">
+			<div class="vector-toc-text">
+				<span class="vector-toc-numb">2</span>
+				<span>종류별 도구</span>
+			</div>
+		</a>
+		
+		<ul id="toc-종류별_도구-sublist" class="vector-toc-list">
 		</ul>
 	</li>
 	<li id="toc-저장소별"
@@ -497,7 +497,6 @@ RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.option
 <style data-mw-deduplicate="TemplateStyles:r533">.mw-parser-output .lint-table{width:100%}.mw-parser-output .lint-chips{display:flex;flex-wrap:wrap;gap:0.25em}.mw-parser-output .lint-chip{display:inline-block;padding:0 0.6em;border-radius:1em;background:#eaecf0;font-size:0.9em;white-space:nowrap}.mw-parser-output .lint-chip-bad{background:#fee7e6;color:#b32424}.mw-parser-output .lint-chip-warn{background:#fef6e7;color:#ac6600}</style>
 <p>2026-09-25 기준, 저장소 20개 중 0개에 검사되지 않는 파일이 있고, 1개에 필수가 아닌 검사만 받는 파일이 있습니다.
 </p>
-<div class="mw-heading mw-heading2"><h2 id="검사되지_않는_파일"><span id=".EA.B2.80.EC.82.AC.EB.90.98.EC.A7.80_.EC.95.8A.EB.8A.94_.ED.8C.8C.EC.9D.BC"></span>검사되지 않는 파일</h2></div>
 <div class="mw-heading mw-heading2"><h2 id="필수가_아닌_검사만_받는_파일"><span id=".ED.95.84.EC.88.98.EA.B0.80_.EC.95.84.EB.8B.8C_.EA.B2.80.EC.82.AC.EB.A7.8C_.EB.B0.9B.EB.8A.94_.ED.8C.8C.EC.9D.BC"></span>필수가 아닌 검사만 받는 파일</h2></div>
 <table class="wikitable lint-table">
 <tbody><tr>
@@ -523,6 +522,87 @@ RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.option
 <td>Markdown
 </td>
 <td><div class="lint-chips"><span class="lint-chip lint-chip-warn"><a rel="nofollow" class="external text" href="https://github.com/femiwiki/DiscordRCFeed">DiscordRCFeed</a> (2)</span></div>
+</td></tr></tbody></table>
+<div class="mw-heading mw-heading2"><h2 id="종류별_도구"><span id=".EC.A2.85.EB.A5.98.EB.B3.84_.EB.8F.84.EA.B5.AC"></span>종류별 도구</h2></div>
+<table class="wikitable lint-table">
+<tbody><tr>
+<th>종류</th>
+<th>도구 (저장소 수)
+</th></tr>
+<tr>
+<td>Terraform
+</td>
+<td><div class="lint-chips"><span class="lint-chip">tflint (1)</span></div>
+</td></tr>
+<tr>
+<td>Go
+</td>
+<td><div class="lint-chips"><span class="lint-chip">golangci-lint (1)</span></div>
+</td></tr>
+<tr>
+<td>Python
+</td>
+<td><div class="lint-chips"><span class="lint-chip">ruff (7)</span></div>
+</td></tr>
+<tr>
+<td>PHP
+</td>
+<td><div class="lint-chips"><span class="lint-chip">parallel-lint (8)</span><span class="lint-chip">phpcs (5)</span><span class="lint-chip">phan (4)</span></div>
+</td></tr>
+<tr>
+<td>JS
+</td>
+<td><div class="lint-chips"><span class="lint-chip">prettier (5)</span><span class="lint-chip">biome (1)</span></div>
+</td></tr>
+<tr>
+<td>CSS
+</td>
+<td><div class="lint-chips"><span class="lint-chip">prettier (3)</span><span class="lint-chip">biome (1)</span></div>
+</td></tr>
+<tr>
+<td>JSON
+</td>
+<td><div class="lint-chips"><span class="lint-chip">prettier (10)</span><span class="lint-chip">biome (4)</span><span class="lint-chip">banana (3)</span></div>
+</td></tr>
+<tr>
+<td>YAML
+</td>
+<td><div class="lint-chips"><span class="lint-chip">prettier (10)</span><span class="lint-chip">yamllint (8)</span></div>
+</td></tr>
+<tr>
+<td>Actions
+</td>
+<td><div class="lint-chips"><span class="lint-chip">zizmor (14)</span><span class="lint-chip">prettier (11)</span><span class="lint-chip">yamllint (8)</span><span class="lint-chip">actionlint (5)</span></div>
+</td></tr>
+<tr>
+<td>Markdown
+</td>
+<td><div class="lint-chips"><span class="lint-chip">prettier (11)</span><span class="lint-chip">rumdl (10)</span></div>
+</td></tr>
+<tr>
+<td>Shell
+</td>
+<td><div class="lint-chips"><span class="lint-chip">shellcheck (4)</span></div>
+</td></tr>
+<tr>
+<td>Lua
+</td>
+<td><div class="lint-chips"><span class="lint-chip">luacheck (1)</span><span class="lint-chip">stylua (1)</span></div>
+</td></tr>
+<tr>
+<td>Dockerfile
+</td>
+<td><div class="lint-chips"><span class="lint-chip">hadolint (2)</span></div>
+</td></tr>
+<tr>
+<td>TOML
+</td>
+<td><div class="lint-chips"><span class="lint-chip">taplo (11)</span></div>
+</td></tr>
+<tr>
+<td>Caddyfile
+</td>
+<td><div class="lint-chips"><span class="lint-chip">caddy fmt (2)</span></div>
 </td></tr></tbody></table>
 <div class="mw-heading mw-heading2"><h2 id="저장소별"><span id=".EC.A0.80.EC.9E.A5.EC.86.8C.EB.B3.84"></span>저장소별</h2></div>
 <table class="wikitable lint-table">
