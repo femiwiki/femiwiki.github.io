@@ -51,6 +51,9 @@ local function count(set)
 end
 
 local function gapTable(rows)
+  if #rows == 0 then
+    return {}
+  end
   return { '{| class="wikitable lint-table"', '! 종류 !! 저장소 (파일 수)', table.concat(rows, '\n'), '|}' }
 end
 
