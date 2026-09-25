@@ -37,7 +37,21 @@
         },
         "py": {
           "files": 1,
-          "tools": []
+          "tools": [
+            {
+              "name": "ruff",
+              "required": true
+            }
+          ]
+        },
+        "toml": {
+          "files": 2,
+          "tools": [
+            {
+              "name": "taplo",
+              "required": true
+            }
+          ]
         },
         "yaml": {
           "files": 3,
@@ -436,8 +450,13 @@
           ]
         },
         "toml": {
-          "files": 2,
-          "tools": []
+          "files": 3,
+          "tools": [
+            {
+              "name": "taplo",
+              "required": true
+            }
+          ]
         },
         "yaml": {
           "files": 3,
@@ -512,8 +531,13 @@
           ]
         },
         "toml": {
-          "files": 2,
-          "tools": []
+          "files": 3,
+          "tools": [
+            {
+              "name": "taplo",
+              "required": true
+            }
+          ]
         },
         "yaml": {
           "files": 6,
@@ -602,7 +626,12 @@
         },
         "sh": {
           "files": 1,
-          "tools": []
+          "tools": [
+            {
+              "name": "shellcheck",
+              "required": true
+            }
+          ]
         },
         "yaml": {
           "files": 5,
@@ -616,15 +645,6 @@
       }
     },
     {
-      "name": "docker-poolcounter",
-      "kinds": {
-        "md": {
-          "files": 1,
-          "tools": []
-        }
-      }
-    },
-    {
       "name": "femiwiki",
       "kinds": {
         "actions": {
@@ -632,7 +652,7 @@
           "tools": [
             {
               "name": "prettier",
-              "required": false
+              "required": true
             },
             {
               "name": "zizmor",
@@ -645,7 +665,7 @@
           "tools": [
             {
               "name": "prettier",
-              "required": false
+              "required": true
             }
           ]
         },
@@ -654,7 +674,7 @@
           "tools": [
             {
               "name": "prettier",
-              "required": false
+              "required": true
             }
           ]
         },
@@ -663,7 +683,7 @@
           "tools": [
             {
               "name": "prettier",
-              "required": false
+              "required": true
             }
           ]
         }
@@ -775,7 +795,7 @@
           "tools": [
             {
               "name": "yamllint",
-              "required": false
+              "required": true
             },
             {
               "name": "zizmor",
@@ -788,7 +808,7 @@
           "tools": [
             {
               "name": "rumdl",
-              "required": false
+              "required": true
             }
           ]
         },
@@ -797,7 +817,7 @@
           "tools": [
             {
               "name": "parallel-lint",
-              "required": false
+              "required": true
             }
           ]
         },
@@ -806,7 +826,7 @@
           "tools": [
             {
               "name": "shellcheck",
-              "required": false
+              "required": true
             }
           ]
         },
@@ -820,15 +840,20 @@
           ]
         },
         "toml": {
-          "files": 2,
-          "tools": []
+          "files": 3,
+          "tools": [
+            {
+              "name": "taplo",
+              "required": true
+            }
+          ]
         },
         "yaml": {
           "files": 6,
           "tools": [
             {
               "name": "yamllint",
-              "required": false
+              "required": true
             }
           ]
         }
@@ -1198,7 +1223,12 @@
       "kinds": {
         "actions": {
           "files": 1,
-          "tools": []
+          "tools": [
+            {
+              "name": "actionlint",
+              "required": true
+            }
+          ]
         },
         "md": {
           "files": 1,
