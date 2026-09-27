@@ -1,8 +1,10 @@
 ---
 extensions:
+  - Chart
   - Cite
   - Details
   - DynamicPageList4
+  - JsonConfig
   - ParserFunctions
   - Scribunto
   - TemplateStyles
@@ -36,7 +38,31 @@ config:
   WikvenEditUrl: https://github.com/femiwiki/femiwiki.github.io/edit/main/$1
   WikvenHistoryUrl: https://github.com/femiwiki/femiwiki.github.io/commits/main/$1
   WikvenViewSourceUrl: https://github.com/femiwiki/femiwiki.github.io/blob/main/$1
+  # 가용성의 월별 차트. 두 확장이 Data: 이름공간을 나눠 가지고, 굽는 동안 렌더러가 그림을 그립니다.
+  JsonConfigModels:
+    Tabular.JsonConfig: JsonConfig\JCTabularContent
+    Chart.JsonConfig: MediaWiki\Extension\Chart\JCChartContent
+  JsonConfigs:
+    Tabular.JsonConfig:
+      namespace: 486
+      nsName: Data
+      pattern: '/.\.tab$/'
+      license: CC0-1.0
+      isLocal: true
+    Chart.JsonConfig:
+      namespace: 486
+      nsName: Data
+      pattern: '/.\.chart$/'
+      license: CC0-1.0
+      isLocal: true
+  ChartServiceUrl: http://host.docker.internal:6284/v1/chart/render
   WikvenRepositories:
+    Chart:
+      repository: https://github.com/wikimedia/mediawiki-extensions-Chart.git
+      commit: 831c1d06d879e2b5eec26705ddbeaf9f36392e08
+    JsonConfig:
+      repository: https://github.com/wikimedia/mediawiki-extensions-JsonConfig.git
+      commit: 75ed9e28183e8024e803ddf99a73cb79a48a0528
     Details:
       tarball: https://github.com/theapplewiki/mediawiki-extensions-Details/archive/refs/tags/1.2.1.tar.gz
       sha256: c1cd8bab8f02d10d5e179906711b4498ade75a9a1cc259f59d85d11638bacb7b
