@@ -2,7 +2,7 @@
     "license": "CC0-1.0",
     "version": 1,
     "source": "가용성.tab",
-    "type": "line",
+    "type": "bar",
     "xAxis": {
         "title": {
             "ko": "달"
