@@ -4,6 +4,7 @@ extensions:
   - Cite
   - Details
   - DynamicPageList4
+  - Gadgets
   - JsonConfig
   - ParserFunctions
   - Scribunto

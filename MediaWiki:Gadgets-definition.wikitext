@@ -1,0 +1,2 @@
+* CostTreeToggle[ResourceLoader|default]|CostTreeToggle.js
+* CostFreeSwitch[ResourceLoader|default]|CostFreeSwitch.js
