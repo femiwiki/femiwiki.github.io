@@ -37,6 +37,9 @@ jobs:
       - name: Write the availability chart's data
         run: scripts/availability-chart.sh
 
+      - name: Write the cost charts' data
+        run: scripts/cost-chart.sh
+
       - id: renderer
         name: Start the chart renderer
         run: scripts/chart-renderer.sh >> "$GITHUB_OUTPUT"

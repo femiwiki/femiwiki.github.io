@@ -32,6 +32,10 @@ jobs:
         if: github.event.action != 'closed'
         run: scripts/availability-chart.sh
 
+      - name: Write the cost charts' data
+        if: github.event.action != 'closed'
+        run: scripts/cost-chart.sh
+
       - id: renderer
         name: Start the chart renderer
         if: github.event.action != 'closed'

@@ -1,0 +1,9 @@
+{
+    "license": "CC0-1.0",
+    "version": 1,
+    "source": "비용.tab",
+    "type": "pie",
+    "yAxis": {
+        "format": "auto"
+    }
+}
