@@ -2,7 +2,8 @@
 	margin: 0.25em 0 0.25em 1em;
 }
 
-.cost-tree > details {
+.cost-tree > details,
+.cost-tree > .cost-free > details {
 	margin-left: 0;
 }
 
@@ -31,4 +32,8 @@
 
 .cost-tree-all {
 	margin-bottom: 0.5em;
+}
+
+.cost-tree:not(.cost-show-free) .cost-free {
+	display: none;
 }

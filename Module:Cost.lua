@@ -256,9 +256,10 @@ function p.month(frame)
   if bill then
     out[#out + 1] = ''
     out[#out + 1] = frame:extensionTag('templatestyles', '', { src = 'Cost/styles.css' })
-    local function node(name, amount, inner)
+    local function node(name, amount, inner, free)
       local summary = frame:extensionTag('summary', name .. amountTag(amount))
-      return frame:extensionTag('details', summary .. '\n' .. inner)
+      local details = frame:extensionTag('details', summary .. '\n' .. inner)
+      return free and '<div class="cost-free">' .. details .. '</div>' or details
     end
     -- Usage of a service, region or group: what its items cost before credits.
     local function usageOf(t)
@@ -273,9 +274,32 @@ function p.month(frame)
       end
       return sum
     end
-    -- Anything that cost nothing and was credited nothing is left out.
-    local function empty(t)
+    -- Usage too small to show as anything but 0 counts as none.
+    local function counted(i)
+      return i.usage and math.abs(i.usage) >= 0.0005
+    end
+    -- Whether anything under a service, region or group was used at all.
+    local function used(t)
+      for _, i in ipairs(t.items or {}) do
+        if counted(i) then
+          return true
+        end
+      end
+      for _, child in ipairs(t.groups or t.regions or {}) do
+        if used(child) then
+          return true
+        end
+      end
+      return false
+    end
+    -- Anything that cost nothing and was credited nothing is free; the free ones that were
+    -- used, like the free tier, are drawn but hidden until the reader asks for them, and
+    -- the rest are left out.
+    local function free(t)
       return math.abs(t.amount) < 0.005 and math.abs(usageOf(t)) < 0.005
+    end
+    local function empty(t)
+      return free(t) and not used(t)
     end
     local byName = {}
     for _, s in ipairs(bill.services) do
@@ -293,19 +317,26 @@ function p.month(frame)
               if not empty(g) then
                 local lines = { '{| class="wikitable"', '! 항목 !! 사용량 !! 금액 (USD)' }
                 for _, i in ipairs(g.items) do
-                  if math.abs(i.amount) >= 0.005 then
+                  local cost = math.abs(i.amount) >= 0.005
+                  if cost or counted(i) then
                     local usage = ''
-                    if i.usage and i.usage ~= 0 then
+                    if counted(i) then
                       usage = commas(string.format('%.3f', i.usage)):gsub('%.?0+$', '') .. ' ' .. (i.unit or '')
                     end
-                    lines[#lines + 1] = string.format('|-\n| %s\n| %s\n| %s', i.description, usage, usd(i.amount))
+                    lines[#lines + 1] = string.format(
+                      '|-%s\n| %s\n| %s\n| %s',
+                      cost and '' or ' class="cost-free"',
+                      i.description,
+                      usage,
+                      usd(i.amount)
+                    )
                   end
                 end
                 lines[#lines + 1] = '|}'
-                groups[#groups + 1] = node(g.name or '기타', g.amount, table.concat(lines, '\n'))
+                groups[#groups + 1] = node(g.name or '기타', g.amount, table.concat(lines, '\n'), free(g))
               end
             end
-            regions[#regions + 1] = node(r.name, r.amount, table.concat(groups, '\n'))
+            regions[#regions + 1] = node(r.name, r.amount, table.concat(groups, '\n'), free(r))
           end
         end
         local label = s.name
@@ -317,7 +348,7 @@ function p.month(frame)
             usd(row.usage - s.amount)
           )
         end
-        tree[#tree + 1] = node(label, s.amount, table.concat(regions, '\n'))
+        tree[#tree + 1] = node(label, s.amount, table.concat(regions, '\n'), free(s))
       end
     end
     out[#out + 1] = '<div class="cost-tree">\n' .. table.concat(tree, '\n') .. '\n</div>'
