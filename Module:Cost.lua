@@ -248,6 +248,11 @@ function p.month(frame)
     out[#out + 1] = string.format('%s AWS 청구 %s.', m, billed)
   end
 
+  if mw.title.new('Data:비용/' .. m .. '.tab').exists then
+    out[#out + 1] = ''
+    out[#out + 1] = frame:preprocess('{{#chart:비용.chart|data=비용/' .. m .. '.tab}}')
+  end
+
   if bill then
     out[#out + 1] = ''
     out[#out + 1] = frame:extensionTag('templatestyles', '', { src = 'Cost/styles.css' })
