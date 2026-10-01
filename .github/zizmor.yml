@@ -1,0 +1,5 @@
+---
+rules:
+  # actionlint rejects the `$/` syntax this asks for: https://github.com/rhysd/actionlint/issues/711
+  self-repository:
+    disable: true
