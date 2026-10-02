@@ -1,0 +1,1 @@
+{"hosts":{},"hours":720,"month":"2026-09","stats":{"CPUCreditBalance":"Average","CPUSurplusCreditsCharged":"Sum","CPUUtilization":"Average","NetworkIn":"Sum","NetworkOut":"Sum","StatusCheckFailed":"Maximum","VolumeReadBytes":"Sum","VolumeWriteBytes":"Sum"}}

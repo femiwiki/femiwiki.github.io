@@ -1,0 +1,35 @@
+[
+  {
+    "accountHasCreditSharingEnabled": false,
+    "applicationType": "BeforeCrossServiceDiscounts",
+    "closingAmount": 0,
+    "creditConsoleVisibility": "DISPLAY_ALL",
+    "creditSharingType": "DEFAULT",
+    "creditStatus": "ENABLED",
+    "creditType": "Promotion",
+    "description": "AWS TechSoup August 2025",
+    "endDate": "2026-10-31T23:59:59+00:00",
+    "exhaustDate": "2026-05-01T23:21:44+00:00",
+    "initialAmount": {
+      "currencyAmount": "1000.000000",
+      "currencyCode": "USD"
+    },
+    "startDate": "2025-09-01T00:00:00+00:00"
+  },
+  {
+    "accountHasCreditSharingEnabled": false,
+    "applicationType": "AfterDiscounts",
+    "closingAmount": 888.95,
+    "creditConsoleVisibility": "DISPLAY_ALL",
+    "creditSharingType": "DEFAULT",
+    "creditStatus": "ENABLED",
+    "creditType": "Promotion",
+    "description": "AWS TechSoup August 2026",
+    "endDate": "2027-11-30T23:59:59+00:00",
+    "initialAmount": {
+      "currencyAmount": "1000.000000",
+      "currencyCode": "USD"
+    },
+    "startDate": "2026-09-01T00:00:00+00:00"
+  }
+]
