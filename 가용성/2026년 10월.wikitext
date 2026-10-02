@@ -1,0 +1,2 @@
+{{사고 목록|달=2026년 10월}}
+{{#invoke:Availability.lua|month|2026-10}}
