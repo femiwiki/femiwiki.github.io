@@ -1,5 +1,5 @@
 <templatestyles src="Availability/styles.css" /><div class="av-report">
-<div class="av-when">{{{시작}}}{{#if:{{{끝|}}}|부터 {{{끝}}}까지}} · [[가용성/{{#time:Y년 n월|{{{시작}}}}}|그 달의 가용성]]</div>
+<div class="av-when">{{시각|{{{시작}}}}}{{#if:{{{끝|}}}|부터 {{시각|{{{끝}}}}}까지}}{{#ifeq:{{#time:Y-m-d H:i|{{{시작}}}}}|{{{시작}}}|&#32;({{시간대}})|{{#ifeq:{{#time:Y-m-d H:i|{{{끝|}}}}}|{{{끝|}}}|&#32;({{시간대}})}}}} · [[가용성/{{#time:Y년 n월|{{{시작}}}}}|그 달의 가용성]]</div>
 {{{요약}}}
 </div><includeonly>[[Category:사고 보고서|{{{시작}}}]]</includeonly><noinclude>
 사고 보고서 문서의 맨 위에 둡니다. 기간과 요약을 머리에 보이고, 문서를 [[:Category:사고 보고서]]에 넣습니다. [[가용성]]과 월 문서는 여기 적은 값으로 사고 목록을 만듭니다.

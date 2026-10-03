@@ -1,2 +1,3 @@
 * CostTreeToggle[ResourceLoader|default]|CostTreeToggle.js
 * CostFreeSwitch[ResourceLoader|default]|CostFreeSwitch.js
+* LocalTime[ResourceLoader|dependencies=oojs-ui-core|default]|LocalTime.js
