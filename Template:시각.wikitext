@@ -1,0 +1,8 @@
+{{#ifeq:{{#time:Y-m-d H:i|{{{1}}}}}|{{{1}}}|<span class="fw-time {{#if:{{{2|}}}|fw-time-short}}" data-time="{{{1}}}">{{{2|{{{1}}}}}}</span>|{{{1}}}}}<noinclude>
+한국 시간 <code>YYYY-MM-DD HH:MM</code>을 받아 그대로 보이고, [[미디어위키:Gadget-LocalTime.js|소도구]]가 이용자 브라우저의 시간대로 바꿔 보입니다. 시간대가 한국과 같으면 바뀌지 않습니다.
+
+* <code><nowiki>{{시각|2026-09-25 06:02}}</nowiki></code>: 날짜와 시각을 모두 보입니다.
+* <code><nowiki>{{시각|2026-09-25 06:02|06:02}}</nowiki></code>: 둘째 값을 보입니다. 소도구는 시각만 보이고, 앞선 <code><nowiki>{{시각}}</nowiki></code>과 날짜가 다를 때만 날짜를 붙입니다. 사고 보고서의 타임라인 표에 씁니다.
+
+분까지 적지 않은 값(<code>2021-04-13</code>, <code>2021-04</code>)은 바꾸지 않고 그대로 보입니다.
+</noinclude>
