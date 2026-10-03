@@ -42,10 +42,13 @@
 수치는 Grafana Cloud Loki의 Caddy 접근 로그에서 잰 것입니다.<ref>https://github.com/femiwiki/caddy-mwcache/issues/165</ref>
 
 == 알림 ==
-아무 알림도 울리지 않았습니다. Route 53 상태 확인은 <code>/w/</code> 아래의 실제 문서를, Grafana의 확인은 <code>api.php</code>와 사이트맵을 요청하는데, 어느 것도 넘겨주기를 거치지 않아 계속 정상으로 보였습니다.
+아무 알림도 울리지 않았습니다. Route 53 상태 확인은 <code>/w/</code> 아래의 실제 문서를, Grafana의 확인은 <code>api.php</code>와 사이트맵을 요청하는데, 어느 것도 넘겨주기를 거치지 않아 계속 정상으로 보였습니다. Route 53 상태 확인은 2xx면 본문이 비어도 정상으로 보므로, <code>/</code>를 요청했더라도 알아채지 못했을 것입니다. 접근 로그로 사이트가 멈췄는지 보는 Grafana 알림은 2xx 응답만 세는데, 다른 문서가 계속 2xx로 나갔으므로 상태 0 응답이 늘어도 반응하지 않았습니다.
 
 == 고친 것 ==
 * (작성 중) 캐시 모듈이 본문 없는 응답도 상태 코드와 헤더를 내보내게 고칩니다.<ref>https://github.com/femiwiki/caddy-mwcache/pull/166</ref>
+
+== 남은 문제 ==
+* 첫 주소나 넘겨주기가 빈 응답을 돌려줘도 알아챌 감시가 없습니다. 상태 0 응답에 대한 알림과, 첫 주소를 열어 문서 제목을 확인하는 감시를 [https://github.com/femiwiki/infra/issues/1103 infra#1103]에서 다룹니다.
 
 == 출처 ==
 <references />
