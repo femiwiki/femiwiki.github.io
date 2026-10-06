@@ -6,7 +6,7 @@
 set -euo pipefail
 out=$1
 month=$2
-bucket="cost-exports-$(aws sts get-caller-identity --query Account --output text 2>/dev/null || echo 0)-ap-northeast-1-an"
+bucket="cost-exports-$(aws sts get-caller-identity --query Account --output text 2>/dev/null || echo 0)-ap-northeast-2-an"
 prefix="cost-and-usage/femiwiki-cost-and-usage/data/BILLING_PERIOD=$month/"
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
