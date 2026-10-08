@@ -1,0 +1,5 @@
+<span class="fw-time-zone">한국 시간</span><noinclude>
+[[틀:시각]]으로 적은 시각이 어느 시간대인지 보입니다. [[미디어위키:Gadget-LocalTime.js|소도구]]가 시각을 다른 시간대로 바꾸면 이 글자도 <code>GMT-7</code>처럼 그 시간대로 바뀝니다. 기준은 같은 표나 기간 줄 안의 첫 [[틀:시각]]입니다.
+
+사고 보고서의 타임라인 표는 머리를 <code><nowiki>! 시각 ({{시간대}}) !! 일어난 일</nowiki></code>로 적습니다.
+</noinclude>
