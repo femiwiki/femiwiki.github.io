@@ -1,0 +1,67 @@
+{{사고 보고서
+|시작 = 2026-10-11 02:47
+|끝 = 2026-10-11 02:59
+|요약 = {{시각|2026-10-11 02:47|10월 11일 2시 47분}}부터 {{시각|2026-10-11 02:59|2시 59분}}까지 12분 동안 캐시에 없는 페미위키 문서는 10초가 지나서야 열렸고, 편집 저장이나 로그인처럼 내용을 보내는 요청은 503 오류를 받았습니다. 10초를 기다리지 못하고 끊긴 요청까지 더해 웹 서버 응답의 24%가 503이었습니다. 새 이미지가 웹 서버의 PHP 상태 확인이 찾던 파일을 지웠기 때문이고, 이미지를 이전 것으로 되돌려 고쳤습니다. 배포 전 확인은 모두 이 상태 확인을 거치지 않아 배포는 성공으로 끝났고, 웹 서버 설정을 고쳐 새 이미지를 다시 내보내는 일은 아직 남아 있습니다.
+}}
+
+{| class="wikitable"
+! 시각 ({{시간대}}) !! 일어난 일
+|-
+| {{시각|2026-10-11 02:46:39|02:46:39}} || 이미지 <code>2026-10-10T17-40-7971f4dd</code>를 98번째 세대로 배포하기 시작함<ref>https://github.com/femiwiki/infra/pull/1293</ref>
+|-
+| {{시각|2026-10-11 02:47:16|02:47:16}} || 새 웹 서버(<code>http-98</code>)가 요청을 받기 시작함
+|-
+| {{시각|2026-10-11 02:47:20|02:47:20}} || 새 PHP 컨테이너의 예열 요청 세 개가 모두 200을 받음
+|-
+| {{시각|2026-10-11 02:47:29|02:47:29}} || 캐시에 없는 요청이 10초씩 기다리기 시작함
+|-
+| {{시각|2026-10-11 02:47:42|02:47:42}} || 이용자에게 첫 503이 나감
+|-
+| {{시각|2026-10-11 02:48:13|02:48:13}} || 배포가 성공으로 끝남
+|-
+| {{시각|2026-10-11 02:53:59|02:53:59}} || 97번째 세대의 이미지로 되돌리는 99번째 세대 배포를 시작함
+|-
+| {{시각|2026-10-11 02:54:01|02:54:01}} || Route 53의 특수:빈문서 확인 경보가 울림
+|-
+| {{시각|2026-10-11 02:56:35|02:56:35}} || 되돌리는 배포가 세대 번호 확인에서 멈춤. 아무것도 바뀌지 않음
+|-
+| {{시각|2026-10-11 02:57:21|02:57:21}} || 세대 번호를 고쳐 되돌리는 배포를 다시 시작함<ref name="run">https://github.com/femiwiki/infra/actions/runs/38073827571</ref>
+|-
+| {{시각|2026-10-11 02:59:26|02:59:26}} || 마지막 503이 나감
+|-
+| {{시각|2026-10-11 02:59:33|02:59:33}} || 99번째 세대의 웹 서버(<code>http-99</code>)가 요청을 받기 시작함
+|-
+| {{시각|2026-10-11 02:59:59|02:59:59}} || 되돌리는 배포가 끝남
+|-
+| {{시각|2026-10-11 03:03:01|03:03:01}} || 특수:빈문서 확인 경보가 풀림
+|}
+
+== 원인 ==
+[https://github.com/femiwiki/docker-mediawiki/pull/1479 docker-mediawiki#1479]는 웹 루트를 미디어위키 전체에서 <code>/srv/docroot</code>로 줄이는 작업의 4단계로,<ref name="dm1333">https://github.com/femiwiki/docker-mediawiki/issues/1333</ref> 옛 웹 루트 <code>/srv/femiwiki.com</code>에 한 세대 동안 남겨 두었던 링크 다섯 개를 지웠습니다.<ref>https://github.com/femiwiki/docker-mediawiki/blob/5e8a1bf82617c6219319770d64bf0b271dba6374/dockers/femiwiki/Dockerfile#L86-L90</ref> 그 가운데 <code>healthz.php</code>가 있었습니다.
+
+웹 서버 Caddy는 PHP 컨테이너의 포트에 1초마다 <code>/healthz.php</code>를 물어 건강한 포트로만 요청을 보냅니다.<ref>https://github.com/femiwiki/infra/blob/3173ce613a3e2b45f639c03e8937b8f7b102ee47/serving/Caddyfile#L344-L347</ref> 이 상태 확인은 사이트의 웹 루트가 아니라 Caddy가 실행된 디렉터리를 기준으로 파일 경로를 만드는데,<ref>https://github.com/caddyserver/caddy/blob/72dd0fb067f6d7826c7f79907670ba4a713bfe37/modules/caddyhttp/reverseproxy/fastcgi/fastcgi.go#L284</ref> Caddy는 <code>/srv/femiwiki.com</code>에서 실행됩니다.<ref>https://github.com/femiwiki/docker-mediawiki/blob/7971f4dd9b59101a89a1012a4ee448a385a866b4/dockers/femiwiki/caddy-run#L6</ref> 그래서 상태 확인은 웹 루트를 옮긴 3단계 뒤에도 링크로만 남은 <code>/srv/femiwiki.com/healthz.php</code>를 물었고, 링크가 사라진 98번째 세대에서는 PHP 컨테이너가 멀쩡한데도 건강한 포트가 하나도 없다고 판정했습니다.
+
+건강한 포트가 없으면 Caddy는 10초 동안 기다린 뒤 503을 냅니다.<ref>https://github.com/femiwiki/infra/blob/3173ce613a3e2b45f639c03e8937b8f7b102ee47/serving/Caddyfile#L343</ref> 이 503은 대체 경로가 받아서, GET과 HEAD 요청은 상태 확인 없이 PHP로 다시 보내고 나머지에는 503을 그대로 돌려줍니다.<ref>https://github.com/femiwiki/infra/blob/3173ce613a3e2b45f639c03e8937b8f7b102ee47/serving/Caddyfile#L351-L380</ref> 그래서 캐시에 없는 읽기는 모두 10초 늦게 답을 받았고, 편집 저장이나 로그인 같은 POST 요청은 실패했습니다.
+
+{{시각|2026-10-11 02:47:16|2시 47분 16초}}부터 {{시각|2026-10-11 02:59:36|2시 59분 36초}}까지 <code>http-98</code>이 받은 요청 1,645건 가운데 1,009건(61%)이 10초를 기다려 대체 경로로 갔습니다. 그 가운데 633건은 답을 받았고(200이 567건), 376건은 503으로 남았습니다. 376건 가운데 363건은 대체 경로가 PHP에 연결하려 할 때 요청이 이미 취소되어 있었습니다. 10초를 기다리지 않고 끊긴 요청으로, Route 53 상태 확인 132건이 모두 이렇게 끝났습니다. 대체 경로를 거치지 않은 503은 POST 23건이어서 503은 모두 399건(24%)입니다. 대체 경로를 거치지 않은 200 593건은 PHP를 거치지 않은 캐시된 응답과 정적 파일입니다. Route 53 상태 확인 283건을 빼면 1,362건 가운데 877건(64%)이 10초를 기다렸고 267건(20%)이 503이었습니다. 되돌린 뒤 <code>http-99</code>는 {{시각|2026-10-11 03:05|3시 5분}}까지 708건에 답했고 5xx는 없었습니다. 수치는 모두 Grafana Cloud Loki에 남은 웹 서버 접근 로그와 오류 로그(<code>http-97</code>, <code>http-98</code>, <code>http-99</code>)에서 센 것입니다.
+
+=== 왜 배포가 통과했나 ===
+배포는 새 컨테이너가 건강하다고 답한 뒤 옛 세대를 지웁니다. 그 사이의 확인 가운데 Caddy의 상태 확인과 같은 경로를 묻는 것은 없었습니다.<ref name="infra1281">https://github.com/femiwiki/infra/issues/1281</ref>
+* 배포 계획 단계의 설정 확인([https://github.com/femiwiki/infra/pull/1282 infra#1282])은 [[가용성/2026년 10월 11일 01시 사고|1시 사고]] 뒤에 더한 것으로, 새 PHP 이미지가 설정을 읽는지만 봅니다.<ref>https://github.com/femiwiki/infra/blob/3173ce613a3e2b45f639c03e8937b8f7b102ee47/.github/workflows/tofu.yml#L145-L170</ref> 웹 서버를 거치지 않으므로 이번에도 통과했습니다.
+* PHP 컨테이너의 예열 확인([https://github.com/femiwiki/docker-mediawiki/pull/1477 docker-mediawiki#1477])도 1시 사고 뒤에 더한 것으로, PHP에 직접 문서 세 개를 요청해 5xx가 나오면 컨테이너가 요청을 받지 않게 합니다.<ref>https://github.com/femiwiki/docker-mediawiki/blob/7971f4dd9b59101a89a1012a4ee448a385a866b4/dockers/femiwiki/warm-up.php#L125-L129</ref> docker-mediawiki#1479는 예열이 묻는 경로도 <code>/srv/docroot</code>로 바꾸었으므로<ref>https://github.com/femiwiki/docker-mediawiki/blob/7971f4dd9b59101a89a1012a4ee448a385a866b4/dockers/femiwiki/warm-up.php#L52</ref> 예열은 세 문서 모두 200을 받았습니다.
+* PHP 컨테이너의 건강 검사는 웹 루트 밖의 검사 스크립트를, 웹 서버의 건강 검사는 Caddy가 PHP 없이 답하는 주소를 묻습니다.<ref>https://github.com/femiwiki/infra/blob/3173ce613a3e2b45f639c03e8937b8f7b102ee47/docker/container.tf#L21</ref><ref>https://github.com/femiwiki/infra/blob/3173ce613a3e2b45f639c03e8937b8f7b102ee47/docker/container.tf#L177</ref>
+1시 사고 뒤에 더한 확인은 PHP가 설정을 읽지 못하는 경우를 막는 것이라, PHP는 멀쩡하고 웹 서버가 PHP를 찾지 못하는 이번 경우는 다루지 않았습니다.
+
+== 알림 ==
+Grafana 경보는 이 사고 동안 하나도 상태가 바뀌지 않았습니다. 서버 오류 경보와 사이트 다운 경보는 대체 경로의 응답을 세지 않는데, 대체 경로를 거치지 않은 503은 POST 23건뿐이었고 캐시된 정상 응답은 계속 나갔습니다. 2분 동안 요청의 30%가 넘게 실패하면 울리게 [https://github.com/femiwiki/infra/pull/1286 infra#1286]에서 더한 경보는 이때 Grafana에 없었고, 있었더라도 같은 까닭으로 울리지 않았을 것입니다. Route 53의 특수:빈문서 확인 경보가 {{시각|2026-10-11 02:54:01|2시 54분 1초}}에 울렸고 {{시각|2026-10-11 03:03:01|3시 3분 1초}}에 풀렸습니다. 페미위키:대문 확인은 웹 서버 캐시가 대문을 내주어 끝까지 정상이었습니다.
+
+== 고친 것 ==
+* 이미지를 97번째 세대가 쓰던 <code>2026-10-10T17-04-5e8a1bf8</code>로 되돌려 99번째 세대로 배포했습니다.<ref name="run" /> [https://github.com/femiwiki/infra/pull/1294 infra#1294]가 저장소를 그에 맞추었습니다. 첫 시도는 세대 번호를 커밋에 넣지 않아 세대 번호 확인에서 멈췄고, 이 때문에 복구가 2분쯤 늦어졌습니다.
+
+== 남은 문제 ==
+* Caddy의 상태 확인이 웹 루트를 묻게 하는 변경을 [https://github.com/femiwiki/infra/pull/1296 infra#1296]에서 하고 있고, 그것이 배포된 뒤 docker-mediawiki#1479를 다시 내보냅니다. 진행은 [https://github.com/femiwiki/docker-mediawiki/issues/1333 docker-mediawiki#1333]에 있습니다.
+* 배포 전 확인은 새 세대를 웹 서버를 거쳐 열어 보지 않습니다. [https://github.com/femiwiki/infra/issues/1104 infra#1104]에서 다룹니다.
+* 되돌리기 절차에서 세대 번호를 커밋하는 단계를 [https://github.com/femiwiki/infra/pull/1295 infra#1295]에서 고치고 있습니다.
+
+== 출처 ==
+<references />
