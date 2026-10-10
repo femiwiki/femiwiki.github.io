@@ -63,6 +63,7 @@ Route 53의 특수:빈문서 확인 경보가 {{시각|2026-10-11 02:54:01|2시 
 
 == 고친 것 ==
 * 이미지를 97번째 세대가 쓰던 <code>2026-10-10T17-04-5e8a1bf8</code>로 되돌려 99번째 세대로 배포했습니다.<ref name="run" /> [https://github.com/femiwiki/infra/pull/1294 infra#1294]가 저장소를 그에 맞추었습니다. 첫 시도는 세대 번호를 커밋에 넣지 않아 세대 번호 확인에서 멈췄고, 이 때문에 복구가 2분쯤 늦어졌습니다.
+* 되돌리기 절차에 세대 번호를 커밋하는 단계를 넣었습니다. [https://github.com/femiwiki/infra/pull/1295 infra#1295]에서 고쳐 {{시각|2026-10-11 03:04:54|3시 4분 54초}}에 반영했습니다.
 * 서버 오류 경보와 2분 경보가 대체 경로의 503도 세게 하고, 지워진 2분 경보를 되살렸습니다. [https://github.com/femiwiki/infra/pull/1297 infra#1297]에서 고쳐 {{시각|2026-10-11 03:11|3시 11분}}에 적용했습니다. 접근 로그로 다시 세면 이번 사고에서 서버 오류 경보는 {{시각|2026-10-11 02:57|2시 57분}}쯤 울렸을 것입니다.
 * Caddy의 상태 확인이 실행 디렉터리가 아니라 웹 루트 <code>/srv/docroot</code>를 기준으로 경로를 만들게 했습니다. [https://github.com/femiwiki/infra/pull/1296 infra#1296]에서 고쳐 {{시각|2026-10-11 03:21:39|3시 21분 39초}}에 100번째 세대로 적용했고, 그 뒤 9분 동안 <code>http-100</code>이 받은 1,606건 가운데 5xx와 대체 경로 응답은 없었습니다.
 * docker-mediawiki#1479를 담은 이미지 <code>2026-10-10T18-27-a531a71f</code>를 다시 내보냈습니다. [https://github.com/femiwiki/infra/pull/1299 infra#1299]로 {{시각|2026-10-11 03:38:32|3시 38분 32초}}에 101번째 세대로 적용했고, 그 뒤 9분 동안 <code>http-101</code>이 받은 957건 가운데 5xx와 대체 경로 응답은 없었으며 예열도 <code>/srv/docroot</code>를 거쳐 세 문서 모두 200을 받았습니다. 웹 루트를 줄이는 작업은 [https://github.com/femiwiki/docker-mediawiki/issues/1333 docker-mediawiki#1333]에서 마쳤습니다.
@@ -70,7 +71,6 @@ Route 53의 특수:빈문서 확인 경보가 {{시각|2026-10-11 02:54:01|2시 
 == 남은 문제 ==
 * 배포 전 확인은 새 세대를 웹 서버를 거쳐 열어 보지 않습니다. [https://github.com/femiwiki/infra/issues/1104 infra#1104]에서 다룹니다.
 * main보다 오래된 코드로 계획한 적용이 그 사이 main이 적용한 것을 되돌릴 수 있습니다. 적용 직전에 이를 막는 확인을 [https://github.com/femiwiki/infra/issues/1298 infra#1298]에서 다룹니다.
-* 되돌리기 절차에서 세대 번호를 커밋하는 단계를 [https://github.com/femiwiki/infra/pull/1295 infra#1295]에서 고치고 있습니다.
 
 == 출처 ==
 <references />
