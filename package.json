@@ -1,6 +1,7 @@
 {
 	"private": true,
 	"scripts": {
+		"test": "node --test .github/scripts/*.test.mts",
 		"typecheck": "tsc"
 	},
 	"devDependencies": {

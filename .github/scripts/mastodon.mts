@@ -8,20 +8,35 @@ import type * as Core from "@actions/core";
 const LIMIT = 500;
 const LINK = 23;
 
-export function summary(wikitext: string): string | undefined {
-	const block = wikitext.match(/\{\{사고 보고서([\s\S]*?)\n\}\}/)?.[1];
-	const text = block?.match(/\n\|\s*요약\s*=\s*([\s\S]*?)(?=\n\||$)/)?.[1];
-	if (text === undefined) return undefined;
-	return text
-		.replace(/\[\[(?:[^\]|]*\|)?([^\]]*)\]\]/g, "$1")
-		.replace(/\[https?:\/\/\S+ ([^\]]*)\]/g, "$1")
-		.replace(/'''?/g, "")
+// The summary as the built page shows it, so templates are already expanded:
+// the paragraph after the dates in the report box Template:사고 보고서 draws
+export function summary(html: string): string | undefined {
+	const box = html.match(
+		/<div class="av-report">\s*<div class="av-when">[\s\S]*?<\/div>\s*<p>([\s\S]*?)<\/p>/,
+	)?.[1];
+	if (box === undefined) return undefined;
+	// A missing template renders as a red link, a broken one as an error
+	if (/class="(?:new|error)"/.test(box))
+		throw new Error(`broken markup: ${box}`);
+	const text = box
 		.replace(/<[^>]*>/g, "")
-		.replace(/&lt;/g, "<")
-		.replace(/&gt;/g, ">")
-		.replace(/&amp;/g, "&")
+		.replace(/&#(x?)([0-9a-f]+);/gi, (_, hex, code) =>
+			String.fromCodePoint(Number.parseInt(code, hex ? 16 : 10)),
+		)
+		.replace(/&(lt|gt|quot|amp);/g, (_, name) => ENTITIES[name])
+		.replace(/\s+/g, " ")
 		.trim();
+	if (/\{\{|\}\}|\[\[|\]\]/.test(text))
+		throw new Error(`raw wikitext: ${text}`);
+	return text;
 }
+
+const ENTITIES: Record<string, string> = {
+	lt: "<",
+	gt: ">",
+	quot: '"',
+	amp: "&",
+};
 
 // Cuts at the last sentence that fits, so a long summary still reads whole
 export function fit(text: string, room: number): string {
@@ -38,7 +53,7 @@ export function status(text: string, url: string): string {
 
 export default async ({
 	core,
-	env: { LIST: list = "", SERVER, MASTODON_TOKEN },
+	env: { LIST: list = "", SITE: site = "", SERVER, MASTODON_TOKEN },
 }: {
 	core: typeof Core;
 	env: NodeJS.ProcessEnv;
@@ -49,10 +64,18 @@ export default async ({
 	for (const file of readdirSync("가용성")) {
 		if (!file.endsWith(".wikitext")) continue;
 		const title = `가용성/${file.slice(0, -".wikitext".length)}`;
-		const text = summary(readFileSync(`가용성/${file}`, "utf8"));
-		if (text === undefined || title in posted) continue;
+		if (title in posted) continue;
+		const path = title.replaceAll(" ", "_");
+		let text: string | undefined;
+		try {
+			text = summary(readFileSync(`${site}/${path}.html`, "utf8"));
+		} catch (error) {
+			core.setFailed(`${title}: ${error}`);
+			return;
+		}
+		if (text === undefined) continue;
 
-		const url = `https://femiwiki.github.io/${encodeURI(title.replaceAll(" ", "_"))}`;
+		const url = `https://femiwiki.github.io/${encodeURI(path)}`;
 		const response = await fetch(`${SERVER}/api/v1/statuses`, {
 			method: "POST",
 			headers: {
