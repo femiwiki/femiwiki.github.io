@@ -139,7 +139,7 @@ RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.option
 
   </div>
   <div id="lastmod-and-views">
-    <a id="lastmod" href="https://github.com/femiwiki/femiwiki.github.io/commits/main/%EA%B0%80%EC%9A%A9%EC%84%B1/2026%EB%85%84%2010%EC%9B%94%2011%EC%9D%BC%2002%EC%8B%9C%20%EC%82%AC%EA%B3%A0.wikitext"> 이 문서는 2026년 10월 10일 (토) 18:10에 마지막으로 편집되었습니다.</a>
+    <a id="lastmod" href="https://github.com/femiwiki/femiwiki.github.io/commits/main/%EA%B0%80%EC%9A%A9%EC%84%B1/2026%EB%85%84%2010%EC%9B%94%2011%EC%9D%BC%2002%EC%8B%9C%20%EC%82%AC%EA%B3%A0.wikitext"> 이 문서는 2026년 10월 10일 (토) 18:14에 마지막으로 편집되었습니다.</a>
     <nav id="p-views" class="mw-portlet mw-portlet-views" aria-labelledby="p-views-label" role="navigation" 
   >
   <h3 id="p-views-label" >
@@ -254,13 +254,18 @@ RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.option
 <p>1시 사고 뒤에 더한 확인은 PHP가 설정을 읽지 못하는 경우를 막는 것이라, PHP는 멀쩡하고 웹 서버가 PHP를 찾지 못하는 이번 경우는 다루지 않았습니다.
 </p>
 <div class="mw-heading mw-heading2"><h2 id="알림"><span id=".EC.95.8C.EB.A6.BC"></span>알림</h2></div>
-<p>Grafana 경보는 이 사고 동안 하나도 상태가 바뀌지 않았습니다. 서버 오류 경보와 사이트 다운 경보는 대체 경로의 응답을 세지 않는데, 대체 경로를 거치지 않은 503은 POST 23건뿐이었고 캐시된 정상 응답은 계속 나갔습니다. 2분 동안 요청의 30%가 넘게 실패하면 울리게 <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/pull/1286">infra#1286</a>에서 더한 경보는 이때 Grafana에 없었고, 있었더라도 같은 까닭으로 울리지 않았을 것입니다. Route 53의 특수:빈문서 확인 경보가 <span class="fw-time" data-time="2026-10-11 02:54:01">2시 54분 1초</span>에 울렸고 <span class="fw-time" data-time="2026-10-11 03:03:01">3시 3분 1초</span>에 풀렸습니다. 페미위키:대문 확인은 웹 서버 캐시가 대문을 내주어 끝까지 정상이었습니다.
+<p>울린 것은 Route 53 경보 하나였고, Grafana 경보는 이 사고 동안 하나도 상태가 바뀌지 않았습니다.<sup id="cite&#95;ref-infra1281&#95;10-1" class="reference"><a href="#cite_note-infra1281-10"><span class="cite-bracket">&#91;</span>10<span class="cite-bracket">&#93;</span></a></sup> 까닭은 둘입니다.
+</p><p>첫째, 서버 오류 경보는 대체 경로의 응답을 세지 않았습니다. 대체 경로는 원래 배포 중의 짧은 틈을 메우려고 둔 것이라, 대체 경로가 돌려준 정상 응답이 사이트 다운 경보를 속이지 않게 표시를 달아 두었는데, 서버 오류를 세는 쪽도 같은 표시로 대체 경로의 503을 뺐습니다. 이번 503 399건 가운데 376건이 대체 경로에서 나왔으므로, 경보가 본 503은 POST 23건뿐이었습니다. 사이트 다운 경보는 캐시된 정상 응답이 계속 나가 울릴 까닭이 없었습니다.
+</p><p>둘째, 2분 동안 요청의 30%가 넘게 실패하면 울리게 <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/pull/1286">infra#1286</a>에서 더한 경보가 사고 16분 전에 지워져 있었습니다. 그 뒤에 승인된 다른 변경(<a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/pull/1289">infra#1289</a>)이 #1286보다 오래된 코드로 Grafana를 다시 적용하면서 이 규칙을 되돌렸기 때문입니다.<sup id="cite&#95;ref-16" class="reference"><a href="#cite_note-16"><span class="cite-bracket">&#91;</span>16<span class="cite-bracket">&#93;</span></a></sup> 규칙이 남아 있었더라도 첫째와 같은 까닭으로 울리지 않았을 것입니다.
+</p><p>Route 53의 특수:빈문서 확인 경보가 <span class="fw-time" data-time="2026-10-11 02:54:01">2시 54분 1초</span>에 울렸고 <span class="fw-time" data-time="2026-10-11 03:03:01">3시 3분 1초</span>에 풀렸습니다. 페미위키:대문 확인은 웹 서버 캐시가 대문을 내주어 끝까지 정상이었습니다.
 </p>
 <div class="mw-heading mw-heading2"><h2 id="고친_것"><span id=".EA.B3.A0.EC.B9.9C_.EA.B2.83"></span>고친 것</h2></div>
-<ul><li>이미지를 97번째 세대가 쓰던 <code>2026-10-10T17-04-5e8a1bf8</code>로 되돌려 99번째 세대로 배포했습니다.<sup id="cite&#95;ref-run&#95;2-1" class="reference"><a href="#cite_note-run-2"><span class="cite-bracket">&#91;</span>2<span class="cite-bracket">&#93;</span></a></sup> <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/pull/1294">infra#1294</a>가 저장소를 그에 맞추었습니다. 첫 시도는 세대 번호를 커밋에 넣지 않아 세대 번호 확인에서 멈췄고, 이 때문에 복구가 2분쯤 늦어졌습니다.</li></ul>
+<ul><li>이미지를 97번째 세대가 쓰던 <code>2026-10-10T17-04-5e8a1bf8</code>로 되돌려 99번째 세대로 배포했습니다.<sup id="cite&#95;ref-run&#95;2-1" class="reference"><a href="#cite_note-run-2"><span class="cite-bracket">&#91;</span>2<span class="cite-bracket">&#93;</span></a></sup> <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/pull/1294">infra#1294</a>가 저장소를 그에 맞추었습니다. 첫 시도는 세대 번호를 커밋에 넣지 않아 세대 번호 확인에서 멈췄고, 이 때문에 복구가 2분쯤 늦어졌습니다.</li>
+<li>서버 오류 경보와 2분 경보가 대체 경로의 503도 세게 하고, 지워진 2분 경보를 되살렸습니다. <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/pull/1297">infra#1297</a>에서 고쳐 <span class="fw-time" data-time="2026-10-11 03:11">3시 11분</span>에 적용했습니다. 접근 로그로 다시 세면 이번 사고에서 서버 오류 경보는 <span class="fw-time" data-time="2026-10-11 02:57">2시 57분</span>쯤 울렸을 것입니다.</li></ul>
 <div class="mw-heading mw-heading2"><h2 id="남은_문제"><span id=".EB.82.A8.EC.9D.80_.EB.AC.B8.EC.A0.9C"></span>남은 문제</h2></div>
 <ul><li>Caddy의 상태 확인이 웹 루트를 묻게 하는 변경을 <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/pull/1296">infra#1296</a>에서 하고 있고, 그것이 배포된 뒤 docker-mediawiki#1479를 다시 내보냅니다. 진행은 <a rel="nofollow" class="external text" href="https://github.com/femiwiki/docker-mediawiki/issues/1333">docker-mediawiki#1333</a>에 있습니다.</li>
 <li>배포 전 확인은 새 세대를 웹 서버를 거쳐 열어 보지 않습니다. <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/issues/1104">infra#1104</a>에서 다룹니다.</li>
+<li>main보다 오래된 코드로 계획한 적용이 그 사이 main이 적용한 것을 되돌릴 수 있습니다. 적용 직전에 이를 막는 확인을 <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/issues/1298">infra#1298</a>에서 다룹니다.</li>
 <li>되돌리기 절차에서 세대 번호를 커밋하는 단계를 <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/pull/1295">infra#1295</a>에서 고치고 있습니다.</li></ul>
 <div class="mw-heading mw-heading2"><h2 id="출처"><span id=".EC.B6.9C.EC.B2.98"></span>출처</h2></div>
 <div class="mw-references-wrap mw-references-columns"><ol class="references">
@@ -282,7 +287,7 @@ RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.option
 </li>
 <li id="cite&#95;note-9"><span class="mw-cite-backlink"><a href="#cite_ref-9">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/blob/3173ce613a3e2b45f639c03e8937b8f7b102ee47/serving/Caddyfile#L351-L380">https://github.com/femiwiki/infra/blob/3173ce613a3e2b45f639c03e8937b8f7b102ee47/serving/Caddyfile#L351-L380</a></span>
 </li>
-<li id="cite&#95;note-infra1281-10"><span class="mw-cite-backlink"><a href="#cite_ref-infra1281_10-0">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/issues/1281">https://github.com/femiwiki/infra/issues/1281</a></span>
+<li id="cite&#95;note-infra1281-10"><span class="mw-cite-backlink">↑ <sup><a href="#cite_ref-infra1281_10-0">10.0</a></sup> <sup><a href="#cite_ref-infra1281_10-1">10.1</a></sup></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/issues/1281">https://github.com/femiwiki/infra/issues/1281</a></span>
 </li>
 <li id="cite&#95;note-11"><span class="mw-cite-backlink"><a href="#cite_ref-11">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/blob/3173ce613a3e2b45f639c03e8937b8f7b102ee47/.github/workflows/tofu.yml#L145-L170">https://github.com/femiwiki/infra/blob/3173ce613a3e2b45f639c03e8937b8f7b102ee47/.github/workflows/tofu.yml#L145-L170</a></span>
 </li>
@@ -293,6 +298,8 @@ RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.option
 <li id="cite&#95;note-14"><span class="mw-cite-backlink"><a href="#cite_ref-14">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/blob/3173ce613a3e2b45f639c03e8937b8f7b102ee47/docker/container.tf#L21">https://github.com/femiwiki/infra/blob/3173ce613a3e2b45f639c03e8937b8f7b102ee47/docker/container.tf#L21</a></span>
 </li>
 <li id="cite&#95;note-15"><span class="mw-cite-backlink"><a href="#cite_ref-15">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/blob/3173ce613a3e2b45f639c03e8937b8f7b102ee47/docker/container.tf#L177">https://github.com/femiwiki/infra/blob/3173ce613a3e2b45f639c03e8937b8f7b102ee47/docker/container.tf#L177</a></span>
+</li>
+<li id="cite&#95;note-16"><span class="mw-cite-backlink"><a href="#cite_ref-16">↑</a></span> <span class="reference-text"><a rel="nofollow" class="external free" href="https://github.com/femiwiki/infra/issues/1298">https://github.com/femiwiki/infra/issues/1298</a></span>
 </li>
 </ol></div>
 
@@ -308,7 +315,7 @@ RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.option
 
 <footer id="footer" class="mw-footer">
 	<ul id="footer-info" >
-	<li id="footer-info-lastmod"> 이 문서는 2026년 10월 10일 (토) 18:10에 마지막으로 편집되었습니다.</li>
+	<li id="footer-info-lastmod"> 이 문서는 2026년 10월 10일 (토) 18:14에 마지막으로 편집되었습니다.</li>
 </ul>
 
 	<ul id="footer-places" >
