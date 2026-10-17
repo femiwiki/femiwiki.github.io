@@ -1,3 +1,2 @@
 [global]
 line-length = 100
-disable = ["MD013"]
