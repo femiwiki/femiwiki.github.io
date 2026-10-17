@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
-# Hourly health of the site, one file per month: Module:가용성/YYYY-MM.json holds, per
-# series, a value for each hour of the month in Seoul time (null where there is no data).
-# Route 53's health checks give the fraction of probes that passed; CloudWatch keeps that
-# hourly for 15 months. Google Analytics, when GA_SERVICE_ACCOUNT holds the service
-# account's key, gives the hour's sessions against what that hour of the day usually
-# brought in the month, capped at 1: traffic that stops is the site that stopped, and it
-# reaches back to 2021.
+# Hourly health per month in Seoul time; Grafana keeps its probes 14 days, so run daily.
 set -euo pipefail
 out=$1
 closed=$(date -u -d "$(date -u +%Y-%m-01) -1 day" +%Y-%m)
@@ -13,20 +7,35 @@ if [ $# -ge 2 ]; then
   [[ "$2" =~ ^[0-9]{4}-(0[1-9]|1[0-2])$ ]] || { echo "month must be YYYY-MM, got '$2'" >&2; exit 2; }
   months=("$2")
 else
-  months=("$(date -u -d "$closed-01 -1 day" +%Y-%m)" "$closed")
+  months=("$closed" "$(date -u +%Y-%m)")
 fi
 mkdir -p "$out/Module:가용성" "$out/가용성"
 
-# A check is known by the page it requests. Replacing a check gives it a new ID and
-# CloudWatch keeps the old one's metrics, so the retired IDs stay listed here.
+# A check is known by the page it requests. Replacing a check gave it a new ID and
+# CloudWatch keeps the old one's metrics, so every ID it ever had is listed.
 declare -A ids=(
-  ["페미위키:대문"]="6f01b5f3-bb0c-44c8-8dd3-79be07f8cc54"
-  ["특수:빈문서"]="c6722062-06b7-436b-b154-51e7e1cfca58"
+  ["페미위키:대문"]="6f01b5f3-bb0c-44c8-8dd3-79be07f8cc54 19eb0fa6-479e-4421-a217-4e42f92786e9"
+  ["특수:빈문서"]="c6722062-06b7-436b-b154-51e7e1cfca58 37cb650f-79a9-4d85-a0d3-1846b43319ff"
 )
-while IFS=$'\t' read -r id path; do
-  name=$(printf '%b' "${path//%/\\x}"); name=${name#/w/}
-  ids[$name]="${ids[$name]:-} $id"
-done < <(aws route53 list-health-checks --output json | jq -r '.HealthChecks[] | "\(.Id)\t\(.HealthCheckConfig.ResourcePath)"')
+
+# The share of probe runs that passed in each hour of the month, per check (the job),
+# as {"job": {"hour": value}}. Prometheus gives each step the hour that ends at it.
+grafana_hours() { # start end -> json
+  local url user token from to
+  url=$(jq -r .url <<< "$GRAFANA_PROMETHEUS")
+  user=$(jq -r .user <<< "$GRAFANA_PROMETHEUS")
+  token=$(jq -r .token <<< "$GRAFANA_PROMETHEUS")
+  from=$(($(date -u -d "$1" +%s) + 3600))
+  to=$(date -u -d "$2" +%s)
+  [ "$to" -le "$(date -u +%s)" ] || to=$(date -u +%s)
+  [ "$from" -le "$to" ] || { echo '{}'; return; }
+  curl -fsS -u "$user:$token" "$url/api/prom/api/v1/query_range" \
+    --data-urlencode 'query=sum by (job) (increase(probe_all_success_sum[1h])) / sum by (job) (increase(probe_all_success_count[1h]))' \
+    --data-urlencode "start=$from" --data-urlencode "end=$to" --data-urlencode step=3600 \
+    | jq --argjson from "$from" '
+      [.data.result[] | {key: .metric.job, value: (.values | map({key: (((.[0] - $from) / 3600) | floor | tostring), value: (.[1] | tonumber * 10000 | round / 10000)}) | from_entries)}]
+      | from_entries'
+}
 
 ga_token() {
   local key header claim sig now
@@ -96,6 +105,23 @@ for month in "${months[@]}"; do
         })
       | from_entries
       | {month: $month, hours: $hours, checks: .}' > "$out/Module:가용성/$month.json"
+  # A probe's hour stays as written once Grafana has dropped it, and a check that
+  # shares a Route 53 check's name takes the hour from the probes where they have it.
+  prev="{}"
+  git -C "$out" cat-file -e "HEAD:Module:가용성/$month.json" 2>/dev/null \
+    && prev=$(git -C "$out" show "HEAD:Module:가용성/$month.json")
+  probes='{}'
+  [ -z "${GRAFANA_PROMETHEUS:-}" ] || probes=$(grafana_hours "$start" "$end")
+  jq --sort-keys --argjson prev "$prev" --argjson probes "$probes" '
+    .hours as $hours
+    | reduce ($probes | keys[]) as $job (.;
+        .checks[$job] = [range($hours) as $h
+          | $probes[$job][$h | tostring] // ($prev.checks[$job][$h] // null) // (.checks[$job][$h] // null)])
+    | reduce (($prev.checks // {}) | keys[] | select(. != "GA4 세션")) as $job (.;
+        if .checks[$job] then .checks[$job] = [range($hours) as $h | .checks[$job][$h] // $prev.checks[$job][$h]]
+        else .checks[$job] = $prev.checks[$job] end)' \
+    "$out/Module:가용성/$month.json" > "$out/Module:가용성/$month.json.probes"
+  mv "$out/Module:가용성/$month.json.probes" "$out/Module:가용성/$month.json"
   if [ -n "${GA_SERVICE_ACCOUNT:-}" ]; then
     # An hour counts in full when it brought at least a quarter of what that hour of
     # the day usually brings in the month (the median, so an outage does not lower it),
