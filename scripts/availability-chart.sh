@@ -16,11 +16,13 @@ jq 'def lost: if . == null then null else (1 - .uptime) * .hours * 10 | round / 
   schema: {fields: [
     {name: "month", type: "string", title: {ko: "달"}},
     {name: "main", type: "number", title: {ko: "페미위키:대문"}},
-    {name: "blank", type: "number", title: {ko: "특수:빈문서"}}
+    {name: "blank", type: "number", title: {ko: "특수:빈문서"}},
+    {name: "api", type: "number", title: {ko: "API"}}
   ]},
-  data: [.[] | select(.checks["페미위키:대문"] or .checks["특수:빈문서"]) | [
+  data: [.[] | select(.checks["페미위키:대문"] or .checks["특수:빈문서"] or .checks.API) | [
     .month,
     (.checks["페미위키:대문"] | lost),
-    (.checks["특수:빈문서"] | lost)
+    (.checks["특수:빈문서"] | lost),
+    (.checks.API | lost)
   ]]
 }' "$months" > "Data:가용성.tab"
