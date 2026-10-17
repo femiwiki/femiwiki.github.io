@@ -71,5 +71,5 @@ config:
       repository: https://github.com/Universal-Omega/DynamicPageList4
       commit: 7f2ef0ab84e99bf3f145afb328996e0858719d5d
     Femiwiki:
-      tarball: https://github.com/femiwiki/FemiwikiSkin/releases/download/v5.1.2/v5.1.2.tar.gz
-      sha256: 9d96a1fefb3ca404cca0a6381f1eb690a04a38266970946ced7644f7a77c3ad1
+      tarball: https://github.com/femiwiki/FemiwikiSkin/releases/download/v6.0.1/v6.0.1.tar.gz
+      sha256: fbe1ce91554333a5ebe144bafbade6e2e82c5fe30247ba3e2ba238a08c82862a
