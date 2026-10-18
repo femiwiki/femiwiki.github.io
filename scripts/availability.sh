@@ -47,8 +47,10 @@ ga_token() {
   claim=$(jq -cn --arg iss "$(jq -r .client_email <<< "$key")" --argjson iat "$now" --argjson exp "$((now + 3600))" \
     '{iss: $iss, scope: "https://www.googleapis.com/auth/analytics.readonly", aud: "https://oauth2.googleapis.com/token", iat: $iat, exp: $exp}' | b64)
   sig=$(printf '%s.%s' "$header" "$claim" | openssl dgst -sha256 -sign <(jq -r .private_key <<< "$key") | b64)
-  curl -fsS -X POST https://oauth2.googleapis.com/token \
-    -d grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer -d "assertion=$header.$claim.$sig" | jq -r .access_token
+  local res
+  res=$(curl -sS --fail-with-body -X POST https://oauth2.googleapis.com/token \
+    -d grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer -d "assertion=$header.$claim.$sig") || { echo "$res" >&2; return 1; }
+  jq -r .access_token <<< "$res"
 }
 
 # Sessions per hour of the month, from the property's own time zone (Seoul).
@@ -66,9 +68,14 @@ ga_sessions() { # month -> json array of hourly session counts
       | map({key: (.hour | tostring), value: .n}) | from_entries'
 }
 
+# Without Google the probes still get written, since Grafana drops them in 14 days.
 if [ -n "${GA_SERVICE_ACCOUNT:-}" ]; then
-  ga_token=$(ga_token)
-  ga_property=$(jq -r .property_id <<< "$GA_SERVICE_ACCOUNT")
+  if ga_token=$(ga_token); then
+    ga_property=$(jq -r .property_id <<< "$GA_SERVICE_ACCOUNT")
+  else
+    echo "::warning::Google Analytics refused the service account, so sessions are skipped"
+    unset GA_SERVICE_ACCOUNT
+  fi
 fi
 
 queries() { # month -> metric data queries for every ID, hourly Sum and SampleCount
