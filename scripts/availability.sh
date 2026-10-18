@@ -29,12 +29,13 @@ grafana_hours() { # start end -> json
   to=$(date -u -d "$2" +%s)
   [ "$to" -le "$(date -u +%s)" ] || to=$(date -u +%s)
   [ "$from" -le "$to" ] || { echo '{}'; return; }
-  curl -fsS -u "$user:$token" "$url/api/prom/api/v1/query_range" \
+  local res
+  res=$(curl -sS --fail-with-body -G -u "$user:$token" "${url%/api/prom}/api/prom/api/v1/query_range" \
     --data-urlencode 'query=sum by (job) (increase(probe_all_success_sum[1h])) / sum by (job) (increase(probe_all_success_count[1h]))' \
-    --data-urlencode "start=$from" --data-urlencode "end=$to" --data-urlencode step=3600 \
-    | jq --argjson from "$from" '
+    --data-urlencode "start=$from" --data-urlencode "end=$to" --data-urlencode step=3600) || { echo "$res" >&2; return 1; }
+  jq --argjson from "$from" '
       [.data.result[] | {key: .metric.job, value: (.values | map({key: (((.[0] - $from) / 3600) | floor | tostring), value: (.[1] | tonumber * 10000 | round / 10000)}) | from_entries)}]
-      | from_entries'
+      | from_entries' <<< "$res"
 }
 
 ga_token() {
