@@ -658,16 +658,16 @@
     "month": "2026-10",
     "checks": {
       "API": {
-        "hours": 12,
+        "hours": 37,
         "uptime": 1
       },
       "특수:빈문서": {
-        "hours": 422,
-        "uptime": 0.994484
+        "hours": 428,
+        "uptime": 0.994172
       },
       "페미위키:대문": {
-        "hours": 422,
-        "uptime": 0.999447
+        "hours": 445,
+        "uptime": 0.999476
       }
     }
   }
