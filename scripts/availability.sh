@@ -38,28 +38,13 @@ grafana_hours() { # start end -> json
       | from_entries' <<< "$res"
 }
 
-ga_token() {
-  local key header claim sig now
-  key=$GA_SERVICE_ACCOUNT
-  b64() { openssl base64 -e -A | tr '+/' '-_' | tr -d '='; }
-  now=$(date +%s)
-  header=$(printf '{"alg":"RS256","typ":"JWT"}' | b64)
-  claim=$(jq -cn --arg iss "$(jq -r .client_email <<< "$key")" --argjson iat "$now" --argjson exp "$((now + 3600))" \
-    '{iss: $iss, scope: "https://www.googleapis.com/auth/analytics.readonly", aud: "https://oauth2.googleapis.com/token", iat: $iat, exp: $exp}' | b64)
-  sig=$(printf '%s.%s' "$header" "$claim" | openssl dgst -sha256 -sign <(jq -r .private_key <<< "$key") | b64)
-  local res
-  res=$(curl -sS --fail-with-body -X POST https://oauth2.googleapis.com/token \
-    -d grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer -d "assertion=$header.$claim.$sig") || { echo "$res" >&2; return 1; }
-  jq -r .access_token <<< "$res"
-}
-
 # Sessions per hour of the month, from the property's own time zone (Seoul).
 ga_sessions() { # month -> json array of hourly session counts
   local first last
   first="$1-01"
   last=$(date -u -d "$1-01 +1 month -1 day" +%Y-%m-%d)
-  curl -fsS -H "Authorization: Bearer $ga_token" -H 'Content-Type: application/json' \
-    "https://analyticsdata.googleapis.com/v1beta/properties/$ga_property:runReport" \
+  curl -fsS -H "Authorization: Bearer $GA_ACCESS_TOKEN" -H 'Content-Type: application/json' \
+    "https://analyticsdata.googleapis.com/v1beta/properties/$GA_PROPERTY:runReport" \
     -d "{\"dateRanges\":[{\"startDate\":\"$first\",\"endDate\":\"$last\"}],\"dimensions\":[{\"name\":\"dateHour\"}],\"metrics\":[{\"name\":\"sessions\"}],\"limit\":1000}" \
     | jq --arg first "$first" '
       ($first | strptime("%Y-%m-%d") | mktime) as $start
@@ -67,16 +52,6 @@ ga_sessions() { # month -> json array of hourly session counts
          | {hour: (((((.dimensionValues[0].value | strptime("%Y%m%d%H") | mktime) - $start) / 3600) | floor)), n: (.metricValues[0].value | tonumber)}]
       | map({key: (.hour | tostring), value: .n}) | from_entries'
 }
-
-# Without Google the probes still get written, since Grafana drops them in 14 days.
-if [ -n "${GA_SERVICE_ACCOUNT:-}" ]; then
-  if ga_token=$(ga_token); then
-    ga_property=$(jq -r .property_id <<< "$GA_SERVICE_ACCOUNT")
-  else
-    echo "::warning::Google Analytics refused the service account, so sessions are skipped"
-    unset GA_SERVICE_ACCOUNT
-  fi
-fi
 
 queries() { # month -> metric data queries for every ID, hourly Sum and SampleCount
   local i=0 q=()
@@ -130,7 +105,7 @@ for month in "${months[@]}"; do
         else .checks[$job] = $prev.checks[$job] end)' \
     "$out/Module:가용성/$month.json" > "$out/Module:가용성/$month.json.probes"
   mv "$out/Module:가용성/$month.json.probes" "$out/Module:가용성/$month.json"
-  if [ -n "${GA_SERVICE_ACCOUNT:-}" ]; then
+  if [ -n "${GA_ACCESS_TOKEN:-}" ]; then
     # An hour counts in full when it brought at least a quarter of what that hour of
     # the day usually brings in the month (the median, so an outage does not lower it),
     # and never less than one session.
