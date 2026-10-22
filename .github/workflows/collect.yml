@@ -69,6 +69,21 @@ jobs:
           GRAFANA_PROMETHEUS: ${{ secrets.GRAFANA_PROMETHEUS }}
         run: scripts/availability.sh data ${MONTH:+"$MONTH"}
 
+      # A month the wiki missed can be added later by running this with the month
+      - if: github.event.schedule != '30 0 * * *'
+        continue-on-error: true
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3  # v9.0.0
+        env:
+          MONTH: ${{ inputs.month }}
+          GA_ACCESS_TOKEN: ${{ steps.google.outputs.access_token }}
+          GA_PROPERTY: "258014701"
+          WIKI_BOT_USER: ${{ secrets.WIKI_BOT_USER }}
+          WIKI_BOT_PASSWORD: ${{ secrets.WIKI_BOT_PASSWORD }}
+        with:
+          script: |
+            const { default: record } = await import(`${process.env.GITHUB_WORKSPACE}/.github/scripts/ga-record.mts`)
+            await record({ core, env: process.env })
+
       - if: github.event.schedule != '30 0 * * *'
         env:
           MONTH: ${{ inputs.month }}
