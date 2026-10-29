@@ -662,20 +662,20 @@
     "month": "2026-10",
     "checks": {
       "API": {
-        "hours": 254,
-        "uptime": 0.999797
+        "hours": 278,
+        "uptime": 0.999814
       },
       "GA4 세션": {
         "hours": 744,
-        "uptime": 0.887097
+        "uptime": 0.919422
       },
       "특수:빈문서": {
         "hours": 428,
         "uptime": 0.994172
       },
       "페미위키:대문": {
-        "hours": 662,
-        "uptime": 0.999595
+        "hours": 686,
+        "uptime": 0.99961
       }
     }
   }
