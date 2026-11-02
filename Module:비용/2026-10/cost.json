@@ -12,8 +12,20 @@
   ],
   "ResultsByTime": [
     {
-      "Estimated": true,
+      "Estimated": false,
       "Groups": [
+        {
+          "Keys": [
+            "AWS Certificate Manager",
+            "Usage"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            }
+          }
+        },
         {
           "Keys": [
             "AWS CloudTrail",
@@ -33,7 +45,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "-0.4060354839",
+              "Amount": "-0.6717173761",
               "Unit": "USD"
             }
           }
@@ -45,7 +57,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "0.4060354839",
+              "Amount": "0.6717173761",
               "Unit": "USD"
             }
           }
@@ -57,7 +69,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "-0.7229417526",
+              "Amount": "-1.615667641",
               "Unit": "USD"
             }
           }
@@ -105,7 +117,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "-0.000095",
+              "Amount": "-0.00025",
               "Unit": "USD"
             }
           }
@@ -117,7 +129,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "0.000095",
+              "Amount": "0.00025",
               "Unit": "USD"
             }
           }
@@ -129,7 +141,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "-0.002865",
+              "Amount": "-0.029645",
               "Unit": "USD"
             }
           }
@@ -141,7 +153,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "0.002865",
+              "Amount": "0.029645",
               "Unit": "USD"
             }
           }
@@ -153,7 +165,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "-6.7379293386",
+              "Amount": "-25.5399546314",
               "Unit": "USD"
             }
           }
@@ -165,7 +177,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "6.7379293249",
+              "Amount": "25.5399545937",
               "Unit": "USD"
             }
           }
@@ -177,7 +189,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "-5.8011251765",
+              "Amount": "-9.8962994317",
               "Unit": "USD"
             }
           }
@@ -189,7 +201,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "6.4938362871",
+              "Amount": "11.4655578977",
               "Unit": "USD"
             }
           }
@@ -201,7 +213,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "-0.896364456",
+              "Amount": "-15.3504",
               "Unit": "USD"
             }
           }
@@ -213,7 +225,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "0.8966733089",
+              "Amount": "15.3507088529",
               "Unit": "USD"
             }
           }
@@ -237,7 +249,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "-3.20907101",
+              "Amount": "-4.9514718",
               "Unit": "USD"
             }
           }
@@ -249,7 +261,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "3.209070993",
+              "Amount": "4.95147178",
               "Unit": "USD"
             }
           }
@@ -261,7 +273,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "-1.1527519903",
+              "Amount": "-2.1164728327",
               "Unit": "USD"
             }
           }
@@ -273,7 +285,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "-0.0063",
+              "Amount": "-0.0142",
               "Unit": "USD"
             }
           }
@@ -285,7 +297,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "0.0063",
+              "Amount": "0.0142",
               "Unit": "USD"
             }
           }
@@ -321,7 +333,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "-1.6101073237",
+              "Amount": "-3.1750499392",
               "Unit": "USD"
             }
           }
@@ -333,7 +345,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "2.7927808076",
+              "Amount": "5.337621808",
               "Unit": "USD"
             }
           }
@@ -345,7 +357,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "-3.98",
+              "Amount": "-7.44",
               "Unit": "USD"
             }
           }
@@ -357,7 +369,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "3.98",
+              "Amount": "7.44",
               "Unit": "USD"
             }
           }
@@ -369,7 +381,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "-0.1754242315",
+              "Amount": "-0.4573670381",
               "Unit": "USD"
             }
           }
@@ -381,7 +393,7 @@
           ],
           "Metrics": {
             "UnblendedCost": {
-              "Amount": "0.1754242289",
+              "Amount": "0.4573670325",
               "Unit": "USD"
             }
           }

@@ -663,7 +663,7 @@
     "checks": {
       "API": {
         "hours": 335,
-        "uptime": 0.999074
+        "uptime": 0.999177
       },
       "GA4 세션": {
         "hours": 744,
