@@ -604,6 +604,7 @@ RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.option
 <ul><li><code>http-176</code>을 손으로 내린 뒤 같은 이미지를 178번째 세대로 다시 배포했습니다. 오염된 <code>http-177</code>은 이름이 같은 컨테이너로 바꿀 수 없어 세대 번호를 하나 올렸습니다.</li>
 <li>새 웹 서버가 새 PHP 컨테이너가 건강해진 뒤에 뜨고, 이전 PHP 컨테이너는 이전 웹 서버가 내려간 뒤에 지워지게 했습니다. <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/pull/1597">infra#1597</a>에서 고쳐 <span class="fw-time" data-time="2026-11-05 22:48">22시 48분</span>에 적용했고, 이 배포에서 웹 서버의 확인은 첫 시도에 통과했습니다.</li>
 <li>PHP 컨테이너의 예열에 <code>load.php?modules=startup</code>을 더했습니다. <a rel="nofollow" class="external text" href="https://github.com/femiwiki/docker-mediawiki/pull/1767">docker-mediawiki#1767</a>에서 고쳤고 다음 이미지 배포에 들어갑니다.</li>
+<li>PHP 컨테이너의 예열과 웹 서버의 확인이 같은 주소 목록을 읽게 했습니다. 확인하는 주소를 늘릴 때 예열에서 빠뜨리는 일이 다시 생기지 않습니다. <a rel="nofollow" class="external text" href="https://github.com/femiwiki/docker-mediawiki/pull/1770">docker-mediawiki#1770</a></li>
 <li>새 웹 서버가 뜨지 못했을 때의 복구 절차를 적었습니다. <a rel="nofollow" class="external text" href="https://github.com/femiwiki/infra/pull/1598">infra#1598</a></li></ul>
 <div class="mw-heading mw-heading2"><h2 id="출처"><span id=".EC.B6.9C.EC.B2.98"></span>출처</h2></div>
 <div class="mw-references-wrap"><ol class="references">
@@ -630,7 +631,7 @@ RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.option
 			
 <footer id="footer" class="mw-footer" >
 	<ul id="footer-info">
-	<li id="footer-info-lastmod"> 이 문서는 2026년 11월 5일 (목) 13:58에 마지막으로 편집되었습니다.</li>
+	<li id="footer-info-lastmod"> 이 문서는 2026년 11월 5일 (목) 14:10에 마지막으로 편집되었습니다.</li>
 </ul>
 
 	<ul id="footer-places">
