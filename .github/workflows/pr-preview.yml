@@ -1,5 +1,6 @@
 ---
 name: PR preview
+# Outside the required gate: publishes a preview of the site, checks nothing
 on:
   pull_request:
     types: [opened, synchronize, reopened, closed]
