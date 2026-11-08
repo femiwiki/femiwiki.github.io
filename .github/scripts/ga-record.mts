@@ -3,9 +3,8 @@ import type * as Core from "@actions/core";
 
 const TITLE = "Data:페미위키 구글 애널리틱스 기록.tab";
 
-// The columns after the month, in the page's order. GA4's totalUsers is what
-// Universal Analytics called users. Most raw sessions are bots, so engaged
-// sessions get their own column, which the Universal Analytics months leave empty.
+// GA4's totalUsers is what Universal Analytics called users. Most raw sessions are
+// bots, so engaged sessions get a column, empty in the Universal Analytics months.
 const METRICS = ["totalUsers", "newUsers", "sessions", "engagedSessions"];
 
 type Row = [string, ...(number | null)[]];
