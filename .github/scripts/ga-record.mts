@@ -1,12 +1,14 @@
-// Adds a closed month's Google Analytics totals to 페미위키:구글 애널리틱스 기록 once.
+// Adds a closed month's Google Analytics totals to the GA record's tabular data page once.
 import type * as Core from "@actions/core";
 
-const TITLE = "페미위키:구글 애널리틱스 기록";
+const TITLE = "Data:페미위키 구글 애널리틱스 기록.tab";
 
-// The table's columns came from Universal Analytics. GA4's totalUsers is what UA
-// called users. Most raw sessions are bots, so engaged sessions get their own column.
+// GA4's totalUsers is what Universal Analytics called users. Most raw sessions are
+// bots, so engaged sessions get a column, empty in the Universal Analytics months.
 const METRICS = ["totalUsers", "newUsers", "sessions", "engagedSessions"];
-const ENGAGED_HEADER = "!'''engagedSessions (참여 세션)'''";
+
+type Row = [string, ...(number | null)[]];
+type Tab = { data: Row[] };
 
 // The month before the one `now` falls in, as YYYY-MM
 export function previousMonth(now: Date): string {
@@ -19,40 +21,13 @@ export function lastDay(month: string): string {
 	return new Date(Date.UTC(year, m, 0)).toISOString().slice(0, 10);
 }
 
-export function row(month: string, values: string[]): string {
-	return ["|-", `|${month}-01`, ...values.map((v) => `|${v}`)].join("\n");
-}
-
-// The row goes before the first later month, or at the end of the table, so a
-// backfilled month lands in order, and the header gains the engaged sessions column once
-export function insert(
-	text: string,
-	month: string,
-	added: string,
-): string | undefined {
-	const first = `|${month}-01`;
-	const lines = text.split("\n");
-	if (lines.includes(first)) return undefined;
-	let separator = -1;
-	let at = -1;
-	for (const [i, line] of lines.entries()) {
-		if (line === "|-") separator = i;
-		else if (/^\|\d{4}-\d{2}-01$/.test(line) && line > first) {
-			at = separator;
-			break;
-		} else if (line === "|}") {
-			at = i;
-			break;
-		}
-	}
-	if (at < 0) throw new Error(`${TITLE} has no table to add to`);
-	lines.splice(at, 0, added);
-	if (!lines.includes(ENGAGED_HEADER)) {
-		const sessions = lines.findIndex((l) => l.startsWith("!'''ga:sessions "));
-		if (sessions < 0) throw new Error(`${TITLE} has no sessions column`);
-		lines.splice(sessions + 1, 0, ENGAGED_HEADER);
-	}
-	return lines.join("\n");
+// The row goes in month order, so a backfilled month lands where it belongs
+export function insert<T extends Tab>(tab: T, added: Row): T | undefined {
+	if (tab.data.some(([month]) => month === added[0])) return undefined;
+	const at = tab.data.findIndex(([month]) => month > added[0]);
+	const data = [...tab.data];
+	data.splice(at < 0 ? data.length : at, 0, added);
+	return { ...tab, data };
 }
 
 // The wiki's API with the login cookies kept between calls
@@ -126,7 +101,7 @@ export default async ({
 	if (!report.ok)
 		throw new Error(`runReport: ${report.status} ${await report.text()}`);
 	const values = (await report.json()).rows?.[0]?.metricValues?.map(
-		(v: { value: string }) => v.value,
+		(v: { value: string }) => Number(v.value),
 	);
 	if (!values) throw new Error(`no data for ${month}`);
 
@@ -152,8 +127,8 @@ export default async ({
 			titles: TITLE,
 		})
 	).query.pages[0].revisions[0];
-	const text = insert(page.slots.main.content, month, row(month, values));
-	if (text === undefined) {
+	const tab = insert(JSON.parse(page.slots.main.content), [month, ...values]);
+	if (tab === undefined) {
 		core.info(`${TITLE} already has ${month}.`);
 		return;
 	}
@@ -163,7 +138,7 @@ export default async ({
 	const edit = await api({
 		action: "edit",
 		title: TITLE,
-		text,
+		text: JSON.stringify(tab),
 		summary: `${month} 구글 애널리틱스 기록 (femiwiki.github.io 수집 작업)`,
 		bot: "1",
 		basetimestamp: page.timestamp,
