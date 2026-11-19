@@ -683,16 +683,16 @@
     "month": "2026-11",
     "checks": {
       "API": {
-        "hours": 423,
-        "uptime": 0.999593
+        "hours": 447,
+        "uptime": 0.999615
       },
       "GA4 세션": {
         "hours": 720,
-        "uptime": 0.586111
+        "uptime": 0.619444
       },
       "페미위키:대문": {
-        "hours": 423,
-        "uptime": 0.999918
+        "hours": 447,
+        "uptime": 0.999884
       }
     }
   }
